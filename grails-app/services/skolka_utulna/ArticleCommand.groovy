@@ -9,8 +9,6 @@ import frod.routing.domain.Page
 @grails.validation.Validateable
 class ArticleCommand {
 
-    Page page
-
     String headline
 
     String text
