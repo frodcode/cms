@@ -3,16 +3,16 @@
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
       <configuration>
-        <fileset id="fileset1" name="Xml Application Context" removed="false">
-          <file>file://$MODULE_DIR$/web-app/WEB-INF/applicationContext.xml</file>
+        <fileset id="Grails" name="Grails" removed="false">
+          <file>file://$MODULE_DIR$/../../plugins/Diagnostics/web-app/WEB-INF/applicationContext.xml</file>
         </fileset>
       </configuration>
     </facet>
     <facet type="web" name="GrailsWeb">
       <configuration>
         <webroots>
-          <root url="file://$MODULE_DIR$/web-app" relative="/" />
-          <root url="file://$MODULE_DIR$/grails-app/views" relative="/" />
+          <root url="file://$MODULE_DIR$/../../plugins/Diagnostics/web-app" relative="/" />
+          <root url="file://$MODULE_DIR$/../../plugins/Diagnostics/grails-app/views" relative="/" />
         </webroots>
         <sourceRoots />
       </configuration>
@@ -28,28 +28,29 @@
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/grails-app/utils" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/groovy" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/grails-app/i18n" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/grails-app/controllers" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/grails-app/domain" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/grails-app/services" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/grails-app/taglib" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/test/unit" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/test/integration" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/target/classes" />
-      <excludeFolder url="file://$MODULE_DIR$/target/test-classes" />
+    <content url="file://$MODULE_DIR$/../../plugins/Diagnostics">
+      <sourceFolder url="file://$MODULE_DIR$/../../plugins/Diagnostics/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../plugins/Diagnostics/grails-app/utils" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../plugins/Diagnostics/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../plugins/Diagnostics/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../plugins/Diagnostics/grails-app/controllers" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../plugins/Diagnostics/grails-app/domain" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../plugins/Diagnostics/grails-app/services" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../plugins/Diagnostics/grails-app/taglib" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../plugins/Diagnostics/test/unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../plugins/Diagnostics/test/integration" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/../../plugins/Diagnostics/target/classes" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="grails-2.2.3" level="application" />
-    <orderEntry type="module-library" exported="">
-      <library name="Grails User Library (Skolka_utulna)">
+    <orderEntry type="module" module-name="Media-inplacePlugin-grailsPlugins" />
+    <orderEntry type="module" module-name="Routing-inplacePlugin-grailsPlugins" />
+    <orderEntry type="library" scope="PROVIDED" name="grails-2.2.3" level="application" />
+    <orderEntry type="module-library">
+      <library name="Grails User Library (Diagnostics-inplacePlugin)">
         <CLASSES>
-          <root url="file://$MODULE_DIR$/lib" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.jumpmind.symmetric.jdbc/postgresql/jars/postgresql-9.2-1002-jdbc4.jar!/" />
+          <root url="file://$MODULE_DIR$/../../plugins/Diagnostics/lib" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.eclipse.jdt.core.compiler/ecj/jars/ecj-3.7.2.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/nekohtml/nekohtml/jars/nekohtml-1.9.6.2.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/nekohtml/xercesMinimal/jars/xercesMinimal-1.9.6.2.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.maven.wagon/wagon-http-shared/jars/wagon-http-shared-1.0-beta-6.jar!/" />
@@ -74,10 +75,9 @@
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-        <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../../plugins/Diagnostics/lib" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="Skolka_utulna-grailsPlugins" />
   </component>
 </module>
 

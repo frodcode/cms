@@ -19,7 +19,7 @@ grails.project.dependency.resolution = {
     }
     log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
-    legacyResolve false // whether to do a secondary resolve on plugin installation, not advised and here for backwards compatibility
+    legacyResolve true // whether to do a secondary resolve on plugin installation, not advised and here for backwards compatibility
 
     repositories {
         inherits true // Whether to inherit repository definitions from plugins
@@ -39,15 +39,24 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
+        compile group: 'org.jumpmind.symmetric.jdbc',
+                name: 'postgresql',
+                version: '9.2-1002-jdbc4'
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 
         // runtime 'mysql:mysql-connector-java:5.1.22'
     }
 
     plugins {
+        compile ":routing:0.1"
+        compile ":media:0.1"
         runtime ":hibernate:$grailsVersion"
         runtime ":jquery:1.8.3"
-        runtime ":resources:1.2"
+        runtime ":resources:1.2.RC2"
+        build ":release:2.2.1"
+        //compile: ":routing:0.1"
+        //runtime: ":media:0.1"
+        //runtime: ":mediabullshitwhat:1.2"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"
@@ -60,4 +69,10 @@ grails.project.dependency.resolution = {
 
         compile ':cache:1.0.1'
     }
+
 }
+// grails.plugin.location.Media = "../../plugins/Media";
+grails.plugin.location.Diagnostics = "../../plugins/Diagnostics"
+grails.plugin.location.FrodUtils = "../../plugins/FrodUtils"
+//grails.plugin.location.Routing = "../../plugins/Routing"
+grails.plugin.location.CmsAdmin = "../../plugins/CmsAdmin";
