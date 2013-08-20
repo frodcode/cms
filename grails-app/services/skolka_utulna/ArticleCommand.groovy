@@ -15,10 +15,11 @@ class ArticleCommand {
 
     Date published
 
+    Integer menuItemId
+
     ArticleStatusEnum status = ArticleStatusEnum.DRAFT
 
     static constraints = {
-        // todo dodelat
         importFrom Article
     }
 

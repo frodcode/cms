@@ -10,6 +10,7 @@ import frod.routing.domain.HttpMethodEnum
 import skolka_utulna.ArticleService
 import skolka_utulna.ArticleCommand
 import frod.routing.service.RoutingService
+import skolka_utulna.MenuItem
 
 /**
  * User: freeman
@@ -42,6 +43,47 @@ class Fixtures {
 
         pageTypes*.value*.save(failOnError: true);
 
+        def menuItems = [
+                uvod: new MenuItem(
+                        title: 'Úvod',
+                        position: 1,
+                        level: 1
+                ),
+                nase_tridy: new MenuItem(
+                        title: 'Naše třídy',
+                        position: 2,
+                        level: 1
+                ),
+                o_skolce: new MenuItem(
+                        title: 'O školce',
+                        position: 3,
+                        level: 1
+                ),
+                akce: new MenuItem(
+                        title: 'Akce',
+                        position: 4,
+                        level: 1
+                ),
+                fotogalerie: new MenuItem(
+                        title: 'Fotogalerie',
+                        position: 5,
+                        level: 1
+                ),
+                fotogalerie: new MenuItem(
+                        title: 'Jídelníček',
+                        position: 6,
+                        level: 1
+                ),
+                kontakt: new MenuItem(
+                        title: 'Kontakt',
+                        position: 7,
+                        level: 1
+                ),
+
+        ]
+
+        menuItems*.value*.save(flush: true, failOnError: true);
+
         def pages = [
                 homepage: new Page(
                         domain: defaultHost,
@@ -49,9 +91,11 @@ class Fixtures {
                         urlType: UrlTypeEnum.ROOT,
                         requestType: RequestTypeEnum.REGULAR,
                         httpMethod: HttpMethodEnum.GET,
-                        pageType: pageTypes.homepagePageType
+                        pageType: pageTypes.homepagePageType,
+                        menuItem: menuItems.uvod
                 ),
         ]
+
         pages*.value*.each {
             pageService.setDefaults(it)
             routingService.regenerateUrl(it)

@@ -12,6 +12,8 @@ class Article {
 
     Date published
 
+    MenuItem menuItem
+
     ArticleStatusEnum status = ArticleStatusEnum.DRAFT
 
     static constraints = {
@@ -20,6 +22,7 @@ class Article {
         headline(maxSize: 255)
         text(maxSize: 10000)
         status(nullable: false)
+        menuItem(nullable:true)
     }
 
     public def publish(Date when)

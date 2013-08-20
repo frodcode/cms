@@ -3,6 +3,8 @@ import frod.routing.domain.Domain
 import skolka_utulna.data.Fixtures
 import skolka_utulna.data.ExampleData
 import frod.routing.domain.Page
+import grails.util.Environment
+import skolka_utulna.data.TestData
 
 class BootStrap {
 
@@ -12,7 +14,11 @@ class BootStrap {
         defaultDomain.save()
 
         def fixtures = Fixtures.load(ctx, defaultDomain)
-        def exampleData = ExampleData.load(ctx, defaultDomain, fixtures.homepage, fixtures.pageTypes)
+        if (Environment.current == Environment.TEST) {
+            TestData.load(ctx, defaultDomain, fixtures.homepage, fixtures.pageTypes)
+        } else {
+            ExampleData.load(ctx, defaultDomain, fixtures.homepage, fixtures.pageTypes)
+        }
     }
     def destroy = {
     }

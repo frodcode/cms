@@ -7,6 +7,7 @@ import skolka_utulna.ArticleStatusEnum
 import frod.routing.domain.UrlTypeEnum
 import frod.routing.service.PageCommand
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory
+import frod.utils.commandObject.CommandObjectService
 
 /**
  * User: freeman
@@ -19,12 +20,13 @@ class ExampleData {
         return [pages: [], pageTypes: []]
     }
 
-    private static def loadArticles(def ctx, def defaultDomain, Page homepage, def pageTypes) {
-        def dataForMainPages = [
+    private static def getDataForArticles(def defaultDomain, Page homepage, def pageTypes) {
+        return  [
                 [
                         headline: 'Motýlci',
                         text: "<p><strong>Mladší děti 3-4,5 leté</strong></p><p>Dochází sem děti, které si na pobyt v MŠ zvykají. Cílem je zdravý a radostný pobyt v MŠ, rozvoj sociálních a citových vztahů mezi dětmi, není preferováno speciální ani zájmové zaměření.</p>",
                         status: ArticleStatusEnum.PUBLISHED,
+                        putAfterId: null, //will be calculated
                         page: [
                                 urlPart: '/motylci',
                                 urlType: UrlTypeEnum.FROM_PARENT,
@@ -54,6 +56,7 @@ class ExampleData {
                                 '\tpro děti s odloženou školní docházkou 38,- Kč denně / 31,- Kč polodenní\n' +
                                 '\t(svačina 11 Kč, oběd 19 Kč, svačina 8 Kč).<br></p>',
                         status: ArticleStatusEnum.PUBLISHED,
+                        putAfterId: null, //will be calculated
                         'page': [
                                 urlPart: '/provoz-a-skolne',
                                 urlType: UrlTypeEnum.FROM_PARENT,
@@ -145,6 +148,7 @@ class ExampleData {
                                 '\t\t</tr>\n' +
                                 '\t</tbody></table>',
                         status: ArticleStatusEnum.PUBLISHED,
+                        putAfterId: null, //will be calculated
                         'page': [
                                 urlPart: '/skolni-akce-na-letosni-rok',
                                 urlType: UrlTypeEnum.FROM_PARENT,
@@ -154,16 +158,20 @@ class ExampleData {
                         ]
                 ],
         ]
+    }
 
+    private static def loadArticles(def ctx, def defaultDomain, Page homepage, def pageTypes) {
+        def dataForMainPages = getDataForArticles(defaultDomain, homepage, pageTypes)
 
+        CommandObjectService commandObjectService = ctx.commandObjectService
         ArticleService articleService = ctx.articleService
         def allArticles = [:]
         def acbf = ctx.autowireCapableBeanFactory
 
         dataForMainPages.each { articleData ->
-            def articleCommand = new ArticleCommand(articleData.findAll{it.key != 'page'})
-            def pageCommand = new PageCommand(articleData.page)
-            acbf.autowireBeanProperties pageCommand, AutowireCapableBeanFactory.AUTOWIRE_BY_NAME, false
+            def articleCommandData = articleData.findAll{it.key != 'page'}
+            def articleCommand = commandObjectService.create(ArticleCommand, articleCommandData)
+            def pageCommand = commandObjectService.create(PageCommand, articleData.page)
             allArticles.put(
                     articleData.page.urlPart,
                     articleService.create(articleCommand, pageCommand)
