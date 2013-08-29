@@ -12,8 +12,10 @@ class ArticleService {
     MenuItemService menuItemService
 
     def create(ArticleCommand articleCommand, MenuItemCommand menuItemCommand, PageCommand pageCommand) {
-        MenuItem menuItem = menuItemService.create(menuItemCommand)
         Page page = pageService.createPage(pageCommand)
+        MenuItem menuItem = menuItemService.create(menuItemCommand)
+        menuItem.page = page
+
         Article article = new Article()
         article.properties = articleCommand.properties
         article.menuItem = menuItem
@@ -22,6 +24,8 @@ class ArticleService {
         if (!articleCommand.published && articleCommand.status == ArticleStatusEnum.PUBLISHED) {
             article.publish()
         }
+        page.save()
+        menuItem.save()
         article.save(flush: true)
         return article
     }

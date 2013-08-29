@@ -5,5 +5,7 @@ beans = {
     'skolka_utulna.data.ExampleData'(ExampleData) {
         commandObjectService = ref('commandObjectService')
         articleService = ref('articleService')
+        pageService = ref('pageService')
+        routingService = ref('routingService')
     }
 }

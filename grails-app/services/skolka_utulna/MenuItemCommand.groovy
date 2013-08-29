@@ -13,9 +13,12 @@ class MenuItemCommand {
 
     Integer parentId
 
+    Integer pageId
+
     static constraints = {
         importFrom MenuItem
 
+        pageId(nullable: true)
         parentId(nullable:true, validator: { val, obj ->
             if (obj.parentId && !MenuItem.get(obj.parentId)) {
                 return ['parentId.notFound']
