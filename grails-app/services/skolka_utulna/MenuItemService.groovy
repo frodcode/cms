@@ -1,5 +1,7 @@
 package skolka_utulna
 
+import frod.routing.domain.Page
+
 /**
  * User: freeman
  * Date: 20.8.13
@@ -25,7 +27,7 @@ class MenuItemService {
         }
 
         if (prevSibling) {
-            createGapFor(position, level)
+            createGapFor(position, level, parentItem)
         }
         menuItem.properties = menuItemCommand.properties
         menuItem.position = position
@@ -36,12 +38,20 @@ class MenuItemService {
     }
 
 
-    private def createGapFor(Number position, Number level) {
-        def movedItems = MenuItem.findAll("FROM MenuItem WHERE level = :level AND position >= :position ORDER BY position DESC", [level: level, position: position])
+    private def createGapFor(Number position, Number level, MenuItem parentItem) {
+        def movedItems = MenuItem.findAll("FROM MenuItem WHERE level = :level AND position >= :position AND parent = :parentItem ORDER BY position DESC", [level: level, position: position, parentItem: parentItem])
         movedItems.each { item ->
             item.position = item.position + 1;
             item.save(flush:true)
         }
     }
 
+    List<MenuItem> findMainMenuItemsForPage(Page page) {
+        MenuItem currentItem = findItemByPage(page)
+        return MenuItem.findAllByLevel(currentItem.level)
+    }
+
+    MenuItem findItemByPage(Page page) {
+        return MenuItem.findByPage(page)
+    }
 }
