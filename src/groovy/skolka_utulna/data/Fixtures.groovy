@@ -13,6 +13,8 @@ import frod.routing.service.RoutingService
 import skolka_utulna.MenuItem
 import skolka_utulna.Website
 import skolka_utulna.MainMenuItem
+import skolka_utulna.meal.MealMenuType
+import skolka_utulna.meal.MealMenu
 
 /**
  * User: freeman
@@ -113,22 +115,37 @@ class Fixtures {
                 ),
         ]
 
-//        pages.utulnaHomepage = new Page(
-//                domain: defaultHost,
-//                urlPart: '/utulna',
-//                urlType: UrlTypeEnum.FROM_PARENT,
-//                requestType: RequestTypeEnum.REGULAR,
-//                httpMethod: HttpMethodEnum.GET,
-//                pageType: pageTypes.homepagePageType,
-//                parent: pages.homepage
-//        )
-
         pages*.value*.each {
             pageService.setDefaults(it)
             routingService.regenerateUrl(it)
         }
         pages*.value*.save(flush: true, failOnError: true);
+        def mealMenuTypes = loadMealTypes()
 
-        return [root: pages.root, pageTypes: pageTypes, websites: websites, mainMenuItems: mainMenuItems]
+        return [root: pages.root, pageTypes: pageTypes, websites: websites, mainMenuItems: mainMenuItems, mealMenuTypes: mealMenuTypes]
     }
+
+
+    public static def loadMealTypes() {
+        def mealMenuTypes = [
+             presnidavka: new MealMenuType(
+                     name: 'Přesnídávka',
+                     slug: 'presnidavka',
+                     position: 1
+             ),
+                obed: new MealMenuType(
+                        name: 'Oběd',
+                        slug: 'obed',
+                        position: 2
+                ),
+                svacina: new MealMenuType(
+                        name: 'Svačina',
+                        slug: 'svacina',
+                        position: 3
+                ),
+        ]
+        mealMenuTypes*.value*.save(flush: true, failOnError: true);
+        return mealMenuTypes
+    }
+
 }

@@ -18,7 +18,7 @@ class BootStrap {
             TestData.load(ctx, defaultDomain, fixtures.root, fixtures.pageTypes) // todo
         } else {
             ExampleData exampleData = ctx.'skolka_utulna.data.ExampleData'
-            exampleData.load(ctx, defaultDomain, fixtures.root, fixtures.pageTypes, fixtures.websites, fixtures.mainMenuItems)
+            exampleData.load(ctx, defaultDomain, fixtures.root, fixtures.pageTypes, fixtures.websites, fixtures.mainMenuItems, fixtures.mealMenuTypes)
         }
     }
     def destroy = {

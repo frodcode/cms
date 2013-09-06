@@ -4,6 +4,8 @@ import frod.routing.domain.Page
 
 class WebsiteService {
 
+    MenuItemService menuItemService
+
     def getWebsiteByForwardURI(String forwardURI) {
         def tokenized = forwardURI.tokenize('/')
         if (tokenized.size() == 0) {
@@ -15,6 +17,15 @@ class WebsiteService {
             throw new IllegalArgumentException(sprintf('Cannot find any website with slug "%s". Forward URI was "%s"', slug, forwardURI))
         }
         return website;
+    }
+
+    def getWebsite(Page page) {
+        def website = Website.findByHomepage(page)
+        if (website) {
+            return website
+        } else {
+            return menuItemService.findItemByPage(page).mainMenuItem.website
+        }
     }
 
 }

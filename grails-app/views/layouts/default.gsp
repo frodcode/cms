@@ -38,7 +38,7 @@
 <div class="container" id="main-container">
     <div class="row-fluid">
         <div class="pull-left">
-            <g:include view="utulna/head.gsp"/>
+            <skolka:head/>
         </div>
         <div class="pull-right back-to-cross">
             <h3><a href="../" class="btn btn-success">&laquo; zpět na výběr školky</a></h3>

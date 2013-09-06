@@ -1,1 +1,0 @@
-<h3 class="muted"><a href="index.php"><img src="static/img/logo/small/utulna-pouze-logo-upravene.png"/> <span class="logo-text">Mateřská škola Útulná</span></a></h3>

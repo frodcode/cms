@@ -6,6 +6,8 @@ class SkolkaTagLib {
 
     MenuItemService menuItemService
 
+    WebsiteService websiteService
+
     def mainMenu = { attrs, body ->
         def page = pageScope.page
         def menuItems = MainMenuItem.list(sort: 'position', order: 'ASC')
@@ -32,7 +34,9 @@ class SkolkaTagLib {
     }
 
     def head = {
-
+        def page = pageScope.page
+        def website = websiteService.getWebsite(page)
+        out << render(template:"/$website.slug/head", model: [homepage: website.homepage])
     }
 
 }

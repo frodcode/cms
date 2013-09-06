@@ -16,6 +16,7 @@ import frod.routing.domain.HttpMethodEnum
 import frod.routing.service.PageService
 import frod.routing.service.RoutingService
 import skolka_utulna.Website
+import skolka_utulna.meal.MealMenu
 
 /**
  * User: freeman
@@ -30,9 +31,110 @@ class ExampleData {
 
     RoutingService routingService
 
-    public def load(def ctx, def defaultDomain, Page root, def pageTypes, def websites, def mainMenuItems) {
+    public def load(def ctx, def defaultDomain, Page root, def pageTypes, def websites, def mainMenuItems, def mealMenuTypes) {
+        loadMealMenus(mealMenuTypes)
         loadArticles(defaultDomain, root, pageTypes, websites, mainMenuItems)
         return []
+    }
+
+    public def loadMealMenus(mealMenuTypes) {
+        def currentDate = new Date()
+        Date monday = currentDate.clone()
+        monday.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+
+        Calendar tuesday = currentDate.clone()
+        monday.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY)
+
+        Calendar wednesday = currentDate.clone()
+        monday.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY)
+
+        Calendar thursday = currentDate.clone()
+        monday.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY)
+
+        Calendar friday = currentDate.clone()
+        monday.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY)
+
+        def mealMenus = [
+                new MealMenu(
+                        name: 'Salámová pom. , chléb Šumava, jablko, čaj lesní směs',
+                        mealMenuType: mealMenuTypes.presnidavka,
+                        validDate: monday
+                ),
+                new MealMenu(
+                        name: 'Medové kroužky , mléko, bylinný čaj s meduňkou',
+                        mealMenuType: mealMenuTypes.presnidavka,
+                        validDate: tuesday
+                ),
+                new MealMenu(
+                        name: 'Pomazánka ze strouhaného sýra, houska, salátová okurka, mléko',
+                        mealMenuType: mealMenuTypes.presnidavka,
+                        validDate: wednesday
+                ),
+                new MealMenu(
+                        name: 'Rbičková pomazánka, chléb, švestky, čaj goji-limetka',
+                        mealMenuType: mealMenuTypes.presnidavka,
+                        validDate: thursday
+                ),
+                new MealMenu(
+                        name: 'Bobík vanilka, veka, čaj dobré ráno',
+                        mealMenuType: mealMenuTypes.presnidavka,
+                        validDate: friday
+                ),
+
+                new MealMenu(
+                        name: 'Hovězí polévka, Krupicová kaše s Grankem, čaj divoká třešeň',
+                        mealMenuType: mealMenuTypes.obed,
+                        validDate: monday
+                ),
+                new MealMenu(
+                        name: 'Selská polévka, Vepřová játra na slanině, rýže, čaj',
+                        mealMenuType: mealMenuTypes.obed,
+                        validDate: tuesday
+                ),
+                new MealMenu(
+                        name: 'Fazolová polévka, Přírodní kuřecí plátek, bramborová kaše, salát z čínského zelí, šťáva',
+                        mealMenuType: mealMenuTypes.obed,
+                        validDate: wednesday
+                ),
+                new MealMenu(
+                        name: 'Vývar se sýrovým strouháním, Svíčková na smetaně, houskový knedlík, šťáva',
+                        mealMenuType: mealMenuTypes.obed,
+                        validDate: thursday
+                ),
+                new MealMenu(
+                        name: 'Česneková polévka s houstičkou, Zapečené těstoviny, červená řepa, šťáva',
+                        mealMenuType: mealMenuTypes.obed,
+                        validDate: friday
+                ),
+
+                new MealMenu(
+                        name: 'Dýňová karta, mrkev, bílá káva',
+                        mealMenuType: mealMenuTypes.svacina,
+                        validDate: monday
+                ),
+                new MealMenu(
+                        name: 'Párty chléb s máslem, meloun, čaj s citronem',
+                        mealMenuType: mealMenuTypes.svacina,
+                        validDate: tuesday
+                ),
+                new MealMenu(
+                        name: 'Ovocná miska, piškoty, čaj borůvka-rakytník',
+                        mealMenuType: mealMenuTypes.svacina,
+                        validDate: wednesday
+                ),
+                new MealMenu(
+                        name: 'Jogurtové mléko, karlovarský rohlík',
+                        mealMenuType: mealMenuTypes.svacina,
+                        validDate: thursday
+                ),
+                new MealMenu(
+                        name: 'Křehký chléb, zelenina, čaj s citronem',
+                        mealMenuType: mealMenuTypes.svacina,
+                        validDate: friday
+                ),
+        ]
+        mealMenus*.save(flush: true, failOnError: true);
+        return mealMenus
     }
 
     private String getTextFromFile(filename) {
