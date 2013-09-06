@@ -10,45 +10,35 @@ class MenuItemService {
 
     public MenuItem create(MenuItemCommand menuItemCommand) {
         MenuItem menuItem = new MenuItem()
-        MenuItem parentItem = null;
         def position = 1
-        def level = 1;
-
-        if (menuItemCommand.parentId) {
-            parentItem = MenuItem.get(menuItemCommand.parentId)
-            level = parentItem.level + 1
-        }
-
+        menuItem.mainMenuItem = MainMenuItem.get(menuItemCommand.mainMenuItemId)
         MenuItem prevSibling = null
         if (menuItemCommand.putAfterId) {
             prevSibling = MenuItem.get(menuItemCommand.putAfterId)
             position = prevSibling.position + 1
-            level = prevSibling.level
         }
 
         if (prevSibling) {
-            createGapFor(position, level, parentItem)
+            createGapFor(position, menuItem.mainMenuItem)
         }
         menuItem.properties = menuItemCommand.properties
         menuItem.position = position
-        menuItem.level = level
-        menuItem.parent = parentItem
-        menuItem.save(flush:true)
+        menuItem.save(flush:true, failOnError: true)
         return menuItem
     }
 
 
-    private def createGapFor(Number position, Number level, MenuItem parentItem) {
-        def movedItems = MenuItem.findAll("FROM MenuItem WHERE level = :level AND position >= :position AND parent = :parentItem ORDER BY position DESC", [level: level, position: position, parentItem: parentItem])
+    private def createGapFor(Number position, MainMenuItem mainMenuItem) {
+        def movedItems = MenuItem.findAll("FROM MenuItem WHERE position >= :position AND mainMenuItem = :mainMenuItem ORDER BY position DESC", [position: position, mainMenuItem: mainMenuItem])
         movedItems.each { item ->
             item.position = item.position + 1;
             item.save(flush:true)
         }
     }
 
-    List<MenuItem> findMainMenuItemsForPage(Page page) {
-        MenuItem currentItem = findItemByPage(page)
-        return MenuItem.findAllByLevel(currentItem.level)
+    public def findMenuItemsForPage(Page page) {
+        MenuItem currentMenuItem = MenuItem.findByPage(page)
+        return currentMenuItem.mainMenuItem.menuItems
     }
 
     MenuItem findItemByPage(Page page) {

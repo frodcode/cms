@@ -6,7 +6,7 @@ class Website {
 
     String name
 
-    static hasMany = [menuItems: MenuItem]
+    static hasMany = [mainMenuItems: MainMenuItem]
 
     static constraints = {
         slug(unique:true)

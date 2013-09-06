@@ -5,9 +5,7 @@ import frod.routing.domain.Page
 
 class MenuItem {
 
-    Website website
-
-    MenuItem parent
+    MainMenuItem mainMenuItem
 
     Page page
 
@@ -15,31 +13,11 @@ class MenuItem {
 
     Integer position
 
-    Integer level
-
-    static hasMany = [subItems: MenuItem]
-
-    static mappedBy = [subItems: 'parent']
-
     static constraints = {
-        level(unique: ['position', 'parent', 'website'])
+        position(unique: ['mainMenuItem'])
         page(nullable: true)
         title(nullable: false)
-        parent(nullable:true)
-        website(nullable: false)
-    }
-
-    public MenuItem getRoot(){
-        if (parent) {
-            return parent.getRoot()
-        }
-        return this
-    }
-
-    def beforeValidate() {
-        if (!website) {
-            website = getRoot().website
-        }
+        mainMenuItem(nullable:false)
     }
 
 }

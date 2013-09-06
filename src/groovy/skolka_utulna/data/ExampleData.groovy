@@ -29,8 +29,8 @@ class ExampleData {
 
     RoutingService routingService
 
-    public def load(def ctx, def defaultDomain, Page root, def pageTypes, def websites) {
-        loadArticles(defaultDomain, root, pageTypes, websites)
+    public def load(def ctx, def defaultDomain, Page root, def pageTypes, def websites, def mainMenuItems) {
+        loadArticles(defaultDomain, root, pageTypes, websites, mainMenuItems)
         return []
     }
 
@@ -42,23 +42,7 @@ class ExampleData {
         return stream.getText('UTF-8')
     }
 
-    private getMenuItemByPositionAndLevel(def position, def level, String websiteSlug) {
-        return MenuItem.where {
-            position == position && level == level && website.slug == websiteSlug
-        }.find()
-//        menuItems.each {
-//            def websitePage = it.getRoot().page
-//            def website = Website.findByHomepageAndSlug(websitePage, websiteSlug)
-//            if (website) {
-//                return it
-//            }
-//        }
-//        throw new IllegalArgumentException(sprintf('Cannot find menu item with position "%s", level "%s" and website slug "%s"', position, level, websiteSlug))
-        //return MenuItem.findByPositionAndLevel(position, level)
-    }
-
-    public def getDataForUtulnaArticles(def defaultDomain, Page homepage, def pageTypes) {
-        def websiteSlug = 'utulna'
+    public def getDataForUtulnaArticles(def defaultDomain, Page homepage, def pageTypes, def mainMenuItems) {
         return [
                 [
                         headline: 'Motýlci',
@@ -74,7 +58,7 @@ class ExampleData {
                         menuItem: [
                                 title: 'Motýlci',
                                 putAfterId: null, //will be calculated
-                                parentId: getMenuItemByPositionAndLevel(2, 1, websiteSlug).id
+                                mainMenuItemId: mainMenuItems.nase_tridy.id
                         ]
                 ],
                 [
@@ -91,7 +75,7 @@ class ExampleData {
                         menuItem: [
                                 title: 'Včelky',
                                 putAfterId: null, //will be calculated
-                                parentId: getMenuItemByPositionAndLevel(2, 1, websiteSlug).id
+                                mainMenuItemId: mainMenuItems.nase_tridy.id
                         ]
                 ],
                 [
@@ -108,7 +92,7 @@ class ExampleData {
                         menuItem: [
                                 title: 'Žablky',
                                 putAfterId: null, //will be calculated
-                                parentId: getMenuItemByPositionAndLevel(2, 1, websiteSlug).id
+                                mainMenuItemId: mainMenuItems.nase_tridy.id
                         ]
                 ],
                 [
@@ -125,7 +109,7 @@ class ExampleData {
                         menuItem: [
                                 title: 'Ježci',
                                 putAfterId: null, //will be calculated
-                                parentId: getMenuItemByPositionAndLevel(2, 1, websiteSlug).id
+                                mainMenuItemId: mainMenuItems.nase_tridy.id
                         ]
                 ],
                 [
@@ -142,7 +126,7 @@ class ExampleData {
                         menuItem: [
                                 title: 'Provoz a školné',
                                 putAfterId: null, //will be calculated
-                                parentId: getMenuItemByPositionAndLevel(3, 1, websiteSlug).id
+                                mainMenuItemId: mainMenuItems.o_skolce.id
                         ]
                 ],
                 [
@@ -159,7 +143,7 @@ class ExampleData {
                         menuItem: [
                                 title: 'Program dne',
                                 putAfterId: null, //will be calculated
-                                parentId: getMenuItemByPositionAndLevel(3, 1, websiteSlug).id
+                                mainMenuItemId: mainMenuItems.o_skolce.id
                         ]
                 ],
                 [
@@ -176,7 +160,7 @@ class ExampleData {
                         menuItem: [
                                 title: 'Prázdniny',
                                 putAfterId: null, //will be calculated
-                                parentId: getMenuItemByPositionAndLevel(3, 1, websiteSlug).id
+                                mainMenuItemId: mainMenuItems.o_skolce.id
                         ]
                 ],
                 [
@@ -193,7 +177,7 @@ class ExampleData {
                         menuItem: [
                                 title: 'Aktuality',
                                 putAfterId: null, //will be calculated
-                                parentId: getMenuItemByPositionAndLevel(3, 1, websiteSlug).id
+                                mainMenuItemId: mainMenuItems.o_skolce.id
                         ]
                 ],
                 [
@@ -210,7 +194,7 @@ class ExampleData {
                         menuItem: [
                                 title: 'Školní akce na letošní rok',
                                 putAfterId: null, //will be calculated
-                                parentId: getMenuItemByPositionAndLevel(4, 1, websiteSlug).id
+                                mainMenuItemId: mainMenuItems.akce.id
                         ]
                 ],
                 [
@@ -227,7 +211,7 @@ class ExampleData {
                         menuItem: [
                                 title: 'Den otevřených dvěří',
                                 putAfterId: null, //will be calculated
-                                parentId: getMenuItemByPositionAndLevel(4, 1, websiteSlug).id
+                                mainMenuItemId: mainMenuItems.akce.id
                         ]
                 ],
                 [
@@ -244,13 +228,13 @@ class ExampleData {
                         menuItem: [
                                 title: 'Školka v přírodě',
                                 putAfterId: null, //will be calculated
-                                parentId: getMenuItemByPositionAndLevel(4, 1, websiteSlug).id
+                                mainMenuItemId: mainMenuItems.akce.id
                         ]
                 ],
         ]
     }
 
-    def loadArticles(def defaultDomain, def root, def pageTypes, def websites) {
+    def loadArticles(def defaultDomain, def root, def pageTypes, def websites, def mainMenuItems) {
         def allArticles = []
 
         def pages = [
@@ -275,22 +259,20 @@ class ExampleData {
                 headline: 'O školce',
                 text: getTextFromFile('uvod.txt'),
                 status: ArticleStatusEnum.PUBLISHED,
-                page: pages.utulnaHomepage,
-                menuItem: getMenuItemByPositionAndLevel(1, 1, websites.utulna.slug)
+                page: pages.utulnaHomepage
         )
         utulnaHomepageArticle.save(flush:true)
-        allArticles << utulnaHomepageArticle
 
-        def allData = getDataForUtulnaArticles(defaultDomain, pages.utulnaHomepage, pageTypes)
+        def allData = getDataForUtulnaArticles(defaultDomain, pages.utulnaHomepage, pageTypes, mainMenuItems)
 
         def putAfters = [:]
         allData.each { data ->
             def index = allData.indexOf(data)
-            if (!putAfters.containsKey(data.menuItem.parentId)) {
-                putAfters[data.menuItem.parentId] = []
+            if (!putAfters.containsKey(data.menuItem.mainMenuItemId)) {
+                putAfters[data.menuItem.mainMenuItemId] = []
             } else {
-                putAfters[data.menuItem.parentId].add(allArticles[index-1].menuItem.id)
-                data.menuItem.putAfterId =  putAfters[data.menuItem.parentId].last()
+                putAfters[data.menuItem.mainMenuItemId].add(allArticles[index-1].menuItem.id)
+                data.menuItem.putAfterId =  putAfters[data.menuItem.mainMenuItemId].last()
             }
             allArticles << createFromData(data)
         }

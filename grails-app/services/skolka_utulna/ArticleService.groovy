@@ -44,11 +44,6 @@ class ArticleService {
         return Article.findByPage(childArticle.page.parent)
     }
 
-    public def findAllChildrenFor(Article article) {
-        def pages = Page.find("FROM Page WHERE parent = :parent", [parent: article.page])
-        return Article.find("FROM  Article WHERE page IN (:pages) ORDER BY position ASC", [pages: pages])
-    }
-
 
 
 }

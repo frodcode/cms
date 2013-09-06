@@ -12,6 +12,7 @@ import skolka_utulna.ArticleCommand
 import frod.routing.service.RoutingService
 import skolka_utulna.MenuItem
 import skolka_utulna.Website
+import skolka_utulna.MainMenuItem
 
 /**
  * User: freeman
@@ -53,53 +54,46 @@ class Fixtures {
 
         pageTypes*.value*.save(failOnError: true);
 
-        def menuItems = [
-                uvod: new MenuItem(
+        def mainMenuItems = [
+                uvod:new MainMenuItem(
                         title: 'Úvod',
                         position: 1,
-                        level: 1,
                         website: websites.utulna
                 ),
-                nase_tridy: new MenuItem(
+                nase_tridy:new MainMenuItem(
                         title: 'Naše třídy',
                         position: 2,
-                        level: 1,
                         website: websites.utulna
                 ),
-                o_skolce: new MenuItem(
+                o_skolce:new MainMenuItem(
                         title: 'O školce',
                         position: 3,
-                        level: 1,
                         website: websites.utulna
                 ),
-                akce: new MenuItem(
+                akce:new MainMenuItem(
                         title: 'Akce',
                         position: 4,
-                        level: 1,
                         website: websites.utulna
                 ),
-                fotogalerie: new MenuItem(
+                fotogalerie:new MainMenuItem(
                         title: 'Fotogalerie',
                         position: 5,
-                        level: 1,
                         website: websites.utulna
                 ),
-                fotogalerie: new MenuItem(
+                fotogalerie:new MainMenuItem(
                         title: 'Jídelníček',
                         position: 6,
-                        level: 1,
                         website: websites.utulna
                 ),
-                kontakt: new MenuItem(
+                kontakt:new MainMenuItem(
                         title: 'Kontakt',
                         position: 7,
-                        level: 1,
                         website: websites.utulna
                 ),
 
         ]
 
-        menuItems*.value*.save(flush: true, failOnError: true);
+        mainMenuItems*.value*.save(flush: true, failOnError: true);
 
         def pages = [
                 root: new Page(
@@ -108,7 +102,7 @@ class Fixtures {
                         urlType: UrlTypeEnum.ROOT,
                         requestType: RequestTypeEnum.REGULAR,
                         httpMethod: HttpMethodEnum.GET,
-                        pageType: pageTypes.homepagePageType,
+                        pageType: pageTypes.rootPageType,
                 ),
         ]
 
@@ -128,6 +122,6 @@ class Fixtures {
         }
         pages*.value*.save(flush: true, failOnError: true);
 
-        return [root: pages.root, pageTypes: pageTypes, websites: websites]
+        return [root: pages.root, pageTypes: pageTypes, websites: websites, mainMenuItems: mainMenuItems]
     }
 }

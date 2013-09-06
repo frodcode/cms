@@ -11,20 +11,13 @@ class MenuItemCommand {
 
     Integer putAfterId
 
-    Integer parentId
+    Integer mainMenuItemId
 
     Integer pageId
 
     static constraints = {
         importFrom MenuItem
-
         pageId(nullable: true)
-        parentId(nullable:true, validator: { val, obj ->
-            if (obj.parentId && !MenuItem.get(obj.parentId)) {
-                return ['parentId.notFound']
-            }
-            return true;
-        })
         putAfterId(nullable: true)
     }
 }

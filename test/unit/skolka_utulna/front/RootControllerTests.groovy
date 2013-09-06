@@ -1,14 +1,15 @@
-package skolka_utulna
+package skolka_utulna.front
 
 
 
 import grails.test.mixin.*
+import org.junit.*
 
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-@TestFor(HomepageController)
-class HomepageControllerTests {
+@TestFor(RootController)
+class RootControllerTests {
 
     void testSomething() {
        fail "Implement me"
