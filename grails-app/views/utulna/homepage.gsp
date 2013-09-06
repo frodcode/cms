@@ -9,9 +9,82 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-  <title></title>
+    <meta name="layout" content="default" />
 </head>
 <body>
 
+<div class="row-fluid content-block">
+    <div class="span8">
+        <article class="clearfix">
+            <h1>O školce</h1>
+            <p>Sídlíme na rozhraní Strašnic a Malešic ve vilové části. Škola je obklopena zahradami okolních vil. Ulice, ve které je umístěna budova školy, je jednosměrná. Škola je čtyřtřídní účelová budova zprovozněná v roce 1968.</p>
+            <p class="pull-right"><frodr:link page="${oSkolcePage}" class="btn btn-success">Zobrazit více o školce &raquo;</frodr:link></p>
+        </article>
+
+    </div>
+    <div class="span4 colored-box">
+        <r:img uri="/static/skolka/img/utulna2.jpg" alt="foto školky"/>
+    </div>
+</div>
+
+
+<div class="row-fluid content-block">
+    <div class="span4 colored-box">
+        <h3><frodr:link page="${naseTridyPage}">Naše třídy</frodr:link></h3>
+        <frodr:link page="${naseTridyPage}">
+            <r:img uri="/static/skolka/img/tridy.jpg" alt="tridy"/>
+        </frodr:link>
+    </div>
+
+    <div class="span4 colored-box">
+        <h3><a href="index.php?page=foto">Fotogalerie</a></h3>
+        <a href="index.php?page=foto">
+            <r:img uri="/static/skolka/img/fotogalerie.jpg" alt="fotogalerie"/>
+        </a>
+    </div>
+    <div class="span4 colored-box">
+        <h3><frodr:link page="${jidelnicekPage}">Jídelníček</frodr:link></h3>
+        <frodr:link page="${jidelnicekPage}"><r:img uri="/static/skolka/img/jidelna.jpg" alt="jidelnicek"/></frodr:link>
+    </div>
+</div>
+<div class="row-fluid content-block">
+    <div class="span8 carousel slide">
+        <div class="row-fluid">
+            <div class="span6">
+                <h3>Aktuality</h3>
+            </div>
+            <!-- Carousel nav -->
+            <div class="span6">
+                <div class="pagination pull-right">
+                    <ul>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="span4 contact">
+        <h3>Kontaktujte nás</h3>
+        <address>
+            <strong>MŠ Útulná</strong><br>
+            Útulná 6/2099<br>
+            Praha 10 100 00<br>
+            <strong>Telefony:</strong><br>
+
+            274 770 013<br>
+            602 539 338 - ředitelka školky<br>
+            724 585 436 - omluvy, paní Gregorová<br>
+            <a href="mailto:mts.utulna@seznam.cz">mts.utulna@seznam.cz</a>
+        </address>
+    </div>
+</div>
 </body>
 </html>

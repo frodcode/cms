@@ -12,7 +12,13 @@ class MainMenuItem {
 
     Integer position
 
+    String slug
+
     static hasMany = [menuItems: MenuItem]
+
+    static mapping = {
+        menuItems sort: 'position', order: 'asc'
+    }
 
     static constraints = {
         position(unique: true)

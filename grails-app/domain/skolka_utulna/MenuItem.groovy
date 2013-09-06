@@ -20,4 +20,8 @@ class MenuItem {
         mainMenuItem(nullable:false)
     }
 
+    static mapping = {
+        sort position: "asc"
+    }
+
 }

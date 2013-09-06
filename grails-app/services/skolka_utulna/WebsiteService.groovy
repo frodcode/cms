@@ -17,12 +17,4 @@ class WebsiteService {
         return website;
     }
 
-    Page findHomepageForWebsite(Website website) {
-        dump(MenuItem.where {
-            mainMenuItem.website == website && position == 1
-        }.findAll())
-        return MenuItem.where {
-            mainMenuItem.website == website && mainMenuItem.position == 1
-        }.find()?.page
-    }
 }

@@ -70,7 +70,7 @@
                 </a>
             </div>
             <div class=" span6">
-                <frodr:link page="${homepageUtulnaPage}">Detail
+                <frodr:link page="${homepageUtulnaPage}">
                     <r:img uri="/static/skolka/img/small/logo-utulna-s-textem-400x400.png" alt="logo - přejít stránky školky Útulná" title="Přejít na stránky školky Útulná" />
                 </frodr:link>
             </div>

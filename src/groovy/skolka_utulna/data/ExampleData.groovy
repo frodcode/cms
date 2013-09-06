@@ -15,6 +15,7 @@ import frod.routing.domain.RequestTypeEnum
 import frod.routing.domain.HttpMethodEnum
 import frod.routing.service.PageService
 import frod.routing.service.RoutingService
+import skolka_utulna.Website
 
 /**
  * User: freeman
@@ -254,6 +255,10 @@ class ExampleData {
             routingService.regenerateUrl(it)
         }
         pages*.value*.save(flush:true)
+
+        websites.utulna.homepage = pages.utulnaHomepage
+        websites.utulna.save(flush:true)
+
 
         def utulnaHomepageArticle = new Article(
                 headline: 'O školce',

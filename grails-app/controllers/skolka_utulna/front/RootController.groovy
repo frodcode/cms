@@ -9,7 +9,7 @@ class RootController {
     WebsiteService websiteService
 
     def index() {
-        def homepageUtulnaPage = websiteService.findHomepageForWebsite(Website.findBySlug('utulna'))
+        def homepageUtulnaPage = Website.findBySlug('utulna').homepage
         if (!homepageUtulnaPage) {
             throw IllegalStateException('Website utulna does not have homepage')
         }

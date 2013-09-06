@@ -38,7 +38,7 @@
 <div class="container" id="main-container">
     <div class="row-fluid">
         <div class="pull-left">
-            <h3 class="muted"><a href="index.php"><img src="static/img/logo/small/utulna-pouze-logo-upravene.png"/> <span class="logo-text">Mateřská škola Útulná</span></a></h3>
+            <g:include view="utulna/head.gsp"/>
         </div>
         <div class="pull-right back-to-cross">
             <h3><a href="../" class="btn btn-success">&laquo; zpět na výběr školky</a></h3>

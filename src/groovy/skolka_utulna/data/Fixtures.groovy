@@ -49,7 +49,7 @@ class Fixtures {
                         description: 'Článek',
                         singleton: false,
                         controller: 'Article',
-                        action: 'detail'),
+                        action: 'index'),
         ]
 
         pageTypes*.value*.save(failOnError: true);
@@ -58,35 +58,42 @@ class Fixtures {
                 uvod:new MainMenuItem(
                         title: 'Úvod',
                         position: 1,
+                        slug: 'homepage',
                         website: websites.utulna
                 ),
                 nase_tridy:new MainMenuItem(
                         title: 'Naše třídy',
+                        slug: 'nase_tridy',
                         position: 2,
                         website: websites.utulna
                 ),
                 o_skolce:new MainMenuItem(
                         title: 'O školce',
+                        slug: 'o_skolce',
                         position: 3,
                         website: websites.utulna
                 ),
                 akce:new MainMenuItem(
                         title: 'Akce',
+                        slug: 'akce',
                         position: 4,
                         website: websites.utulna
                 ),
                 fotogalerie:new MainMenuItem(
                         title: 'Fotogalerie',
                         position: 5,
+                        slug: 'fotogalerie',
                         website: websites.utulna
                 ),
-                fotogalerie:new MainMenuItem(
+                jidelnicek:new MainMenuItem(
                         title: 'Jídelníček',
+                        slug: 'jidelnicek',
                         position: 6,
                         website: websites.utulna
                 ),
                 kontakt:new MainMenuItem(
                         title: 'Kontakt',
+                        slug: 'kontakt',
                         position: 7,
                         website: websites.utulna
                 ),
