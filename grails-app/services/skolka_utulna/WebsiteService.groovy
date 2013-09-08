@@ -21,10 +21,13 @@ class WebsiteService {
 
     def getWebsite(Page page) {
         def website = Website.findByHomepage(page)
+        def menuItem = menuItemService.findItemByPage(page)
         if (website) {
             return website
+        } else if (menuItem) {
+            return menuItem.mainMenuItem.website
         } else {
-            return menuItemService.findItemByPage(page).mainMenuItem.website
+            return MainMenuItem.findByPage(page).website
         }
     }
 

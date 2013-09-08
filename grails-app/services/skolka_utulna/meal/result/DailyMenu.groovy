@@ -6,5 +6,7 @@ package skolka_utulna.meal.result
  */
 class DailyMenu {
 
+    Date date
+
     List<Menu> menus
 }

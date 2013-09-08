@@ -15,6 +15,7 @@ import skolka_utulna.Website
 import skolka_utulna.MainMenuItem
 import skolka_utulna.meal.MealMenuType
 import skolka_utulna.meal.MealMenu
+import frod.media.domain.MediaGroupType
 
 /**
  * User: freeman
@@ -51,6 +52,18 @@ class Fixtures {
                         description: 'Článek',
                         singleton: false,
                         controller: 'Article',
+                        action: 'index'),
+                mealMenuPageType: new PageType(
+                        slug: 'meal',
+                        description: 'Jídelníček',
+                        singleton: true,
+                        controller: 'Meal',
+                        action: 'index'),
+                galleryPageType: new PageType(
+                        slug: 'gallery',
+                        description: 'Fotogalerie',
+                        singleton: true,
+                        controller: 'Gallery',
                         action: 'index'),
         ]
 
@@ -121,8 +134,9 @@ class Fixtures {
         }
         pages*.value*.save(flush: true, failOnError: true);
         def mealMenuTypes = loadMealTypes()
+        def galleryMediaGroupType = loadMedia()
 
-        return [root: pages.root, pageTypes: pageTypes, websites: websites, mainMenuItems: mainMenuItems, mealMenuTypes: mealMenuTypes]
+        return [root: pages.root, pageTypes: pageTypes, websites: websites, mainMenuItems: mainMenuItems, mealMenuTypes: mealMenuTypes, galleryMediaGroupType: galleryMediaGroupType]
     }
 
 
@@ -146,6 +160,12 @@ class Fixtures {
         ]
         mealMenuTypes*.value*.save(flush: true, failOnError: true);
         return mealMenuTypes
+    }
+
+    public static def loadMedia() {
+        MediaGroupType galleryMediaGroupType = new MediaGroupType(name:'Galerie')
+        galleryMediaGroupType.save(flush:true)
+        return galleryMediaGroupType
     }
 
 }

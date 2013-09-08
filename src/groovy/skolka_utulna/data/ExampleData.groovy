@@ -17,6 +17,9 @@ import frod.routing.service.PageService
 import frod.routing.service.RoutingService
 import skolka_utulna.Website
 import skolka_utulna.meal.MealMenu
+import frod.media.domain.MediaGroup
+import frod.media.domain.Media
+import frod.media.model.MediaFacade
 
 /**
  * User: freeman
@@ -31,28 +34,87 @@ class ExampleData {
 
     RoutingService routingService
 
-    public def load(def ctx, def defaultDomain, Page root, def pageTypes, def websites, def mainMenuItems, def mealMenuTypes) {
-        loadMealMenus(mealMenuTypes)
-        loadArticles(defaultDomain, root, pageTypes, websites, mainMenuItems)
+    MediaFacade mediaFacade
+
+    public def load(def ctx, def defaultDomain, def fixtures) {
+        def root = fixtures.root;
+        def pageTypes = fixtures.pageTypes
+        def websites = fixtures.websites
+        def mainMenuItems = fixtures.mainMenuItems
+        def mealMenuTypes = fixtures.mealMenuTypes
+        def galleryMediaGroupType = fixtures.galleryMediaGroupType
+
+        def data = loadArticles(defaultDomain, root, pageTypes, websites, mainMenuItems)
+        loadMedia(galleryMediaGroupType, mainMenuItems, defaultDomain, pageTypes, data.homepage)
+        loadMealMenus(mealMenuTypes, mainMenuItems, defaultDomain, pageTypes, data.homepage)
         return []
     }
 
-    public def loadMealMenus(mealMenuTypes) {
+    public def loadMedia(def galleryMediaGroupType, def mainMenuItems, def defaultHost, def pageTypes, def homepage) {
+        Page galleryPage = new Page(
+                domain: defaultHost,
+                urlPart: '/fotogalerie',
+                urlType: UrlTypeEnum.ROOT,
+                requestType: RequestTypeEnum.REGULAR,
+                httpMethod: HttpMethodEnum.GET,
+                pageType: pageTypes.galleryPageType,
+                parent: homepage
+        )
+
+        pageService.setDefaults(galleryPage)
+        routingService.regenerateUrl(galleryPage)
+        galleryPage.save(flush: true)
+
+        mainMenuItems.fotogalerie.page = galleryPage
+        mainMenuItems.fotogalerie.save(flush: true)
+
+        MediaGroup mediaGroup = new MediaGroup()
+        mediaGroup.setName('DRAVCI v MŠ Útulná')
+        mediaGroup.setType(galleryMediaGroupType)
+        mediaGroup.save(flush: true);
+
+        (1..12).each { number ->
+            def resourceName = "data/images/dravci/" + number + ".jpg"
+            def imageStream = this.class.classLoader.getResourceAsStream(resourceName)
+            File tmp = File.createTempFile('images', '.jpg')
+            tmp.setBytes(imageStream.getBytes())
+            mediaFacade.addMediaFromFile(tmp.absolutePath, mediaGroup.id)
+            tmp.delete()
+        }
+    }
+
+    public def loadMealMenus(mealMenuTypes, mainMenuItems, def defaultHost, def pageTypes, def homepage) {
+        def mealMenuPage = new Page(
+                domain: defaultHost,
+                urlPart: '/jidelnicek',
+                urlType: UrlTypeEnum.ROOT,
+                requestType: RequestTypeEnum.REGULAR,
+                httpMethod: HttpMethodEnum.GET,
+                pageType: pageTypes.mealMenuPageType,
+                parent: homepage
+        )
+        pageService.setDefaults(mealMenuPage)
+        routingService.regenerateUrl(mealMenuPage)
+
+        mealMenuPage.save(flush:true)
+        mainMenuItems.jidelnicek.page = mealMenuPage
+        mainMenuItems.jidelnicek.save(flush:true)
+
         def currentDate = new Date()
         Date monday = currentDate.clone()
-        monday.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+        monday.setDate(Calendar.MONDAY)
 
-        Calendar tuesday = currentDate.clone()
-        monday.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY)
+        Date tuesday = currentDate.clone()
+        tuesday.setDate(Calendar.TUESDAY)
 
-        Calendar wednesday = currentDate.clone()
-        monday.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY)
+        Date wednesday = currentDate.clone()
+        wednesday.setDate(Calendar.WEDNESDAY)
 
-        Calendar thursday = currentDate.clone()
-        monday.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY)
+        Date thursday = currentDate.clone()
+        thursday.setDate(Calendar.THURSDAY)
 
-        Calendar friday = currentDate.clone()
-        monday.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY)
+        Date friday = currentDate.clone()
+        friday.setDate(Calendar.FRIDAY)
 
         def mealMenus = [
                 new MealMenu(
@@ -358,6 +420,9 @@ class ExampleData {
         }
         pages*.value*.save(flush:true)
 
+        mainMenuItems.uvod.page = pages.utulnaHomepage
+        mainMenuItems.uvod.save(flush: true)
+
         websites.utulna.homepage = pages.utulnaHomepage
         websites.utulna.save(flush:true)
 
@@ -384,7 +449,7 @@ class ExampleData {
             allArticles << createFromData(data)
         }
 
-        return allArticles
+        return [articles: allArticles, homepage: pages.utulnaHomepage]
     }
 
     public Article createFromData(def data) {

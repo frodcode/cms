@@ -7,5 +7,6 @@ beans = {
         articleService = ref('articleService')
         pageService = ref('pageService')
         routingService = ref('routingService')
+        mediaFacade = ref('mediaFacade')
     }
 }

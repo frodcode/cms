@@ -49,7 +49,7 @@ grails.project.dependency.resolution = {
 
     plugins {
         compile ":routing:0.1"
-        compile ":media:0.1"
+        compile ":media:0.2"
         runtime ":hibernate:$grailsVersion"
         runtime ":jquery:1.8.3"
         runtime ":resources:1.2.RC2"

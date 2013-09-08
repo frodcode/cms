@@ -14,13 +14,17 @@ class SkolkaTagLib {
         def website = Website.findByHomepage(page)
         def activeItem
         def homepage
+        def submenuItem = menuItemService.findItemByPage(page)
         def isHomepage = false;
         if (website) {
             activeItem = MainMenuItem.findByPositionAndWebsite(1, website)
             isHomepage = true;
             homepage = website.homepage
+        } else if (submenuItem) {
+            activeItem = submenuItem.mainMenuItem
+            homepage = activeItem.website.homepage
         } else {
-            activeItem = menuItemService.findItemByPage(page).mainMenuItem
+            activeItem = MainMenuItem.findByPage(page)
             homepage = activeItem.website.homepage
         }
         out << render(template:"/shared/menu/mainMenu", model:[menuItems: menuItems, activeItem: activeItem, homepage: homepage, isHomepage: isHomepage])

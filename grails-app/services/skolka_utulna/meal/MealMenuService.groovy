@@ -6,23 +6,27 @@ import skolka_utulna.meal.result.WeekMenu
 
 class MealMenuService {
 
-    def getWeekMenu(Calendar forDate) {
-        Calendar monday = forDate.clone()
-        monday.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+    def getWeekMenu(Date forDate) {
+        Date monday = forDate.clone()
+        monday.setDate(Calendar.MONDAY)
+        monday.setHours(1)
 
-        Calendar friday = forDate.clone()
-        friday.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY)
+        Date friday = forDate.clone()
+        friday.setDate(Calendar.FRIDAY)
+        friday.setHours(23)
 
         List<MealMenu> allRecords = findAllMealMenus(monday, friday)
         def dailyMenus = []
         def allDays = getAllMenuDays()
         allDays.each {day->
             def recordsForDay = allRecords.findAll { mealMenu ->
-                mealMenu.validDate.getDay() == day
+                mealMenu.validDate.getDate() == day
             }
-            Calendar menuDate = forDate.clone()
-            menuDate.set(Calendar.DAY_OF_WEEK, day)
-            dailyMenus.add(menuDate, getDailyMenuFromData(recordsForDay))
+            dump(day)
+            dump(recordsForDay.size())
+            Date menuDate = forDate.clone()
+            menuDate.setDate(day)
+            dailyMenus.add(getDailyMenuFromData(menuDate, recordsForDay))
         }
         return new WeekMenu(dailyMenus: dailyMenus, sinceDate: monday, toDate: friday)
     }
@@ -31,7 +35,7 @@ class MealMenuService {
         return [Calendar.MONDAY, Calendar.TUESDAY, Calendar.WEDNESDAY, Calendar.THURSDAY, Calendar.FRIDAY]
     }
 
-    private def getDailyMenuFromData(Calendar date, List<MealMenu> recordsForTheDay) {
+    private def getDailyMenuFromData(Date date, List<MealMenu> recordsForTheDay) {
         def allMenuTypes = MealMenuType.list()
         def menus = []
         allMenuTypes.each { type ->
@@ -40,10 +44,10 @@ class MealMenuService {
             }
             menus.add(new Menu(date: date, name: foundRecord?.name, type: type.name))
         }
-        return new DailyMenu(menus: menus)
+        return new DailyMenu(date: date, menus: menus)
     }
 
-    def findAllMealMenus(Calendar since, Calendar to) {
+    def findAllMealMenus(Date since, Date to) {
         return MealMenu.where {
             validDate >= since && validDate <= to
         }.findAll()

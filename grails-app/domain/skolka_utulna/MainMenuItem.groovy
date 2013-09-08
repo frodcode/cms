@@ -1,5 +1,7 @@
 package skolka_utulna
 
+import frod.routing.domain.Page
+
 /**
  * User: freeman
  * Date: 6.9.13
@@ -14,6 +16,11 @@ class MainMenuItem {
 
     String slug
 
+    /**
+     * For meal menu and contact
+     */
+    Page page
+
     static hasMany = [menuItems: MenuItem]
 
     static mapping = {
@@ -24,6 +31,7 @@ class MainMenuItem {
         position(unique: true)
         title(nullable: false)
         website(nullable: false)
+        page(nullable: true)
     }
 
 
