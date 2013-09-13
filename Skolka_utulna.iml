@@ -98,10 +98,10 @@
         <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="Skolka_utulna-grailsPlugins" />
     <orderEntry type="module" module-name="CmsAdmin-inplacePlugin" exported="" />
     <orderEntry type="module" module-name="Diagnostics-inplacePlugin" exported="" />
     <orderEntry type="module" module-name="FrodUtils-inplacePlugin" exported="" />
+    <orderEntry type="module" module-name="Skolka_utulna-grailsPlugins" />
   </component>
 </module>
 

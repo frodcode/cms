@@ -38,9 +38,9 @@
 
     <div class="span4 colored-box">
         <h3><a href="index.php?page=foto">Fotogalerie</a></h3>
-        <a href="index.php?page=foto">
+        <frodr:link page="${fotogaleriePage}">
             <r:img uri="/static/skolka/img/fotogalerie.jpg" alt="fotogalerie"/>
-        </a>
+        </frodr:link>
     </div>
     <div class="span4 colored-box">
         <h3><frodr:link page="${jidelnicekPage}">Jídelníček</frodr:link></h3>

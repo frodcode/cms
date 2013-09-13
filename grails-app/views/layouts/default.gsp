@@ -34,7 +34,7 @@
 </head>
 
 <body>
-
+<r:layoutResources/>
 <div class="container" id="main-container">
     <div class="row-fluid">
         <div class="pull-left">

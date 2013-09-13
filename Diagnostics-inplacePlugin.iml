@@ -44,8 +44,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Routing-inplacePlugin-grailsPlugins" />
-    <orderEntry type="module" module-name="Skolka_utulna-grailsPlugins" />
     <orderEntry type="module" module-name="Media-inplacePlugin-grailsPlugins" />
+    <orderEntry type="module" module-name="Skolka_utulna-grailsPlugins" />
     <orderEntry type="library" scope="PROVIDED" name="grails-2.2.3" level="application" />
     <orderEntry type="module-library">
       <library name="Grails User Library (Diagnostics-inplacePlugin)">
