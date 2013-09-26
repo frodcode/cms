@@ -34,7 +34,6 @@
 </head>
 
 <body>
-<r:layoutResources/>
 <div class="container" id="main-container">
     <div class="row-fluid">
         <div class="pull-left">
@@ -73,5 +72,6 @@
         $(".fancybox").attr('rel', 'gallery').fancybox({type: 'image'});
     });
 </script>
+<r:layoutResources/>
 </body>
 </html>

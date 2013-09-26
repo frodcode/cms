@@ -10,7 +10,12 @@ class BootStrap {
 
     def init = { servletContext ->
         def ctx = servletContext.getAttribute(ApplicationAttributes.APPLICATION_CONTEXT)
-        Domain defaultDomain = new Domain(protocol : 'http', host: 'localhost', port: '8080', domainUrlPart: '/skolka_utulna')
+        Domain defaultDomain
+        if (Environment.current == Environment.PRODUCTION) {
+            defaultDomain = new Domain(protocol : 'http', host: '37.205.9.70', port: '8080', domainUrlPart: '/skolka_utulna-0.1')
+        } else {
+            defaultDomain = new Domain(protocol : 'http', host: 'localhost', port: '8080', domainUrlPart: '/skolka_utulna')
+        }
         defaultDomain.save()
 
         def fixtures = Fixtures.load(ctx, defaultDomain)

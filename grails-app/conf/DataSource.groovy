@@ -26,8 +26,8 @@ environments {
     }
     production {
         dataSource {
-            dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+            dbCreate = "create-drop"
+            url = "jdbc:postgresql://localhost:5432/skolka_utulna"
             pooled = true
             properties {
                maxActive = -1

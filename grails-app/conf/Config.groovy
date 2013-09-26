@@ -63,9 +63,11 @@ grails.hibernate.cache.queries = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+        grails.media.preferences.imageDir = '/home/freeman/wwwdata/test'
     }
     production {
         grails.logging.jul.usebridge = false
+        grails.media.preferences.imageDir = '/appdata/skolka'
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }

@@ -48,11 +48,14 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        compile ":routing:0.1"
-        compile ":media:0.6"
+        compile ":routing:0.3"
+        compile ":diagnostics:0.1"
+        compile ":frod-utils:0.1"
+        compile ":media:1.4"
+//        compile ":cms-admin:0.1"
         runtime ":hibernate:$grailsVersion"
         runtime ":jquery:1.8.3"
-        runtime ":resources:1.2.RC2"
+        runtime ":resources:1.2"
         build ":release:2.2.1"
         //compile: ":routing:0.1"
         //runtime: ":media:0.1"
@@ -72,7 +75,7 @@ grails.project.dependency.resolution = {
 
 }
 // grails.plugin.location.Media = "../../plugins/Media";
-grails.plugin.location.Diagnostics = "../../plugins/Diagnostics"
-grails.plugin.location.FrodUtils = "../../plugins/FrodUtils"
+//grails.plugin.location.Diagnostics = "../../plugins/Diagnostics"
+//grails.plugin.location.FrodUtils = "../../plugins/FrodUtils"
 //grails.plugin.location.Routing = "../../plugins/Routing"
-grails.plugin.location.CmsAdmin = "../../plugins/CmsAdmin";
+//grails.plugin.location.CmsAdmin = "../../plugins/CmsAdmin";

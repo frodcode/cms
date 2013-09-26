@@ -61,6 +61,7 @@
 </head>
 
 <body>
+<r:layoutResources />
 <div id="horizon">
     <div class="container" id="main-container">
         <div class="row-fluid content-block">
