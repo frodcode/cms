@@ -8,11 +8,12 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-//        "/admin/$controller/$action/$id?"{
-//            constraints {
-//                // apply constraints here
-//            }
-//        }
+        "/$websiteSlug/admin/$controller/$action/$id?"{
+            namespace = 'admin'
+            constraints {
+                // apply constraints here
+            }
+        }
         "/**"{
             controller = "Front"
             action = "route"

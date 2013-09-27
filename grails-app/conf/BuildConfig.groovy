@@ -52,7 +52,7 @@ grails.project.dependency.resolution = {
         compile ":diagnostics:0.1"
         compile ":frod-utils:0.1"
         compile ":media:1.4"
-//        compile ":cms-admin:0.1"
+        compile ":cms-admin:0.3"
         runtime ":hibernate:$grailsVersion"
         runtime ":jquery:1.8.3"
         runtime ":resources:1.2"

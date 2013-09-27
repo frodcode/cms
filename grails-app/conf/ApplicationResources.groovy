@@ -20,4 +20,14 @@ modules = {
     application {
         resource url: 'js/application.js'
     }
+
+    adminskolka {
+        dependsOn 'admintypical'
+        resource url: '/static/skolka/common/Application.js'
+        resource url: '/static/skolka/common/appModuleFactory.js'
+        resource url: '/static/skolka/admin/js/meal/mealModuleFactoryFactory.js'
+        resource url: '/static/skolka/admin/js/meal/calendar/CalendarCtrl.js'
+
+        resource url: '/static/skolka/admin/js/appConfig.js'
+    }
 }

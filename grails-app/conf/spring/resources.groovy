@@ -1,4 +1,5 @@
 import skolka_utulna.data.ExampleData
+import skolka_utulna.data.AdminMenuFactory
 
 // Place your Spring DSL code here
 beans = {
@@ -8,5 +9,8 @@ beans = {
         pageService = ref('pageService')
         routingService = ref('routingService')
         mediaFacade = ref('mediaFacade')
+    }
+    adminMenuFactory(AdminMenuFactory) { bean->
+        bean.autowire = 'byType'
     }
 }

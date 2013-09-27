@@ -9,6 +9,7 @@ import skolka_utulna.MainMenuItem
 import skolka_utulna.MenuItemService
 import skolka_utulna.MainMenuItemService
 import frod.routing.service.RoutingService
+import org.codehaus.groovy.grails.plugins.GrailsPluginUtils
 
 class HomepageController {
 

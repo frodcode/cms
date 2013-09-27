@@ -1,8 +1,12 @@
 package skolka_utulna
 
+import skolka_utulna.data.AdminMenuFactory
+
 class SkolkaTagLib {
 
     static namespace = "skolka"
+
+    AdminMenuFactory adminMenuFactory
 
     MenuItemService menuItemService
 
@@ -41,6 +45,11 @@ class SkolkaTagLib {
         def page = pageScope.page
         def website = websiteService.getWebsite(page)
         out << render(template:"/$website.slug/head", model: [homepage: website.homepage])
+    }
+
+    def adminMenu = {attrs, body ->
+        def items = adminMenuFactory.create(params.websiteSlug)
+        out << render(template:"/shared/admin/menu", model:[items: items])
     }
 
 }
