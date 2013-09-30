@@ -65,6 +65,12 @@ class Fixtures {
                         singleton: true,
                         controller: 'Gallery',
                         action: 'index'),
+                newsPageType: new PageType(
+                        slug: 'news',
+                        description: 'Novinky - archiv',
+                        singleton: false,
+                        controller: 'News',
+                        action: 'index'),
         ]
 
         pageTypes*.value*.save(failOnError: true);

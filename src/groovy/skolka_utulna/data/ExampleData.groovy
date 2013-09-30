@@ -20,6 +20,7 @@ import skolka_utulna.meal.MealMenu
 import frod.media.domain.MediaGroup
 import frod.media.domain.Media
 import frod.media.model.MediaFacade
+import skolka_utulna.MenuItemService
 
 /**
  * User: freeman
@@ -36,6 +37,8 @@ class ExampleData {
 
     MediaFacade mediaFacade
 
+    MenuItemService menuItemService
+
     public def load(def ctx, def defaultDomain, def fixtures) {
         def root = fixtures.root;
         def pageTypes = fixtures.pageTypes
@@ -45,6 +48,7 @@ class ExampleData {
         def galleryMediaGroupType = fixtures.galleryMediaGroupType
 
         def data = loadArticles(defaultDomain, root, pageTypes, websites, mainMenuItems)
+        loadAktuality(defaultDomain, pageTypes, data.homepage, mainMenuItems)
         loadMedia(galleryMediaGroupType, mainMenuItems, defaultDomain, pageTypes, data.homepage)
         loadMealMenus(mealMenuTypes, mainMenuItems, defaultDomain, pageTypes, data.homepage, websites)
         return []
@@ -87,7 +91,7 @@ class ExampleData {
         def mealMenuPage = new Page(
                 domain: defaultHost,
                 urlPart: '/jidelnicek',
-                urlType: UrlTypeEnum.ROOT,
+                urlType: UrlTypeEnum.FROM_ROOT,
                 requestType: RequestTypeEnum.REGULAR,
                 httpMethod: HttpMethodEnum.GET,
                 pageType: pageTypes.mealMenuPageType,
@@ -343,23 +347,23 @@ class ExampleData {
                                 mainMenuItemId: mainMenuItems.o_skolce.id
                         ]
                 ],
-                [
-                        'headline': 'Aktuality',
-                        text: getTextFromFile('about/aktuality.txt'),
-                        status: ArticleStatusEnum.PUBLISHED,
-                        'page': [
-                                urlPart: '/aktuality',
-                                urlType: UrlTypeEnum.FROM_PARENT,
-                                pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
-                                domainId: defaultDomain.id,
-                        ],
-                        menuItem: [
-                                title: 'Aktuality',
-                                putAfterId: null, //will be calculated
-                                mainMenuItemId: mainMenuItems.o_skolce.id
-                        ]
-                ],
+//                [
+//                        'headline': 'Aktuality',
+//                        text: getTextFromFile('about/aktuality.txt'),
+//                        status: ArticleStatusEnum.PUBLISHED,
+//                        'page': [
+//                                urlPart: '/aktuality',
+//                                urlType: UrlTypeEnum.FROM_PARENT,
+//                                pageTypeId: pageTypes.articlePageType.id,
+//                                parentId: homepage.id,
+//                                domainId: defaultDomain.id,
+//                        ],
+//                        menuItem: [
+//                                title: 'Aktuality',
+//                                putAfterId: null, //will be calculated
+//                                mainMenuItemId: mainMenuItems.o_skolce.id
+//                        ]
+//                ],
                 [
                         'headline': 'Školní akce na letošní rok',
                         text: getTextFromFile('events/akce_na_letosni_rok.txt'),
@@ -450,6 +454,8 @@ class ExampleData {
         )
         utulnaHomepageArticle.save(flush:true)
 
+
+
         def allData = getDataForUtulnaArticles(defaultDomain, pages.utulnaHomepage, pageTypes, mainMenuItems)
 
         def putAfters = [:]
@@ -465,6 +471,32 @@ class ExampleData {
         }
 
         return [articles: allArticles, homepage: pages.utulnaHomepage]
+    }
+
+    public def loadAktuality(def defaultDomain, def pageTypes, def utulnaHomepage, def mainMenuItems) {
+        def newsPage = new Page(
+                domain: defaultDomain,
+                urlPart: '/aktuality',
+                urlType: UrlTypeEnum.FROM_ROOT,
+                requestType: RequestTypeEnum.REGULAR,
+                httpMethod: HttpMethodEnum.GET,
+                pageType: pageTypes.newsPageType,
+                parent: utulnaHomepage
+        )
+        pageService.setDefaults(newsPage)
+        routingService.regenerateUrl(newsPage)
+
+        newsPage.save(flush:true)
+
+        MenuItemCommand menuItemCommand = new MenuItemCommand()
+        menuItemCommand.mainMenuItemId =  mainMenuItems.o_skolce.id
+        menuItemCommand.putAfterId = MenuItem.findByTitle('Prázdniny').id
+        menuItemCommand.title = 'Aktuality'
+        menuItemCommand.pageId = newsPage.id
+        if (menuItemCommand.hasErrors()) {
+            throw new IllegalStateException(menuItemCommand.getErrors())
+        }
+        menuItemService.create(menuItemCommand)
     }
 
     public Article createFromData(def data) {

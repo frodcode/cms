@@ -9,6 +9,7 @@ beans = {
         pageService = ref('pageService')
         routingService = ref('routingService')
         mediaFacade = ref('mediaFacade')
+        menuItemService = ref('menuItemService')
     }
     adminMenuFactory(AdminMenuFactory) { bean->
         bean.autowire = 'byType'

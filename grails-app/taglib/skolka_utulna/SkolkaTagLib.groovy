@@ -52,4 +52,8 @@ class SkolkaTagLib {
         out << render(template:"/shared/admin/menu", model:[items: items])
     }
 
+    def messages = {attrs, body ->
+        out << render(template:"/shared/admin/messages", model:[flash: flash])
+    }
+
 }

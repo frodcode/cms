@@ -21,6 +21,10 @@ class MenuItemService {
         if (prevSibling) {
             createGapFor(position, menuItem.mainMenuItem)
         }
+        if (menuItemCommand.pageId) {
+            def page = Page.get(menuItemCommand.pageId)
+            menuItem.page = page;
+        }
         menuItem.properties = menuItemCommand.properties
         menuItem.position = position
         menuItem.save(flush:true, failOnError: true)

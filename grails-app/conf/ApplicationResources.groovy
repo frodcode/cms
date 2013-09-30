@@ -27,6 +27,7 @@ modules = {
         resource url: '/static/skolka/libs/moment/cs.js'
         resource url: '/static/skolka/common/Application.js'
         resource url: '/static/skolka/common/appModuleFactory.js'
+//        resource url: '/static/skolka/common/datePickerCz.js'
         resource url: '/static/routing/page/model/PageNode.js'
         resource url: '/static/routing/page/model/PageNodeFactory.js'
         resource url: '/static/routing/page/model/UrlTypeEnum.js'

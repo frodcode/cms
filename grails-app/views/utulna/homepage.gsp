@@ -57,6 +57,11 @@
             <div class="span6">
                 <div class="pagination pull-right">
                     <ul>
+                        <g:each in="${homepageNews}" var="news" status="i">
+                            <g:set var="number" value="${i + 1}"/>
+                            <g:set var="active" value="${i == 0 ? 'active' : ''}"/>
+                            <li class="${active}"><a href="#"  data-slide-to="${i}">${number}</a></li>
+                        </g:each>
                     </ul>
                 </div>
 
@@ -66,6 +71,18 @@
             <div class="span12">
                 <!-- Carousel items -->
                 <div class="carousel-inner">
+                    <g:each in="${homepageNews}" var="news" status="i">
+                        <g:set var="active" value="${i == 0 ? 'active' : ''}"/>
+                        <div class="${active} item">
+                        <h4>${news.name}</h4>
+
+                        <p class="date"><g:formatDate date="${news.date}" format="d. M. yyyy" style="LONG"/></p>
+
+                        <p>${news.content}</p>
+
+                        <p class="pull-right"><frodr:link page="${newsPage}">Zobrazit všechny aktuality</frodr:link></p>
+                        </div>
+                    </g:each>
                 </div>
 
             </div>

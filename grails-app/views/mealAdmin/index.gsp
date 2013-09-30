@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-  <title></title>
+  <title>Jídelníček na <g:formatDate date="${currentMonth}" format="MMMM yyyy" style="LONG" /></title>
 </head>
 <body>
 <div id="content">

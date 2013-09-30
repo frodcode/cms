@@ -52,7 +52,7 @@
         <p>&copy; Mateřská škola Útulná 2013</p>
     </footer>
 </div> <!-- /container -->
-
+<r:layoutResources/>
 <script>
     $(document).ready(function() {
         var slider = $('.carousel').carousel({
@@ -72,6 +72,6 @@
         $(".fancybox").attr('rel', 'gallery').fancybox({type: 'image'});
     });
 </script>
-<r:layoutResources/>
+
 </body>
 </html>
