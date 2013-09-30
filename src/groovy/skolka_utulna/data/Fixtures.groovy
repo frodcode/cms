@@ -16,6 +16,9 @@ import skolka_utulna.MainMenuItem
 import skolka_utulna.meal.MealMenuType
 import skolka_utulna.meal.MealMenu
 import frod.media.domain.MediaGroupType
+import skolka_utulna.acl.Role
+import skolka_utulna.acl.User
+import skolka_utulna.acl.UserRole
 
 /**
  * User: freeman
@@ -102,6 +105,7 @@ class Fixtures {
         pages*.value*.save(flush: true, failOnError: true);
         def mealMenuTypes = loadMealTypes()
         def galleryMediaGroupType = loadMedia()
+        loadAcl()
 
         return [root: pages.root, pageTypes: pageTypes, websites: websites, mainMenuItems: mainMenuItems, mealMenuTypes: mealMenuTypes, galleryMediaGroupType: galleryMediaGroupType]
     }
@@ -235,6 +239,21 @@ class Fixtures {
         MediaGroupType galleryMediaGroupType = new MediaGroupType(name:'Galerie')
         galleryMediaGroupType.save(flush:true)
         return galleryMediaGroupType
+    }
+
+    public static def loadAcl() {
+        def utulnaAdmin = new Role(authority: 'ROLE_ADMIN_UTULNA').save(flush: true)
+        def troilovaAdmin = new Role(authority: 'ROLE_ADMIN_TROILOVA').save(flush: true)
+
+        def admin = new User(username: 'admin', enabled: true, password: 'admin')
+        admin.save(flush: true)
+
+        UserRole.create admin, utulnaAdmin, true
+        UserRole.create admin, troilovaAdmin, true
+
+        assert User.count() == 1
+        assert Role.count() == 2
+        assert UserRole.count() == 2
     }
 
 }

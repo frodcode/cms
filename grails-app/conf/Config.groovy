@@ -96,3 +96,14 @@ log4j = {
 //    trace 'org.hibernate.type'
 //    debug 'org.hibernate.SQL'
 }
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'skolka_utulna.acl.User'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'skolka_utulna.acl.UserRole'
+grails.plugins.springsecurity.authority.className = 'skolka_utulna.acl.Role'
+
+grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
+grails.plugins.springsecurity.interceptUrlMap = [
+        '/utulna/admin/**': ['ROLE_ADMIN_UTULNA'],
+        '/troilova/admin/**': ['ROLE_ADMIN_TROILOVA'],
+]

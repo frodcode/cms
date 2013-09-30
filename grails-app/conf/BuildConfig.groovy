@@ -57,6 +57,7 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.8.3"
         runtime ":resources:1.2"
         build ":release:2.2.1"
+        compile ':spring-security-core:1.2.7.3'
         //compile: ":routing:0.1"
         //runtime: ":media:0.1"
         //runtime: ":mediabullshitwhat:1.2"

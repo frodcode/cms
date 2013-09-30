@@ -8,6 +8,18 @@ class UrlMappings {
                 // apply constraints here
             }
         }
+        "/login/$action"{
+            controller = 'Login'
+            constraints {
+                // apply constraints here
+            }
+        }
+        "/logout/$action"{
+            controller = 'Logout'
+            constraints {
+                // apply constraints here
+            }
+        }
         "/$websiteSlug/admin/$controller/$action/$yearNumber?/$monthNumber?"{
             namespace = 'admin'
             constraints {
