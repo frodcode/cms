@@ -29,7 +29,11 @@ class Fixtures {
         def websites = [
                 utulna: new Website(
                         slug: 'utulna',
-                        name: 'Školka útulna',
+                        name: 'Školka Útulná',
+                ),
+                troilova: new Website(
+                        slug: 'troilova',
+                        name: 'Školka Troilova',
                 )
         ]
         websites*.value*.save(flush: true, failOnError: true);
@@ -44,7 +48,7 @@ class Fixtures {
                 homepagePageType: new PageType(
                         slug: 'homepage',
                         description: 'Úvodní stránka',
-                        singleton: true,
+                        singleton: false,
                         controller: 'Homepage',
                         action: 'index'),
                 articlePageType: new PageType(
@@ -56,13 +60,13 @@ class Fixtures {
                 mealMenuPageType: new PageType(
                         slug: 'meal',
                         description: 'Jídelníček',
-                        singleton: true,
+                        singleton: false,
                         controller: 'Meal',
                         action: 'index'),
                 galleryPageType: new PageType(
                         slug: 'gallery',
                         description: 'Fotogalerie',
-                        singleton: true,
+                        singleton: false,
                         controller: 'Gallery',
                         action: 'index'),
                 newsPageType: new PageType(
@@ -75,6 +79,34 @@ class Fixtures {
 
         pageTypes*.value*.save(failOnError: true);
 
+        def mainMenuItems = [:]
+        mainMenuItems.utulna = loadUtulnaMenuItems(websites)
+        mainMenuItems.troilova = loadTroilovaMenuItems(websites)
+
+
+        def pages = [
+                root: new Page(
+                        domain: defaultHost,
+                        urlPart: '/',
+                        urlType: UrlTypeEnum.ROOT,
+                        requestType: RequestTypeEnum.REGULAR,
+                        httpMethod: HttpMethodEnum.GET,
+                        pageType: pageTypes.rootPageType,
+                ),
+        ]
+
+        pages*.value*.each {
+            pageService.setDefaults(it)
+            routingService.regenerateUrl(it)
+        }
+        pages*.value*.save(flush: true, failOnError: true);
+        def mealMenuTypes = loadMealTypes()
+        def galleryMediaGroupType = loadMedia()
+
+        return [root: pages.root, pageTypes: pageTypes, websites: websites, mainMenuItems: mainMenuItems, mealMenuTypes: mealMenuTypes, galleryMediaGroupType: galleryMediaGroupType]
+    }
+
+    public static def loadUtulnaMenuItems(websites) {
         def mainMenuItems = [
                 uvod:new MainMenuItem(
                         title: 'Úvod',
@@ -122,29 +154,60 @@ class Fixtures {
         ]
 
         mainMenuItems*.value*.save(flush: true, failOnError: true);
-
-        def pages = [
-                root: new Page(
-                        domain: defaultHost,
-                        urlPart: '/',
-                        urlType: UrlTypeEnum.ROOT,
-                        requestType: RequestTypeEnum.REGULAR,
-                        httpMethod: HttpMethodEnum.GET,
-                        pageType: pageTypes.rootPageType,
-                ),
-        ]
-
-        pages*.value*.each {
-            pageService.setDefaults(it)
-            routingService.regenerateUrl(it)
-        }
-        pages*.value*.save(flush: true, failOnError: true);
-        def mealMenuTypes = loadMealTypes()
-        def galleryMediaGroupType = loadMedia()
-
-        return [root: pages.root, pageTypes: pageTypes, websites: websites, mainMenuItems: mainMenuItems, mealMenuTypes: mealMenuTypes, galleryMediaGroupType: galleryMediaGroupType]
+        return mainMenuItems
     }
 
+
+    public static def loadTroilovaMenuItems(websites) {
+        def mainMenuItems = [
+                uvod:new MainMenuItem(
+                        title: 'Úvod',
+                        position: 1,
+                        slug: 'homepage',
+                        website: websites.troilova
+                ),
+                nase_tridy:new MainMenuItem(
+                        title: 'Naše třídy',
+                        slug: 'nase_tridy',
+                        position: 2,
+                        website: websites.troilova
+                ),
+                o_skolce:new MainMenuItem(
+                        title: 'O školce',
+                        slug: 'o_skolce',
+                        position: 3,
+                        website: websites.troilova
+                ),
+                akce:new MainMenuItem(
+                        title: 'Akce',
+                        slug: 'akce',
+                        position: 4,
+                        website: websites.troilova
+                ),
+                fotogalerie:new MainMenuItem(
+                        title: 'Fotogalerie',
+                        position: 5,
+                        slug: 'fotogalerie',
+                        website: websites.troilova
+                ),
+                jidelnicek:new MainMenuItem(
+                        title: 'Jídelníček',
+                        slug: 'jidelnicek',
+                        position: 6,
+                        website: websites.troilova
+                ),
+                kontakt:new MainMenuItem(
+                        title: 'Kontakt',
+                        slug: 'kontakt',
+                        position: 7,
+                        website: websites.troilova
+                ),
+
+        ]
+
+        mainMenuItems*.value*.save(flush: true, failOnError: true);
+        return mainMenuItems
+    }
 
     public static def loadMealTypes() {
         def mealMenuTypes = [

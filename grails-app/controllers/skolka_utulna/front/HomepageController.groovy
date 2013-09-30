@@ -24,22 +24,18 @@ class HomepageController {
     def index() {
         Page page = Page.get(params.pageId)
         Website website = Website.findByHomepage(page)
-        def homepageNews = newsService.findLast(grailsApplication.config.skolka.homepageNewsCount)
-
-//        def newsMenuItem = MenuItem.where {
-//            page.pageType.slug == 'newsPageType' && mainMenuItem.website == website
-//        }.find()
-        def newsMenuItem = MenuItem.find("FROM MenuItem m JOIN FETCH m.page p JOIN FETCH p.pageType pt JOIN FETCH m.mainMenuItem mmi WHERE pt.slug = :pageTypeSlug AND mmi.website = :website", [pageTypeSlug: 'news', website: website])
-        dump(newsMenuItem)
-        def newsPage = newsMenuItem?.page
+        def homepageNews = newsService.findLast(grailsApplication.config.skolka.homepageNewsCount, website)
+        def newsPage = websiteService.findViaMenuItemPageByWebsiteAndPageTypeSlug(website, 'news')
+        def fotogaleriePage = websiteService.findViaMainMenuPageByWebsiteAndPageTypeSlug(website, 'gallery')
+        def jidelnicekPage = websiteService.findViaMainMenuPageByWebsiteAndPageTypeSlug(website, 'meal')
 
         Article homepageArticle = Article.findByPage(page)
         return new ModelAndView("/$website.slug/homepage",
                 [homepageArticle: homepageArticle,
                         website: website,
                         naseTridyPage: mainMenuItemService.findPageForMainMenuItemWithSlug('nase_tridy'),
-                        fotogaleriePage: routingService.getSingleton('gallery'),
-                        jidelnicekPage: routingService.getSingleton('meal'),
+                        fotogaleriePage: fotogaleriePage,
+                        jidelnicekPage: jidelnicekPage,
                         oSkolcePage: mainMenuItemService.findPageForMainMenuItemWithSlug('o_skolce'),
                         homepageNews: homepageNews,
                         newsPage: newsPage]

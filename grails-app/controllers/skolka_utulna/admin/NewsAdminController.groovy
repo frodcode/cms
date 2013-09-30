@@ -17,8 +17,8 @@ class NewsAdminController {
 
     def index() {
         def count = grailsApplication.config.skolka.newsCount;
-        def news = newsService.findLast(count)
         Website website = getWebsite()
+        def news = newsService.findLast(count, website)
         [count: count, allNews: news, website: website]
     }
 

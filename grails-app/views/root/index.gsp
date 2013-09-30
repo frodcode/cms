@@ -66,9 +66,10 @@
     <div class="container" id="main-container">
         <div class="row-fluid content-block">
             <div class="span6">
-                <a href="#" onclick="alert('Tady bude tatáž verze stránek, akorát pro Troilovu'); return false;">
-                    <r:img uri="/static/skolka/img/small/logo-troilova-s-textem-400x400.png" alt="logo - přejít na stránky školky Troilova" title="Přejít na stránky školky Troilova" />
-                </a>
+                <frodr:link page="${homepageTroilovaPage}">
+                    <r:img uri="/static/skolka/img/small/logo-troilova-s-textem-400x400.png"
+                           alt="logo - přejít na stránky školky Troilova" title="Přejít na stránky školky Troilova"/>
+                </frodr:link>
             </div>
             <div class=" span6">
                 <frodr:link page="${homepageUtulnaPage}">

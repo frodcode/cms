@@ -14,24 +14,20 @@ class SkolkaTagLib {
 
     def mainMenu = { attrs, body ->
         def page = pageScope.page
-        def menuItems = MainMenuItem.list(sort: 'position', order: 'ASC')
-        def website = Website.findByHomepage(page)
+        def website = websiteService.getWebsite(page)
+        def menuItems = MainMenuItem.findAllByWebsite(website)
+
         def activeItem
         def homepage
         def submenuItem = menuItemService.findItemByPage(page)
-        def isHomepage = false;
-        if (website) {
-            activeItem = MainMenuItem.findByPositionAndWebsite(1, website)
-            isHomepage = true;
-            homepage = website.homepage
-        } else if (submenuItem) {
+        if (submenuItem) {
             activeItem = submenuItem.mainMenuItem
             homepage = activeItem.website.homepage
         } else {
             activeItem = MainMenuItem.findByPage(page)
             homepage = activeItem.website.homepage
         }
-        out << render(template:"/shared/menu/mainMenu", model:[menuItems: menuItems, activeItem: activeItem, homepage: homepage, isHomepage: isHomepage])
+        out << render(template:"/shared/menu/mainMenu", model:[menuItems: menuItems, activeItem: activeItem, homepage: homepage])
     }
 
     def submenu = { attrs, body ->

@@ -17,7 +17,7 @@ class NewsController {
         MenuItem menuItem = MenuItem.findByPage(page)
         Website website = menuItem.mainMenuItem.website
         def count = grailsApplication.config.skolka.newsCount;
-        def allNews = newsService.findLast(count)
+        def allNews = newsService.findLast(count, website)
         [allNews: allNews]
     }
 }

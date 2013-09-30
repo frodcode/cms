@@ -10,9 +10,10 @@ class RootController {
 
     def index() {
         def homepageUtulnaPage = Website.findBySlug('utulna').homepage
+        def homepageTroilovaPage = Website.findBySlug('troilova').homepage
         if (!homepageUtulnaPage) {
             throw IllegalStateException('Website utulna does not have homepage')
         }
-        [homepageUtulnaPage: homepageUtulnaPage]
+        [homepageUtulnaPage: homepageUtulnaPage, homepageTroilovaPage: homepageTroilovaPage]
     }
 }

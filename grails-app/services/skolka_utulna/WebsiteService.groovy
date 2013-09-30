@@ -31,4 +31,16 @@ class WebsiteService {
         }
     }
 
+    def findViaMainMenuPageByWebsiteAndPageTypeSlug(Website website, String pageTypeSlug) {
+        MainMenuItem mainMenuItem = MainMenuItem.find("FROM MainMenuItem mmi JOIN FETCH mmi.page p JOIN FETCH p.pageType pt WHERE pt.slug = :pageTypeSlug AND mmi.website = :website", [pageTypeSlug: pageTypeSlug, website: website])
+        return mainMenuItem.page
+    }
+
+    def findViaMenuItemPageByWebsiteAndPageTypeSlug(Website website, String pageTypeSlug) {
+        MenuItem menuItem = MenuItem.find("FROM MenuItem m JOIN FETCH m.page p JOIN FETCH p.pageType pt JOIN FETCH m.mainMenuItem mmi WHERE pt.slug = :pageTypeSlug AND mmi.website = :website", [pageTypeSlug: pageTypeSlug, website: website])
+        return menuItem.page
+
+    }
+
+
 }

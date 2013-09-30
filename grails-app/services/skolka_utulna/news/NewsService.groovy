@@ -4,8 +4,8 @@ import skolka_utulna.News
 
 class NewsService {
 
-    def findLast(limit) {
-        return News.list(sort: 'date', order: 'desc', max: limit)
+    def findLast(limit, website) {
+        return News.findAllByWebsite(website, [sort: 'date', order: 'desc', max: limit])
     }
 
     def create(NewsCommand newsCommand) {

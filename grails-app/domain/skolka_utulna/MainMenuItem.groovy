@@ -28,7 +28,7 @@ class MainMenuItem {
     }
 
     static constraints = {
-        position(unique: true)
+        position(unique: ['website'])
         title(nullable: false)
         website(nullable: false)
         page(nullable: true)
