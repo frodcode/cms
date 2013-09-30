@@ -8,6 +8,13 @@ class UrlMappings {
                 // apply constraints here
             }
         }
+        name myAccount: "/admin/account"{
+            controller = "User"
+            action = "myAccount"
+            constraints {
+                // apply constraints here
+            }
+        }
         "/login/$action"{
             controller = 'Login'
             constraints {
@@ -16,6 +23,19 @@ class UrlMappings {
         }
         "/logout/$action"{
             controller = 'Logout'
+            constraints {
+                // apply constraints here
+            }
+        }
+        "/superadmin/$controller/$action/$id?"{
+            constraints {
+                // apply constraints here
+            }
+        }
+        "/$websiteSlug/admin"{
+            controller = 'MealAdmin'
+            action = 'index'
+            namespace = 'admin'
             constraints {
                 // apply constraints here
             }

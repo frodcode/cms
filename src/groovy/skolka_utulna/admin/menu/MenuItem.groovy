@@ -25,7 +25,7 @@ class MenuItem {
                 return false;
             }
         }
-        if (templateParams.controller == controller && templateParams.action == action) {
+        if (templateParams.controller == controller) {
             return true;
         }
         return false;

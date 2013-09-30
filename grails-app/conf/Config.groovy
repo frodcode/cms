@@ -60,7 +60,7 @@ grails.exceptionresolver.params.exclude = ['password']
 
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
-
+grails.web.url.converter = 'hyphenated'
 
 environments {
     development {
@@ -106,4 +106,5 @@ grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
 grails.plugins.springsecurity.interceptUrlMap = [
         '/utulna/admin/**': ['ROLE_ADMIN_UTULNA'],
         '/troilova/admin/**': ['ROLE_ADMIN_TROILOVA'],
+        '/superadmin/**': ['ROLE_SUPERADMIN'],
 ]

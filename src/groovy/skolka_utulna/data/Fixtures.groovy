@@ -244,16 +244,18 @@ class Fixtures {
     public static def loadAcl() {
         def utulnaAdmin = new Role(authority: 'ROLE_ADMIN_UTULNA').save(flush: true)
         def troilovaAdmin = new Role(authority: 'ROLE_ADMIN_TROILOVA').save(flush: true)
+        def superadmin = new Role(authority: 'ROLE_SUPERADMIN').save(flush: true)
 
         def admin = new User(username: 'admin', enabled: true, password: 'admin')
         admin.save(flush: true)
 
         UserRole.create admin, utulnaAdmin, true
         UserRole.create admin, troilovaAdmin, true
+        UserRole.create admin, superadmin, true
 
         assert User.count() == 1
-        assert Role.count() == 2
-        assert UserRole.count() == 2
+        assert Role.count() == 3
+        assert UserRole.count() == 3
     }
 
 }
