@@ -46,7 +46,7 @@ class ExampleData {
 
         def data = loadArticles(defaultDomain, root, pageTypes, websites, mainMenuItems)
         loadMedia(galleryMediaGroupType, mainMenuItems, defaultDomain, pageTypes, data.homepage)
-        loadMealMenus(mealMenuTypes, mainMenuItems, defaultDomain, pageTypes, data.homepage)
+        loadMealMenus(mealMenuTypes, mainMenuItems, defaultDomain, pageTypes, data.homepage, websites)
         return []
     }
 
@@ -83,7 +83,7 @@ class ExampleData {
         }
     }
 
-    public def loadMealMenus(mealMenuTypes, mainMenuItems, def defaultHost, def pageTypes, def homepage) {
+    public def loadMealMenus(mealMenuTypes, mainMenuItems, def defaultHost, def pageTypes, def homepage, def websites) {
         def mealMenuPage = new Page(
                 domain: defaultHost,
                 urlPart: '/jidelnicek',
@@ -120,79 +120,94 @@ class ExampleData {
                 new MealMenu(
                         name: 'Salámová pom. , chléb Šumava, jablko, čaj lesní směs',
                         mealMenuType: mealMenuTypes.presnidavka,
-                        validDate: monday
+                        validDate: monday,
+                        website: websites.utulna,
                 ),
                 new MealMenu(
                         name: 'Medové kroužky , mléko, bylinný čaj s meduňkou',
                         mealMenuType: mealMenuTypes.presnidavka,
-                        validDate: tuesday
+                        validDate: tuesday,
+                        website: websites.utulna,
                 ),
                 new MealMenu(
                         name: 'Pomazánka ze strouhaného sýra, houska, salátová okurka, mléko',
                         mealMenuType: mealMenuTypes.presnidavka,
-                        validDate: wednesday
+                        validDate: wednesday,
+                        website: websites.utulna,
                 ),
                 new MealMenu(
                         name: 'Rbičková pomazánka, chléb, švestky, čaj goji-limetka',
                         mealMenuType: mealMenuTypes.presnidavka,
-                        validDate: thursday
+                        validDate: thursday,
+                        website: websites.utulna,
                 ),
                 new MealMenu(
                         name: 'Bobík vanilka, veka, čaj dobré ráno',
                         mealMenuType: mealMenuTypes.presnidavka,
-                        validDate: friday
+                        validDate: friday,
+                        website: websites.utulna,
                 ),
 
                 new MealMenu(
                         name: 'Hovězí polévka, Krupicová kaše s Grankem, čaj divoká třešeň',
                         mealMenuType: mealMenuTypes.obed,
-                        validDate: monday
+                        validDate: monday,
+                        website: websites.utulna,
                 ),
                 new MealMenu(
                         name: 'Selská polévka, Vepřová játra na slanině, rýže, čaj',
                         mealMenuType: mealMenuTypes.obed,
-                        validDate: tuesday
+                        validDate: tuesday,
+                        website: websites.utulna,
                 ),
                 new MealMenu(
                         name: 'Fazolová polévka, Přírodní kuřecí plátek, bramborová kaše, salát z čínského zelí, šťáva',
                         mealMenuType: mealMenuTypes.obed,
-                        validDate: wednesday
+                        validDate: wednesday,
+                        website: websites.utulna,
                 ),
                 new MealMenu(
                         name: 'Vývar se sýrovým strouháním, Svíčková na smetaně, houskový knedlík, šťáva',
                         mealMenuType: mealMenuTypes.obed,
-                        validDate: thursday
+                        validDate: thursday,
+                        website: websites.utulna,
                 ),
                 new MealMenu(
                         name: 'Česneková polévka s houstičkou, Zapečené těstoviny, červená řepa, šťáva',
                         mealMenuType: mealMenuTypes.obed,
-                        validDate: friday
+                        validDate: friday,
+                        website: websites.utulna,
                 ),
 
                 new MealMenu(
                         name: 'Dýňová karta, mrkev, bílá káva',
                         mealMenuType: mealMenuTypes.svacina,
-                        validDate: monday
+                        validDate: monday,
+                        website: websites.utulna,
                 ),
                 new MealMenu(
                         name: 'Párty chléb s máslem, meloun, čaj s citronem',
                         mealMenuType: mealMenuTypes.svacina,
-                        validDate: tuesday
+                        validDate: tuesday,
+                        website: websites.utulna,
                 ),
                 new MealMenu(
                         name: 'Ovocná miska, piškoty, čaj borůvka-rakytník',
                         mealMenuType: mealMenuTypes.svacina,
-                        validDate: wednesday
+                        validDate: wednesday,
+                        website: websites.utulna,
                 ),
                 new MealMenu(
                         name: 'Jogurtové mléko, karlovarský rohlík',
                         mealMenuType: mealMenuTypes.svacina,
-                        validDate: thursday
+                        validDate: thursday,
+                        website: websites.utulna,
                 ),
                 new MealMenu(
                         name: 'Křehký chléb, zelenina, čaj s citronem',
                         mealMenuType: mealMenuTypes.svacina,
-                        validDate: friday
+                        validDate: friday,
+                        website: websites.utulna,
                 ),
         ]
         mealMenus*.save(flush: true, failOnError: true);

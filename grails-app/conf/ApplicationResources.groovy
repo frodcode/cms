@@ -23,11 +23,33 @@ modules = {
 
     adminskolka {
         dependsOn 'admintypical'
+        resource url: '/static/skolka/libs/moment/moment.min.js'
+        resource url: '/static/skolka/libs/moment/cs.js'
         resource url: '/static/skolka/common/Application.js'
         resource url: '/static/skolka/common/appModuleFactory.js'
+        resource url: '/static/routing/page/model/PageNode.js'
+        resource url: '/static/routing/page/model/PageNodeFactory.js'
+        resource url: '/static/routing/page/model/UrlTypeEnum.js'
+        resource url: '/static/routing/page/PageCtrl.js'
+        resource url: '/static/routing/page/PageDirective.js'
+        resource url: '/static/routing/page/config/PageConfig.js'
+        resource url: '/static/routing/page/pageModuleFactory.js'
+        resource url: '/static/skolka/admin/js/save/saveModuleFactory.js'
+        resource url: '/static/skolka/admin/js/save/SaveButtonDirective.js'
+        resource url: '/static/skolka/admin/js/save/SaveState.js'
+
+        resource url: '/static/skolka/common/data/DataCollector.js'
+
+        resource url: '/static/skolka/admin/js/meal/dailyMenu/DailyMenuCtrl.js'
+        resource url: '/static/skolka/admin/js/meal/dailyMenu/DailyMenuDirective.js'
         resource url: '/static/skolka/admin/js/meal/mealModuleFactoryFactory.js'
-        resource url: '/static/skolka/admin/js/meal/calendar/CalendarCtrl.js'
+        resource url: '/static/skolka/admin/js/meal/detailPage/DetailPageCtrl.js'
+        resource url: '/static/skolka/admin/js/meal/detailPage/DetailPageDirective.js'
+        resource url: '/static/skolka/admin/js/meal/model/DailyMenu.js'
+        resource url: '/static/skolka/admin/js/meal/model/Menu.js'
 
         resource url: '/static/skolka/admin/js/appConfig.js'
+
+        resource url: '/static/skolka/admin/css/back.css'
     }
 }

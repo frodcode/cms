@@ -1,0 +1,21 @@
+<script type="text/ng-template" id="cms.meal.dailyMenu.dailyMenu">
+        <div class="widget-box">
+            <div class="widget-title">
+								<span class="icon">
+									<i class="icon-align-justify"></i>
+								</span>
+                <h5>{{dailyMenu.getDayOfWeek()}}</h5>
+            </div>
+            <div class="widget-content nopadding">
+                    <form class="form-horizontal">
+                    <div class="control-group" ng-repeat="menu in dailyMenu.menus">
+                        <label class="control-label">{{menu.type}}</label>
+                        <div class="controls">
+                            <textarea ng-model="menu.name"></textarea>
+                        </div>
+                    </div>
+                    </form>
+            </div>
+
+        </div>
+</script>

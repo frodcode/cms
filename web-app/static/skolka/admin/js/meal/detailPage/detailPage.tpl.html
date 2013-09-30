@@ -1,0 +1,7 @@
+<script type="text/ng-template" id="cms.meal.detailPage">
+    <daily-menu ng-repeat="menu in dailyMenus" daily-menu="menu" collector="menuCollectors[$index]">
+    </daily-menu>
+    <div class="form-actions">
+        <input admin-save-button="saveState" type="submit" value="Uložit" class="btn btn-primary" ng-click="$parent.save()">
+    </div>
+</script>

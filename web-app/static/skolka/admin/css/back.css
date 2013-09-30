@@ -1,0 +1,22 @@
+table.calendar td {
+    position: relative;
+    padding-top: 100px;
+    margin: 0;
+    width: 16.6666666%;
+    border: 1px solid #ddd;
+}
+
+table.calendar td a:hover {
+    text-decoration: underline;
+    color: red;
+}
+
+table.calendar td .date {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-size: 1.3em;
+    display: block;
+    width: 100%;
+    height: 100%;
+}

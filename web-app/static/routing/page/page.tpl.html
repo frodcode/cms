@@ -1,0 +1,29 @@
+<script type="text/ng-template" id="routing.page.page">
+<div>
+    <div class="control-group" ng-show="pageConfig.useParentSelect">
+        <label class="control-label" for="routing_parent">Rodičovská stránka</label>
+        <div class="controls">
+            <select id="routing_parent" ui-select2="{'width':'resolve'}" ng-model="parentNodeId" data-placeholder="Vyberte prosím možnost">
+                <option ng-repeat="parent in parents" value="{{parent.id}}">{{getPageNameForSelect(parent)}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="routing_urlPart">Adresa</label>
+        <div class="controls">
+            <a href="#" ng-click="changeUrlType(pageNode)">{{pageNode.getParentsUrlPart(true)}}</a>
+            <input routing-webalized-input source="{{pageName}}" ng-model="printUrlPart" type="text" id="routing_urlPart"/>
+        </div>
+    </div>
+
+
+
+    <p>Vybrany rodic: {{pageNode.parent.name}}</p>
+
+    <p>Edituje se stranka s&#8199;nazvem: {{pageName}} a id {{pageNode.id}}</p>
+    <p>Nepodstatne printUrlPart: {{printUrlPart}}</p>
+
+    <p>Url: {{pageNode.getUrl()}}</p>
+</div>
+</script>

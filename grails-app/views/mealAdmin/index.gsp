@@ -14,48 +14,55 @@
 <body>
 <div id="content">
     <div id="content-header">
-        <h1>Jídelníček</h1>
-        <div class="btn-group">
-            <a class="btn btn-large tip-bottom" title="Manage Files"><i class="icon-file"></i></a>
-            <a class="btn btn-large tip-bottom" title="Manage Users"><i class="icon-user"></i></a>
-            <a class="btn btn-large tip-bottom" title="Manage Comments"><i class="icon-comment"></i><span class="label label-important">5</span></a>
-            <a class="btn btn-large tip-bottom" title="Manage Orders"><i class="icon-shopping-cart"></i></a>
-        </div>
-    </div>
-    <div id="breadcrumb">
-        <a href="index.html#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a href="index.html#" class="current">Dashboard</a>
+        <h1>Jídelníček na <g:formatDate date="${currentMonth}" format="MMMM yyyy" style="LONG" /></h1>
+
     </div>
     <div class="container-fluid" ng-controller="CalendarCtrl">
         <div class="row-fluid">
             <div class="span12">
-                Tady je angular promenna: {{message}} a link je {{loadCalendarLink}}
-                <table class="fc-border-separate">
+                <div class="pagination">
+                    <ul>
+                        <li class=""><g:link action="index" controller="MealAdmin" params="[websiteSlug: website.slug, monthNumber: previousMonth.month, yearNumber: previousMonth.year]"> &laquo; Předchozí měsíc</g:link></li>
+                        <li class=""><g:link action="index" controller="MealAdmin" params="[websiteSlug: website.slug, monthNumber: nextMonth.month, yearNumber: nextMonth.year]">Další měsíc &raquo; </g:link></li>
+                    </ul>
+                </div>
+                <table class="table calendar">
                 <thead>
-                    <tr class="fc-first fc-last">
-                        <th class="fc-sun fc-widget-header fc-first" style="width: 243px;">Pondělí</th>
-                        <th class="fc-mon fc-widget-header" style="width: 242px;">Úterý</th>
-                        <th class="fc-tue fc-widget-header" style="width: 242px;">Středa</th>
-                        <th class="fc-wed fc-widget-header" style="width: 242px;">Čtvrtek</th>
-                        <th class="fc-thu fc-widget-header" style="width: 242px;">Pátek</th>
+                    <tr class="">
+                        <th>Pondělí</th>
+                        <th>Úterý</th>
+                        <th>Středa</th>
+                        <th>Čtvrtek</th>
+                        <th >Pátek</th>
+                        <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <g:each in="${monthMenu.getWeekMenus()}" var="weekMenu">
-                    <tr class="fc-week0 fc-first">
+
+                    <tr>
                         <g:each in="${weekMenu.dailyMenus}" var="dailyMenu">
-                            <td class="fc-sun fc-widget-content fc-day0 fc-first">
+                            <td>
+                                <g:link controller="MealAdmin" action="detail" params="[websiteSlug: website.slug, id: weekMenu.sinceDate.format('yyyy-MM-dd')]">
+                                    <span class="date">${dailyMenu.date.date}</span>
+                                </g:link>
+                                <div class="menus">
                                 <g:each in="${dailyMenu.menus}" var="menu">
+
                                     <span>
                                         <g:if test="${menu.name}">
-                                            <i class="icon-ok"></i>
+                                            <i class="icon-ok"></i>  ${menu.type}
                                         </g:if>
-                                        ${menu.type}
+
                                     </span>
+
                                 </g:each>
+                                </div>
                             </td>
                         </g:each>
+                        <td><g:link controller="MealAdmin" action="detail" params="[websiteSlug: website.slug, id: weekMenu.sinceDate.format('yyyy-MM-dd')]">Upravit pro tento týden</g:link></td>
                     </tr>
+
                 </g:each>
                 </tbody>
                 </table>
@@ -63,11 +70,6 @@
         </div>
     </div>
 </div>
-<script>
-    app.invoke(function (appModuleFactory, mealModuleFactory) {
-        var mealModuleFactory = mealModuleFactory('This should be the link');
-        appModuleFactory.add(mealModuleFactory);
-    });
-</script>
+
 </body>
 </html>

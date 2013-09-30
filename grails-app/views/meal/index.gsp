@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="row-fluid content-block">
-    <h1>Jídelníček od 24.6.2013 do 28.6.2013</h1>
+    <h1>Jídelníček od <g:formatDate date="${weeklyMenu.sinceDate}" format="d.M." style="LONG" /> do <g:formatDate date="${weeklyMenu.toDate}" format="d.M.yyyy" style="LONG" /></h1>
     <table class="table">
         <g:each in="${weeklyMenu.dailyMenus}" var="dailyMenu">
             <tr>

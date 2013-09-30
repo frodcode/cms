@@ -11,4 +11,6 @@ class Menu {
     String type
 
     String name
+
+    Integer typeId
 }

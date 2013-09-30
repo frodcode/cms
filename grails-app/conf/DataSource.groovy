@@ -15,13 +15,13 @@ environments {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:postgresql://localhost:5432/skolka_utulna"
+//            logSql = true
         }
     }
     test {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:postgresql://localhost:5432/skolka_utulna"
-            //logSql = true
         }
     }
     production {

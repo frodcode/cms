@@ -19,5 +19,6 @@ app.configure(function (dic) {
         .service('appModuleFactory', cms.AppModuleFactory)
 
         .factory('mealModuleFactory', cms.meal.mealModuleFactoryFactory)
+        .factory('saveButtonModule', admin.save.saveModuleFactory)
     ;
 });
