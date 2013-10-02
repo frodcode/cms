@@ -1,48 +1,58 @@
 <html lang="cz">
 <head>
     <title>Změna hesla</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <r:require modules="adminlogin"/>
-    <r:layoutResources/>
-    <style>
-    input[type=text], input[type=password] {
-        height: 30px;
-    }
-    </style>
+    <meta name="layout" content="admin" />
 </head>
 <body>
-<div id="logo">
-</div>
-
-<div class="container-fluid" ng-controller="CalendarCtrl">
-    <div class="row-fluid">
-
-        <div class="span12" style="text-align: center">
-            <skolka:messages/>
-        </div>
+<div id="content">
+    <div id="content-header">
+        <h1>Můj účet</h1>
     </div>
-</div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+            <skolka:messages/>
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon">
+                            <i class="icon-align-justify"></i>
+                        </span>
+                        <h5>Nastavení účtu ${userInstance.username}</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <g:form mapping="myAccount" params="[websiteSlug: params.websiteSlug]" method="POST" class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label">Původní heslo</label>
+                            <div class="controls">
+                                <input type="password" name="original_password">
+                            </div>
+                        </div>
 
-<div id="loginbox">
-    <form id="loginform" class="form-vertical" action="${postUrl}" method="POST">
-        <p>Změna hesla</p>
+                        <div class="control-group">
+                            <label class="control-label">Nové heslo</label>
 
-        <div class="control-group">
-            <div class="controls">
-                <div class="input-prepend">
-                    <span class="add-on"><i class="icon-user"></i></span><input type="text" name="password" placeholder="Nové heslo" />
+                            <div class="controls">
+                                <input type="password" name="password">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">Nové heslo podruhé</label>
+
+                            <div class="controls">
+                                <input type="password" name="password2">
+                            </div>
+                        </div>
+                            <div class="form-actions">
+                                <g:hiddenField name="id" value="${userInstance.id}"/>
+                                <button type="submit" class="btn btn-primary">Uložit</button>
+                            </div>
+                        </g:form>
+                    </div>
                 </div>
             </div>
         </div>
-        %{--<p id="remember_me_holder">--}%
-        %{--<input type='checkbox' class='chk' name='${rememberMeParameter}' id='remember_me' <g:if test='${hasCookie}'>checked='checked'</g:if>/>--}%
-        %{--<label for='remember_me'><g:message code="springSecurity.login.remember.me.label"/></label>--}%
-        %{--</p>--}%
-        <div class="form-actions">
-            <span class="pull-right"><input type="submit" class="btn btn-inverse" value="Změnit heslo" /></span>
-        </div>
-    </form>
+    </div>
 </div>
 </body>
 </html>

@@ -8,7 +8,7 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-        name myAccount: "/admin/account"{
+        name myAccount: "/$websiteSlug/admin/account"{
             controller = "User"
             action = "myAccount"
             constraints {

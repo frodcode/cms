@@ -6,6 +6,8 @@ class UserController {
 
     def springSecurityService
 
+    def messageSource
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -117,9 +119,21 @@ class UserController {
         }
     }
 
-    def myAccount() {
+    def myAccount(UserCommand cmd) {
         def userInstance = User.get(springSecurityService.principal.id)
 
+        if (request.post) {
+            cmd.currentUser = userInstance
+            if (!cmd.validate()) {
+                flash.errors = cmd.getErrors().allErrors.collect{messageSource.getMessage(it,null)}
+                redirect(mapping: 'myAccount', params: [websiteSlug: params.websiteSlug])
+                return;
+            }
+            cmd.currentUser.setPassword(cmd.password)
+            cmd.currentUser.save(flush:true)
+            flash.message = "Heslo změněno"
+            redirect(mapping: 'myAccount', params: [websiteSlug: params.websiteSlug])
+        }
         [userInstance: userInstance]
     }
 }
