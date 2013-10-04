@@ -8,6 +8,8 @@ class SkolkaTagLib {
 
     AdminMenuFactory adminMenuFactory
 
+    MainMenuItemService mainMenuItemService
+
     MenuItemService menuItemService
 
     WebsiteService websiteService
@@ -32,9 +34,16 @@ class SkolkaTagLib {
 
     def submenu = { attrs, body ->
         def page = pageScope.page
-        def menuItems = menuItemService.findMenuItemsForPage(page)
+        def mainMenuItem = MainMenuItem.findByPage(page)
+        def menuItems
+        if (mainMenuItem) {
+            menuItems = mainMenuItem.menuItems
+        } else {
+            menuItems = menuItemService.findMenuItemsForPage(page)
+            mainMenuItem = menuItems.first()?.mainMenuItem
+        }
         def activeItem = menuItemService.findItemByPage(page)
-        out << render(template:"/shared/menu/submenu", model:[menuItems: menuItems, activeItem: activeItem])
+        out << render(template:"/shared/menu/submenu", model:[menuItems: menuItems, activeItem: activeItem, mainMenuItem: mainMenuItem])
     }
 
     def head = {

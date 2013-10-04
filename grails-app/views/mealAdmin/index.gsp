@@ -17,7 +17,7 @@
         <h1>Jídelníček na <g:formatDate date="${currentMonth}" format="MMMM yyyy" style="LONG" /></h1>
 
     </div>
-    <div class="container-fluid" ng-controller="CalendarCtrl">
+    <div class="container-fluid">
         <div class="row-fluid">
             <div class="span12">
                 <div class="pagination">

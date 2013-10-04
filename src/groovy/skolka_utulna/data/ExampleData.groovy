@@ -282,10 +282,65 @@ class ExampleData {
         websites.utulna.homepage = pages.utulnaHomepage
         websites.utulna.save(flush:true)
 
+        def mainMenuItemArticles = [
+                nase_tridy: new Article(
+                        headline: 'Naše třídy',
+                        text: getTextFromFile('utulna/our_classes.txt'),
+                        status: ArticleStatusEnum.PUBLISHED,
+                        page: new Page(
+                                domain: defaultDomain,
+                                urlPart: '/nase-tridy',
+                                urlType: UrlTypeEnum.FROM_PARENT,
+                                requestType: RequestTypeEnum.REGULAR,
+                                httpMethod: HttpMethodEnum.GET,
+                                pageType: pageTypes.articlePageType,
+                                parent: pages.utulnaHomepage
+                        ),
+                ),
+                o_skolce: new Article(
+                        headline: 'O školce',
+                        text: getTextFromFile('utulna/about.txt'),
+                        status: ArticleStatusEnum.PUBLISHED,
+                        page: new Page(
+                                domain: defaultDomain,
+                                urlPart: '/o-skolce',
+                                urlType: UrlTypeEnum.FROM_PARENT,
+                                requestType: RequestTypeEnum.REGULAR,
+                                httpMethod: HttpMethodEnum.GET,
+                                pageType: pageTypes.articlePageType,
+                                parent: pages.utulnaHomepage
+                        ),
+                ),
+                akce: new Article(
+                        headline: 'Akce',
+                        text: getTextFromFile('utulna/events.txt'),
+                        status: ArticleStatusEnum.PUBLISHED,
+                        page: new Page(
+                                domain: defaultDomain,
+                                urlPart: '/akce',
+                                urlType: UrlTypeEnum.FROM_PARENT,
+                                requestType: RequestTypeEnum.REGULAR,
+                                httpMethod: HttpMethodEnum.GET,
+                                pageType: pageTypes.articlePageType,
+                                parent: pages.utulnaHomepage
+                        ),
+                )
+        ]
+        mainMenuItemArticles*.value*.page*.each {
+            pageService.setDefaults(it)
+            routingService.regenerateUrl(it)
+        }
+        mainMenuItemArticles*.value*.page*.save();
+        mainMenuItemArticles.each { it
+            if (mainMenuItems[it.key]) {
+                mainMenuItems[it.key].page = it.value.page
+            }
+        }
+        mainMenuItemArticles*.value*.save(flush:true);
 
         def utulnaHomepageArticle = new Article(
                 headline: 'O školce',
-                text: getTextFromFile('uvod.txt'),
+                text: getTextFromFile('utulna/uvod.txt'),
                 status: ArticleStatusEnum.PUBLISHED,
                 page: pages.utulnaHomepage
         )
@@ -337,10 +392,66 @@ class ExampleData {
         websites.troilova.homepage = pages.troilovaHomepage
         websites.troilova.save(flush:true)
 
+        def mainMenuItemArticles = [
+                nase_tridy: new Article(
+                        headline: 'Naše třídy',
+                        text: getTextFromFile('troilova/our_classes.txt'),
+                        status: ArticleStatusEnum.PUBLISHED,
+                        page: new Page(
+                                domain: defaultDomain,
+                                urlPart: '/nase-tridy',
+                                urlType: UrlTypeEnum.FROM_PARENT,
+                                requestType: RequestTypeEnum.REGULAR,
+                                httpMethod: HttpMethodEnum.GET,
+                                pageType: pageTypes.articlePageType,
+                                parent: pages.troilovaHomepage
+                        ),
+                ),
+                o_skolce: new Article(
+                        headline: 'O školce',
+                        text: getTextFromFile('troilova/about.txt'),
+                        status: ArticleStatusEnum.PUBLISHED,
+                        page: new Page(
+                                domain: defaultDomain,
+                                urlPart: '/o-skolce',
+                                urlType: UrlTypeEnum.FROM_PARENT,
+                                requestType: RequestTypeEnum.REGULAR,
+                                httpMethod: HttpMethodEnum.GET,
+                                pageType: pageTypes.articlePageType,
+                                parent: pages.troilovaHomepage
+                        ),
+                ),
+                akce: new Article(
+                        headline: 'Akce',
+                        text: getTextFromFile('troilova/events.txt'),
+                        status: ArticleStatusEnum.PUBLISHED,
+                        page: new Page(
+                                domain: defaultDomain,
+                                urlPart: '/akce',
+                                urlType: UrlTypeEnum.FROM_PARENT,
+                                requestType: RequestTypeEnum.REGULAR,
+                                httpMethod: HttpMethodEnum.GET,
+                                pageType: pageTypes.articlePageType,
+                                parent: pages.troilovaHomepage
+                        ),
+                )
+        ]
+        mainMenuItemArticles*.value*.page*.each {
+            pageService.setDefaults(it)
+            routingService.regenerateUrl(it)
+        }
+        mainMenuItemArticles*.value*.page*.save();
+        mainMenuItemArticles.each { it
+            if (mainMenuItems[it.key]) {
+                mainMenuItems[it.key].page = it.value.page
+            }
+        }
+        mainMenuItemArticles*.value*.save(flush:true);
+
 
         def troilovaHomepageArticle = new Article(
                 headline: 'O školce',
-                text: getTextFromFile('uvod.txt'),
+                text: getTextFromFile('troilova/uvod.txt'),
                 status: ArticleStatusEnum.PUBLISHED,
                 page: pages.troilovaHomepage
         )
@@ -401,7 +512,7 @@ class ExampleData {
                                 urlPart: '/motylci',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.nase_tridy.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -418,7 +529,7 @@ class ExampleData {
                                 urlPart: '/vcelky',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.nase_tridy.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -435,7 +546,7 @@ class ExampleData {
                                 urlPart: '/zabky',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.nase_tridy.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -452,7 +563,7 @@ class ExampleData {
                                 urlPart: '/jezci',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.nase_tridy.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -469,7 +580,7 @@ class ExampleData {
                                 urlPart: '/provoz-a-skolne',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.o_skolce.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -486,7 +597,7 @@ class ExampleData {
                                 urlPart: '/program-dne',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.o_skolce.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -503,7 +614,7 @@ class ExampleData {
                                 urlPart: '/prazdniny',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.o_skolce.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -520,7 +631,7 @@ class ExampleData {
                                 urlPart: '/skolni-akce-na-letosni-rok',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.akce.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -537,7 +648,7 @@ class ExampleData {
                                 urlPart: '/den-otevrenych-dveri',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.akce.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -554,7 +665,7 @@ class ExampleData {
                                 urlPart: '/skolka-v-prirode',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.akce.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -576,7 +687,7 @@ class ExampleData {
                                 urlPart: '/motylci',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.nase_tridy.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -593,7 +704,7 @@ class ExampleData {
                                 urlPart: '/vcelky',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.nase_tridy.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -610,7 +721,7 @@ class ExampleData {
                                 urlPart: '/zabky',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.nase_tridy.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -627,7 +738,7 @@ class ExampleData {
                                 urlPart: '/jezci',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.nase_tridy.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -644,7 +755,7 @@ class ExampleData {
                                 urlPart: '/provoz-a-skolne',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.o_skolce.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -661,7 +772,7 @@ class ExampleData {
                                 urlPart: '/program-dne',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.o_skolce.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -678,7 +789,7 @@ class ExampleData {
                                 urlPart: '/prazdniny',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.o_skolce.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -695,7 +806,7 @@ class ExampleData {
                                 urlPart: '/skolni-akce-na-letosni-rok',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.akce.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -712,7 +823,7 @@ class ExampleData {
                                 urlPart: '/den-otevrenych-dveri',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.akce.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
@@ -729,7 +840,7 @@ class ExampleData {
                                 urlPart: '/skolka-v-prirode',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
-                                parentId: homepage.id,
+                                parentId: mainMenuItems.akce.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [

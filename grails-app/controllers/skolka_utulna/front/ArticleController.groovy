@@ -8,15 +8,18 @@ import org.springframework.web.servlet.ModelAndView
 import skolka_utulna.Article
 import skolka_utulna.MainMenuItem
 import skolka_utulna.MenuItem
+import skolka_utulna.WebsiteService
 
 class ArticleController {
 
     ArticleService articleService
 
+    WebsiteService websiteService
+
     def index() {
         Page page = Page.get(params.pageId)
         MenuItem menuItem = MenuItem.findByPage(page)
-        Website website = menuItem.mainMenuItem.website
+        Website website = websiteService.getWebsite(page)
         Article article = Article.findByPage(page)
         return new ModelAndView("/$website.slug/article",
                 [article: article])

@@ -35,6 +35,12 @@ modules = {
         resource url: '/static/routing/page/PageDirective.js'
         resource url: '/static/routing/page/config/PageConfig.js'
         resource url: '/static/routing/page/pageModuleFactory.js'
+
+        resource url: '/static/routing/webalize/WebalizeCtrl.js'
+        resource url: '/static/routing/webalize/WebalizeDirective.js'
+        resource url: '/static/routing/webalize/webalizeFunction.js'
+        resource url: '/static/routing/webalize/webalizeModuleFactory.js'
+
         resource url: '/static/skolka/admin/js/save/saveModuleFactory.js'
         resource url: '/static/skolka/admin/js/save/SaveButtonDirective.js'
         resource url: '/static/skolka/admin/js/save/SaveState.js'
@@ -48,6 +54,10 @@ modules = {
         resource url: '/static/skolka/admin/js/meal/detailPage/DetailPageDirective.js'
         resource url: '/static/skolka/admin/js/meal/model/DailyMenu.js'
         resource url: '/static/skolka/admin/js/meal/model/Menu.js'
+
+        resource url: '/static/skolka/admin/js/article/editPage/EditPageCtrl.js'
+        resource url: '/static/skolka/admin/js/article/editPage/EditPageDirective.js'
+        resource url: '/static/skolka/admin/js/article/articleModuleFactoryFactory.js'
 
         resource url: '/static/skolka/admin/js/appConfig.js'
 

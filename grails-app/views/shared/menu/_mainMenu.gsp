@@ -3,7 +3,7 @@
         <div class="container">
             <ul class="nav">
                 <g:each in="${menuItems}" var="item">
-                    <g:set var="itemPage" value="${item.firstItem ? item.firstItem.page : item.page}"/>
+                    <g:set var="itemPage" value="${item.page}"/>
 
                     <li class="${item.id == activeItem.id ? 'active' : ''}"><frodr:link page="${itemPage}">${item.title}</frodr:link></li>
                 </g:each>

@@ -1,0 +1,30 @@
+<script type="text/ng-template" id="cms.article.editPage">
+    <div class="widget-box">
+        <div class="widget-title">
+								<span class="icon">
+									<i class="icon-align-justify"></i>
+								</span>
+            <h5>Článek</h5>
+        </div>
+        <div class="widget-content nopadding">
+            <form class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label">Nadpis</label>
+                    <div class="controls">
+                        <input type="text" ng-model="article.headline" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Text</label>
+                    <div class="controls">
+                        <textarea style="height: 300px" ng-model="article.text"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <div class="form-actions">
+        <input admin-save-button="saveState" type="submit" value="Uložit" class="btn btn-primary" ng-click="$parent.save()">
+    </div>
+</script>

@@ -33,10 +33,10 @@ class HomepageController {
         return new ModelAndView("/$website.slug/homepage",
                 [homepageArticle: homepageArticle,
                         website: website,
-                        naseTridyPage: mainMenuItemService.findPageForMainMenuItemWithSlug('nase_tridy'),
+                        naseTridyPage: mainMenuItemService.findBySlugAndWebsite('nase_tridy', website).page,
                         fotogaleriePage: fotogaleriePage,
                         jidelnicekPage: jidelnicekPage,
-                        oSkolcePage: mainMenuItemService.findPageForMainMenuItemWithSlug('o_skolce'),
+                        oSkolcePage: mainMenuItemService.findBySlugAndWebsite('o_skolce', website).page,
                         homepageNews: homepageNews,
                         newsPage: newsPage]
         )
