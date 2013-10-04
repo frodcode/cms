@@ -27,11 +27,7 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-        "/superadmin/$controller/$action/$id?"{
-            constraints {
-                // apply constraints here
-            }
-        }
+
         "/$websiteSlug/admin"{
             controller = 'MealAdmin'
             action = 'index'
@@ -48,6 +44,11 @@ class UrlMappings {
         }
         "/$websiteSlug/admin/$controller/$action/$id?"{
             namespace = 'admin'
+            constraints {
+                // apply constraints here
+            }
+        }
+        "/superadmin/$controller/$action/$id?"{
             constraints {
                 // apply constraints here
             }

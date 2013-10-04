@@ -5,12 +5,20 @@ import skolka_utulna.Website
 import skolka_utulna.MainMenuItemService
 import skolka_utulna.Article
 import frod.routing.domain.Page
+import frod.routing.service.PageCommand
+import frod.utils.commandObject.CommandObjectService
+import frod.routing.service.PageService
+import skolka_utulna.ArticleService
 
 class ArticleAdminController {
 
     static namespace = 'admin'
 
     static layout = "admin"
+
+    ArticleService articleService
+
+    CommandObjectService commandObjectService
 
     MainMenuItemService mainMenuItemService
 
@@ -40,6 +48,17 @@ class ArticleAdminController {
     }
 
     def save() {
-        render([status:'ok'] as JSON)
+        Website website = getWebsite()
+        if (params.id) {
+            Page page = Page.get(params.id)
+            if (!page) {
+                response.sendError(404)
+                return
+            }
+            articleService.edit(params.id, params.headline, params.slug, params.text)
+            flash.message = 'Článek změněn'
+        }
+        redirect(action: 'index', params: [websiteSlug: website.slug])
     }
+
 }

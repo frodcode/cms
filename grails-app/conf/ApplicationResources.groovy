@@ -55,10 +55,6 @@ modules = {
         resource url: '/static/skolka/admin/js/meal/model/DailyMenu.js'
         resource url: '/static/skolka/admin/js/meal/model/Menu.js'
 
-        resource url: '/static/skolka/admin/js/article/editPage/EditPageCtrl.js'
-        resource url: '/static/skolka/admin/js/article/editPage/EditPageDirective.js'
-        resource url: '/static/skolka/admin/js/article/articleModuleFactoryFactory.js'
-
         resource url: '/static/skolka/admin/js/appConfig.js'
 
         resource url: '/static/skolka/admin/css/back.css'
