@@ -18,6 +18,11 @@
 
     <div class="span12">
         <ul class="gallery">
+            <g:if test="${allGroups.size() == 0}">
+                <g:if test="${website.slug == 'troilova'}">
+                    <p>Fotografie si můžete prohlédnout <a href="http://mstroilova.rajce.idnes.cz/" target="_blank">na rajčeti</a>.</p>
+                </g:if>
+            </g:if>
             <g:each in="${allGroups}" var="group">
                 <li>
                     <g:set var="media" value="${thumbnails.containsKey(group.id) ? thumbnails[group.id] : null}"/>

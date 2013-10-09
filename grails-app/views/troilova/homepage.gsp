@@ -17,7 +17,7 @@
     <div class="span8">
         <article class="clearfix">
             <h1>O školce</h1>
-            <p>Troilova popis - chybí dodělat</p>
+            <p>Srdečně Vás vítáme na stránkách <strong>MŠ Troilova</strong>, která se nachází v klidném prostředí vilové části Malešic.</p>
             <p class="pull-right"><frodr:link page="${oSkolcePage}" class="btn btn-success">Zobrazit více o školce &raquo;</frodr:link></p>
         </article>
 

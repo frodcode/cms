@@ -51,6 +51,9 @@ class ExampleData {
         def utulna = loadArticlesUtulna(defaultDomain, root, pageTypes, websites, mainMenuItems.utulna)
         def troilova = loadArticlesTroilova(defaultDomain, root, pageTypes, websites, mainMenuItems.troilova)
 
+        loadKontakt(mainMenuItems.troilova, defaultDomain, pageTypes, troilova.homepage)
+        loadKontakt(mainMenuItems.utulna, defaultDomain, pageTypes, utulna.homepage)
+
         loadAktuality(defaultDomain, pageTypes, troilova.homepage, mainMenuItems.troilova)
         loadAktuality(defaultDomain, pageTypes, utulna.homepage, mainMenuItems.utulna)
 
@@ -61,6 +64,27 @@ class ExampleData {
         loadMealMenus(mealMenuTypes, mainMenuItems.troilova, defaultDomain, pageTypes, troilova.homepage, websites.troilova)
         return []
     }
+
+    public def loadKontakt(def mainMenuItems, def defaultHost, def pageTypes, def homepage)
+    {
+        Page contactPage = new Page(
+                domain: defaultHost,
+                urlPart: '/kontakt',
+                urlType: UrlTypeEnum.FROM_PARENT,
+                requestType: RequestTypeEnum.REGULAR,
+                httpMethod: HttpMethodEnum.GET,
+                pageType: pageTypes.contactPageType,
+                parent: homepage
+        )
+
+        pageService.setDefaults(contactPage)
+        routingService.regenerateUrl(contactPage)
+        contactPage.save(flush: true)
+
+        mainMenuItems.kontakt.page = contactPage
+        mainMenuItems.kontakt.save(flush: true)
+    }
+
 
     public def loadMediaTroilova(def mainMenuItems, def defaultHost, def pageTypes, def homepage) {
         Page galleryPage = new Page(
@@ -116,6 +140,15 @@ class ExampleData {
         }
     }
 
+    private static def getDateForDayOfWeek(def dayOfWeek)
+    {
+        def currentDate = new Date()
+        def cal = Calendar.getInstance()
+        cal.setTime(currentDate)
+        cal.set(Calendar.DAY_OF_WEEK, dayOfWeek)
+        return cal.getTime()
+    }
+
     public def loadMealMenus(mealMenuTypes, mainMenuItems, def defaultHost, def pageTypes, def homepage, def website) {
         def mealMenuPage = new Page(
                 domain: defaultHost,
@@ -134,20 +167,11 @@ class ExampleData {
         mainMenuItems.jidelnicek.save(flush:true)
 
         def currentDate = new Date()
-        Date monday = currentDate.clone()
-        monday.setDate(Calendar.MONDAY)
-
-        Date tuesday = currentDate.clone()
-        tuesday.setDate(Calendar.TUESDAY)
-
-        Date wednesday = currentDate.clone()
-        wednesday.setDate(Calendar.WEDNESDAY)
-
-        Date thursday = currentDate.clone()
-        thursday.setDate(Calendar.THURSDAY)
-
-        Date friday = currentDate.clone()
-        friday.setDate(Calendar.FRIDAY)
+        Date monday = getDateForDayOfWeek(Calendar.MONDAY)
+        Date tuesday = getDateForDayOfWeek(Calendar.TUESDAY)
+        Date wednesday = getDateForDayOfWeek(Calendar.WEDNESDAY)
+        Date thursday = getDateForDayOfWeek(Calendar.THURSDAY)
+        Date friday = getDateForDayOfWeek(Calendar.FRIDAY)
 
         def mealMenus = [
                 new MealMenu(
@@ -395,7 +419,7 @@ class ExampleData {
         def mainMenuItemArticles = [
                 nase_tridy: new Article(
                         headline: 'Naše třídy',
-                        text: getTextFromFile('troilova/our_classes.txt'),
+                        text: getTextFromFile('troilova/our_classes.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         page: new Page(
                                 domain: defaultDomain,
@@ -409,7 +433,7 @@ class ExampleData {
                 ),
                 o_skolce: new Article(
                         headline: 'O školce',
-                        text: getTextFromFile('troilova/about.txt'),
+                        text: getTextFromFile('troilova/about.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         page: new Page(
                                 domain: defaultDomain,
@@ -423,7 +447,7 @@ class ExampleData {
                 ),
                 akce: new Article(
                         headline: 'Akce',
-                        text: getTextFromFile('troilova/events.txt'),
+                        text: getTextFromFile('troilova/events.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         page: new Page(
                                 domain: defaultDomain,
@@ -505,76 +529,76 @@ class ExampleData {
     public def getDataForTroilovaArticles(def defaultDomain, Page homepage, def pageTypes, def mainMenuItems) {
         return [
                 [
-                        headline: 'Motýlci',
-                        text: getTextFromFile('troilova/our_classes/motylci.txt'),
+                        headline: 'Kuřátka',
+                        text: getTextFromFile('troilova/our_classes/kuratka.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         page: [
-                                urlPart: '/motylci',
+                                urlPart: '/kuratka',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
                                 parentId: mainMenuItems.nase_tridy.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
-                                title: 'Motýlci',
+                                title: 'Kuřátka',
                                 putAfterId: null, //will be calculated
                                 mainMenuItemId: mainMenuItems.nase_tridy.id
                         ]
                 ],
                 [
-                        headline: 'Včelky',
-                        text: getTextFromFile('troilova/our_classes/vcelky.txt'),
+                        headline: 'Berušky',
+                        text: getTextFromFile('troilova/our_classes/berusky.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         page: [
-                                urlPart: '/vcelky',
+                                urlPart: '/berusky',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
                                 parentId: mainMenuItems.nase_tridy.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
-                                title: 'Včelky',
+                                title: 'Berušky',
                                 putAfterId: null, //will be calculated
                                 mainMenuItemId: mainMenuItems.nase_tridy.id
                         ]
                 ],
                 [
-                        headline: 'Žablky',
-                        text: getTextFromFile('troilova/our_classes/zabky.txt'),
+                        headline: 'Delfíni',
+                        text: getTextFromFile('troilova/our_classes/delfini.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         page: [
-                                urlPart: '/zabky',
+                                urlPart: '/delfini',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
                                 parentId: mainMenuItems.nase_tridy.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
-                                title: 'Žablky',
+                                title: 'Delfíni',
                                 putAfterId: null, //will be calculated
                                 mainMenuItemId: mainMenuItems.nase_tridy.id
                         ]
                 ],
                 [
-                        headline: 'Ježci',
-                        text: getTextFromFile('troilova/our_classes/jezci.txt'),
+                        headline: 'Žirafy',
+                        text: getTextFromFile('troilova/our_classes/zirafy.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         page: [
-                                urlPart: '/jezci',
+                                urlPart: '/zirafy',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
                                 parentId: mainMenuItems.nase_tridy.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
-                                title: 'Ježci',
+                                title: 'Žirafy',
                                 putAfterId: null, //will be calculated
                                 mainMenuItemId: mainMenuItems.nase_tridy.id
                         ]
                 ],
                 [
                         'headline': 'Provoz a školné',
-                        text: getTextFromFile('troilova/about/provoz_a_skolne.txt'),
+                        text: getTextFromFile('troilova/about/provoz_a_skolne.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         'page': [
                                 urlPart: '/provoz-a-skolne',
@@ -591,7 +615,7 @@ class ExampleData {
                 ],
                 [
                         'headline': 'Program dne',
-                        text: getTextFromFile('troilova/about/program_dne.txt'),
+                        text: getTextFromFile('troilova/about/program_dne.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         'page': [
                                 urlPart: '/program-dne',
@@ -607,25 +631,42 @@ class ExampleData {
                         ]
                 ],
                 [
-                        'headline': 'Prázdniny',
-                        text: getTextFromFile('troilova/about/prazdniny.txt'),
+                        'headline': 'Organizace školního roku',
+                        text: getTextFromFile('troilova/about/organizace_skolniho_roku.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         'page': [
-                                urlPart: '/prazdniny',
+                                urlPart: '/organizace-skolniho-roku',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
                                 parentId: mainMenuItems.o_skolce.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
-                                title: 'Prázdniny',
+                                title: 'Organizace školního roku',
+                                putAfterId: null, //will be calculated
+                                mainMenuItemId: mainMenuItems.o_skolce.id
+                        ]
+                ],
+                [
+                        'headline': 'Provozní zaměstnanci',
+                        text: getTextFromFile('troilova/about/provozni_zamestnanci.html'),
+                        status: ArticleStatusEnum.PUBLISHED,
+                        'page': [
+                                urlPart: '/provozni-zamestnanci',
+                                urlType: UrlTypeEnum.FROM_PARENT,
+                                pageTypeId: pageTypes.articlePageType.id,
+                                parentId: mainMenuItems.o_skolce.page.id,
+                                domainId: defaultDomain.id,
+                        ],
+                        menuItem: [
+                                title: 'Provozní zaměstnanci',
                                 putAfterId: null, //will be calculated
                                 mainMenuItemId: mainMenuItems.o_skolce.id
                         ]
                 ],
                 [
                         'headline': 'Školní akce na letošní rok',
-                        text: getTextFromFile('troilova/events/akce_na_letosni_rok.txt'),
+                        text: getTextFromFile('troilova/events/akce_na_letosni_rok.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         'page': [
                                 urlPart: '/skolni-akce-na-letosni-rok',
@@ -641,25 +682,8 @@ class ExampleData {
                         ]
                 ],
                 [
-                        'headline': 'Den otevřených dvěří',
-                        text: getTextFromFile('troilova/events/den_otevrenych_dveri.txt'),
-                        status: ArticleStatusEnum.PUBLISHED,
-                        'page': [
-                                urlPart: '/den-otevrenych-dveri',
-                                urlType: UrlTypeEnum.FROM_PARENT,
-                                pageTypeId: pageTypes.articlePageType.id,
-                                parentId: mainMenuItems.akce.page.id,
-                                domainId: defaultDomain.id,
-                        ],
-                        menuItem: [
-                                title: 'Den otevřených dvěří',
-                                putAfterId: null, //will be calculated
-                                mainMenuItemId: mainMenuItems.akce.id
-                        ]
-                ],
-                [
                         'headline': 'Školka v přírodě',
-                        text: getTextFromFile('troilova/events/skola_v_prirode.txt'),
+                        text: getTextFromFile('troilova/events/skolka_v_prirode.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         'page': [
                                 urlPart: '/skolka-v-prirode',

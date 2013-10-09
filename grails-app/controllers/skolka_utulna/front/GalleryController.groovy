@@ -42,6 +42,6 @@ class GalleryController {
         }
         thumbnails.containsKey()
 
-        [allGroups: allGroups, thumbnails: thumbnails]
+        [allGroups: allGroups, thumbnails: thumbnails, website: website]
     }
 }

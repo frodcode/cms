@@ -78,6 +78,12 @@ class Fixtures {
                         singleton: false,
                         controller: 'News',
                         action: 'index'),
+                contactPageType: new PageType(
+                        slug: 'contact',
+                        description: 'Kontakt',
+                        singleton: false,
+                        controller: 'Contact',
+                        action: 'index'),
         ]
 
         pageTypes*.value*.save(failOnError: true);
