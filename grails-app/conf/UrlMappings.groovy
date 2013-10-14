@@ -60,6 +60,8 @@ class UrlMappings {
                 // apply constraints here
             }
         }
+//        "404"(controller:'errors', action:'error404')
         "500"(view:'/error')
+        "404"(view:'/notFound')
     }
 }

@@ -40,7 +40,7 @@
             <skolka:head/>
         </div>
         <div class="pull-right back-to-cross">
-            <h3><a href="../" class="btn btn-success">&laquo; zpět na výběr školky</a></h3>
+            <h3><a href="${frod.routing.domain.Page.where {pageType.slug == 'root'}.find().url}" class="btn btn-success">&laquo; zpět na výběr školky</a></h3>
         </div>
     </div>
     <div class="masthead">
