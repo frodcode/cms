@@ -23,7 +23,7 @@
 
     </div>
     <div class="span4 colored-box">
-        <r:img uri="/static/skolka/img/utulna2.jpg" alt="foto školky"/>
+        <r:img uri="/static/skolka/img/troilova3.jpg" alt="foto školky"/>
     </div>
 </div>
 
@@ -44,7 +44,7 @@
     </div>
     <div class="span4 colored-box">
         <h3><frodr:link page="${jidelnicekPage}">Jídelníček</frodr:link></h3>
-        <frodr:link page="${jidelnicekPage}"><r:img uri="/static/skolka/img/jidelna.jpg" alt="jidelnicek"/></frodr:link>
+        <frodr:link page="${jidelnicekPage}"><r:img uri="/static/skolka/img/jidelna-zelenina.jpg" alt="jidelnicek" style="height: 176px"/></frodr:link>
     </div>
 </div>
 <div class="row-fluid content-block">
@@ -94,11 +94,12 @@
             <strong>MŠ Troilova</strong><br>
             Troilova 17/474<br>
             Praha 10<br>
-            108 00
+            108 00 <br>
             <strong>Telefony:</strong><br>
 
             274 776 483 <br>
-            602 539 344<br>
+            6602 539 344 - omluvy, paní Benešová<br>
+            602 539 338 - ředitelka školy</br>
             <a href="mailto:ms_troilova@volny.cz">ms_troilova@volny.cz</a>
         </address>
     </div>

@@ -11,7 +11,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title><g:layoutTitle default="Mateřská škola Útulná"/></title>
+    <title><g:layoutTitle default="${website?.name}"/></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Mateřská škola">
     <meta name="author" content="František Odehnal">

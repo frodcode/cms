@@ -9,7 +9,7 @@
 <%@ page import="org.imgscalr.Scalr; frod.media.image.thumbnail.adjustment.resize.ResizeAdjustment" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Fotogalerie | ${website.slug}</title>
+    <title>Fotogalerie | ${website.name}</title>
     <meta name="layout" content="default"/>
 </head>
 

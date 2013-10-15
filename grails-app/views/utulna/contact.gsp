@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Kontakt | ${website.slug}</title>
+    <title>Kontakt | ${website.name}</title>
     <meta name="layout" content="default" />
 </head>
 <body>
@@ -12,11 +12,12 @@
         <div class="span6">
             <strong>MŠ Útulná</strong><br>
             Útulná 6/2099<br>
-            Praha 10 100 00<br>
+            Praha 10 <br>
+            100 00<br>
             <h2>Telefony: </h2>
 
             274 770 013<br>
-            602 539 338 - ředitelka školky<br>
+            602 539 338 - ředitelka školy<br>
             724 585 436 - omluvy, paní Gregorová<br>
             <h2>E-mail</h2>
             <a href="mailto:ms_troilova@volny.cz">ms_troilova@volny.cz</a>

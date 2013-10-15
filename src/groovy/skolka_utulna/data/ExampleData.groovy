@@ -519,7 +519,7 @@ class ExampleData {
 
         MenuItemCommand menuItemCommand = new MenuItemCommand()
         menuItemCommand.mainMenuItemId =  mainMenuItems.o_skolce.id
-        menuItemCommand.putAfterId = MenuItem.findByTitle('Školka v přírodě').id
+        menuItemCommand.putAfterId = MenuItem.findByTitle('Organizace školního roku').id
         menuItemCommand.title = 'Aktuality'
         menuItemCommand.pageId = newsPage.id
         if (menuItemCommand.hasErrors()) {
@@ -633,23 +633,6 @@ class ExampleData {
                         ]
                 ],
                 [
-                        'headline': 'Organizace školního roku',
-                        text: getTextFromFile('troilova/about/organizace_skolniho_roku.html'),
-                        status: ArticleStatusEnum.PUBLISHED,
-                        'page': [
-                                urlPart: '/organizace-skolniho-roku',
-                                urlType: UrlTypeEnum.FROM_PARENT,
-                                pageTypeId: pageTypes.articlePageType.id,
-                                parentId: mainMenuItems.o_skolce.page.id,
-                                domainId: defaultDomain.id,
-                        ],
-                        menuItem: [
-                                title: 'Organizace školního roku',
-                                putAfterId: null, //will be calculated
-                                mainMenuItemId: mainMenuItems.o_skolce.id
-                        ]
-                ],
-                [
                         'headline': 'Provozní zaměstnanci',
                         text: getTextFromFile('troilova/about/provozni_zamestnanci.html'),
                         status: ArticleStatusEnum.PUBLISHED,
@@ -662,6 +645,23 @@ class ExampleData {
                         ],
                         menuItem: [
                                 title: 'Provozní zaměstnanci',
+                                putAfterId: null, //will be calculated
+                                mainMenuItemId: mainMenuItems.o_skolce.id
+                        ]
+                ],
+                [
+                        'headline': 'Organizace školního roku',
+                        text: getTextFromFile('troilova/about/organizace_skolniho_roku.html'),
+                        status: ArticleStatusEnum.PUBLISHED,
+                        'page': [
+                                urlPart: '/organizace-skolniho-roku',
+                                urlType: UrlTypeEnum.FROM_PARENT,
+                                pageTypeId: pageTypes.articlePageType.id,
+                                parentId: mainMenuItems.o_skolce.page.id,
+                                domainId: defaultDomain.id,
+                        ],
+                        menuItem: [
+                                title: 'Organizace školního roku',
                                 putAfterId: null, //will be calculated
                                 mainMenuItemId: mainMenuItems.o_skolce.id
                         ]

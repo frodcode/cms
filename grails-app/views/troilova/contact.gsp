@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Kontakt | ${website.slug}</title>
+    <title>Kontakt | ${website.name}</title>
     <meta name="layout" content="default" />
 </head>
 <body>
@@ -17,7 +17,9 @@
                 108 00</address>
             <h2><strong>Telefon</strong></h2>
             <p>274 776 483 <br>
-               602 539 344<br></p>
+               602 539 344 - omluvy, paní Benešová<br>
+                602 539 338 - ředitelka školy
+            </p>
             <p></p>
 
             <h2>E-mail</h2>

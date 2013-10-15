@@ -32,11 +32,11 @@ class Fixtures {
         def websites = [
                 utulna: new Website(
                         slug: 'utulna',
-                        name: 'Školka Útulná',
+                        name: 'Mateřská škola Útulná',
                 ),
                 troilova: new Website(
                         slug: 'troilova',
-                        name: 'Školka Troilova',
+                        name: 'Mateřská škola Troilova',
                 )
         ]
         websites*.value*.save(flush: true, failOnError: true);
