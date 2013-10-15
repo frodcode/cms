@@ -22,6 +22,6 @@ class ArticleController {
         Website website = websiteService.getWebsite(page)
         Article article = Article.findByPage(page)
         return new ModelAndView("/$website.slug/article",
-                [article: article])
+                [article: article, website: website])
     }
 }

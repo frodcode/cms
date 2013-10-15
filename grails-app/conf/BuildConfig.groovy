@@ -48,7 +48,7 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        compile ":routing:0.7"
+        compile ":routing:0.8"
         compile ":diagnostics:0.1"
         compile ":frod-utils:0.1"
         compile ":media:1.4"

@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Aktuality</title>
+    <title>Aktuality | ${website.slug}</title>
     <meta name="layout" content="default" />
 </head>
 <body>

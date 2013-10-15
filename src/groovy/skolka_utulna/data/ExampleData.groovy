@@ -123,6 +123,8 @@ class ExampleData {
         mainMenuItems.fotogalerie.page = galleryPage
         mainMenuItems.fotogalerie.save(flush: true)
 
+        // todo
+        return
         MediaGroup mediaGroup = new MediaGroup()
         mediaGroup.setName('DRAVCI v MŠ Útulná')
         mediaGroup.setType(galleryMediaGroupType)
@@ -309,7 +311,7 @@ class ExampleData {
         def mainMenuItemArticles = [
                 nase_tridy: new Article(
                         headline: 'Naše třídy',
-                        text: getTextFromFile('utulna/our_classes.txt'),
+                        text: getTextFromFile('utulna/our_classes.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         page: new Page(
                                 domain: defaultDomain,
@@ -323,7 +325,7 @@ class ExampleData {
                 ),
                 o_skolce: new Article(
                         headline: 'O školce',
-                        text: getTextFromFile('utulna/about.txt'),
+                        text: getTextFromFile('utulna/about.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         page: new Page(
                                 domain: defaultDomain,
@@ -337,7 +339,7 @@ class ExampleData {
                 ),
                 akce: new Article(
                         headline: 'Akce',
-                        text: getTextFromFile('utulna/events.txt'),
+                        text: getTextFromFile('utulna/events.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         page: new Page(
                                 domain: defaultDomain,
@@ -517,7 +519,7 @@ class ExampleData {
 
         MenuItemCommand menuItemCommand = new MenuItemCommand()
         menuItemCommand.mainMenuItemId =  mainMenuItems.o_skolce.id
-        menuItemCommand.putAfterId = MenuItem.findByTitle('Prázdniny').id
+        menuItemCommand.putAfterId = MenuItem.findByTitle('Školka v přírodě').id
         menuItemCommand.title = 'Aktuality'
         menuItemCommand.pageId = newsPage.id
         if (menuItemCommand.hasErrors()) {
@@ -705,7 +707,7 @@ class ExampleData {
         return [
                 [
                         headline: 'Motýlci',
-                        text: getTextFromFile('utulna/our_classes/motylci.txt'),
+                        text: getTextFromFile('utulna/our_classes/motylci.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         page: [
                                 urlPart: '/motylci',
@@ -722,7 +724,7 @@ class ExampleData {
                 ],
                 [
                         headline: 'Včelky',
-                        text: getTextFromFile('utulna/our_classes/vcelky.txt'),
+                        text: getTextFromFile('utulna/our_classes/vcelky.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         page: [
                                 urlPart: '/vcelky',
@@ -739,7 +741,7 @@ class ExampleData {
                 ],
                 [
                         headline: 'Žablky',
-                        text: getTextFromFile('utulna/our_classes/zabky.txt'),
+                        text: getTextFromFile('utulna/our_classes/zabky.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         page: [
                                 urlPart: '/zabky',
@@ -756,7 +758,7 @@ class ExampleData {
                 ],
                 [
                         headline: 'Ježci',
-                        text: getTextFromFile('utulna/our_classes/jezci.txt'),
+                        text: getTextFromFile('utulna/our_classes/jezci.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         page: [
                                 urlPart: '/jezci',
@@ -773,7 +775,7 @@ class ExampleData {
                 ],
                 [
                         'headline': 'Provoz a školné',
-                        text: getTextFromFile('utulna/about/provoz_a_skolne.txt'),
+                        text: getTextFromFile('utulna/about/provoz_a_skolne.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         'page': [
                                 urlPart: '/provoz-a-skolne',
@@ -790,7 +792,7 @@ class ExampleData {
                 ],
                 [
                         'headline': 'Program dne',
-                        text: getTextFromFile('utulna/about/program_dne.txt'),
+                        text: getTextFromFile('utulna/about/program_dne.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         'page': [
                                 urlPart: '/program-dne',
@@ -806,25 +808,42 @@ class ExampleData {
                         ]
                 ],
                 [
-                        'headline': 'Prázdniny',
-                        text: getTextFromFile('utulna/about/prazdniny.txt'),
+                        'headline': 'Provozní zaměstnanci',
+                        text: getTextFromFile('utulna/about/provozni_zamestnanci.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         'page': [
-                                urlPart: '/prazdniny',
+                                urlPart: '/provozni-zamestnanci',
                                 urlType: UrlTypeEnum.FROM_PARENT,
                                 pageTypeId: pageTypes.articlePageType.id,
                                 parentId: mainMenuItems.o_skolce.page.id,
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
-                                title: 'Prázdniny',
+                                title: 'Provozní zaměstnanci',
+                                putAfterId: null, //will be calculated
+                                mainMenuItemId: mainMenuItems.o_skolce.id
+                        ]
+                ],
+                [
+                        'headline': 'Organizace školního roku',
+                        text: getTextFromFile('utulna/about/organizace_skolniho_roku.html'),
+                        status: ArticleStatusEnum.PUBLISHED,
+                        'page': [
+                                urlPart: '/organizace-skolniho-roku',
+                                urlType: UrlTypeEnum.FROM_PARENT,
+                                pageTypeId: pageTypes.articlePageType.id,
+                                parentId: mainMenuItems.o_skolce.page.id,
+                                domainId: defaultDomain.id,
+                        ],
+                        menuItem: [
+                                title: 'Organizace školního roku',
                                 putAfterId: null, //will be calculated
                                 mainMenuItemId: mainMenuItems.o_skolce.id
                         ]
                 ],
                 [
                         'headline': 'Školní akce na letošní rok',
-                        text: getTextFromFile('utulna/events/akce_na_letosni_rok.txt'),
+                        text: getTextFromFile('utulna/events/akce_na_letosni_rok.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         'page': [
                                 urlPart: '/skolni-akce-na-letosni-rok',
@@ -840,25 +859,8 @@ class ExampleData {
                         ]
                 ],
                 [
-                        'headline': 'Den otevřených dvěří',
-                        text: getTextFromFile('utulna/events/den_otevrenych_dveri.txt'),
-                        status: ArticleStatusEnum.PUBLISHED,
-                        'page': [
-                                urlPart: '/den-otevrenych-dveri',
-                                urlType: UrlTypeEnum.FROM_PARENT,
-                                pageTypeId: pageTypes.articlePageType.id,
-                                parentId: mainMenuItems.akce.page.id,
-                                domainId: defaultDomain.id,
-                        ],
-                        menuItem: [
-                                title: 'Den otevřených dvěří',
-                                putAfterId: null, //will be calculated
-                                mainMenuItemId: mainMenuItems.akce.id
-                        ]
-                ],
-                [
                         'headline': 'Školka v přírodě',
-                        text: getTextFromFile('utulna/events/skola_v_prirode.txt'),
+                        text: getTextFromFile('utulna/events/skola_v_prirode.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         'page': [
                                 urlPart: '/skolka-v-prirode',

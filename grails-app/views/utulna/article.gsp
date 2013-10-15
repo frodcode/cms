@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>An Example Page</title>
+    <title>${article.headline} | ${website.name}</title>
     <meta name="layout" content="default" />
 </head>
 <body>

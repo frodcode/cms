@@ -17,7 +17,8 @@
     <div class="span8">
         <article class="clearfix">
             <h1>O školce</h1>
-            <p>Sídlíme na rozhraní Strašnic a Malešic ve vilové části. Škola je obklopena zahradami okolních vil. Ulice, ve které je umístěna budova školy, je jednosměrná. Škola je čtyřtřídní účelová budova zprovozněná v roce 1968.</p>
+            <p>Mateřská škola Ütulná 6/2099 je odloučeným pracovištěm mateřské školy Troilova 17/474. Je to školka čtyřtřídní, s provozem od 7:00 - 17:30. Umístěná je v klidné
+            částí Strašnic, obklopená příjemnou zahradou. V posledních letech proběhla rozsáhlími rekonstrukcemi.</p>
             <p class="pull-right"><frodr:link page="${oSkolcePage}" class="btn btn-success">Zobrazit více o školce &raquo;</frodr:link></p>
         </article>
 

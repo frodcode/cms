@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>${article.headline}e</title>
+    <title>${article.headline} | ${website.slug}</title>
     <meta name="layout" content="default" />
 </head>
 <body>

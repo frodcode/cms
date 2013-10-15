@@ -9,7 +9,7 @@
 <%@ page import="org.imgscalr.Scalr; frod.media.image.thumbnail.adjustment.resize.ResizeAdjustment" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title></title>
+    <title>Fotogalerie | ${website.slug}</title>
     <meta name="layout" content="default"/>
 </head>
 
@@ -22,6 +22,10 @@
                 <g:if test="${website.slug == 'troilova'}">
                     <p>Fotografie si můžete prohlédnout <a href="http://mstroilova.rajce.idnes.cz/" target="_blank">na rajčeti</a>.</p>
                 </g:if>
+                <g:if test="${website.slug == 'utulna'}">
+                    <p>Fotografie si můžete prohlédnout <a href="http://msutulna.rajce.idnes.cz/" target="_blank">na rajčeti</a>.</p>
+                </g:if>
+
             </g:if>
             <g:each in="${allGroups}" var="group">
                 <li>

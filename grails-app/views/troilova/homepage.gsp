@@ -92,14 +92,14 @@
         <h3>Kontaktujte nás</h3>
         <address>
             <strong>MŠ Troilova</strong><br>
-            Útulná 6/2099<br>
-            Praha 10 100 00<br>
+            Troilova 17/474<br>
+            Praha 10<br>
+            108 00
             <strong>Telefony:</strong><br>
 
-            274 770 013<br>
-            602 539 338 - ředitelka školky<br>
-            724 585 436 - omluvy, paní Gregorová<br>
-            <a href="mailto:mts.utulna@seznam.cz">mts.utulna@seznam.cz</a>
+            274 776 483 <br>
+            602 539 344<br>
+            <a href="mailto:ms_troilova@volny.cz">ms_troilova@volny.cz</a>
         </address>
     </div>
 </div>

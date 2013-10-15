@@ -17,6 +17,6 @@ class MealController {
         Website website = mainMenuItem.website
         def weeklyMenu = mealMenuService.getWeekMenu(today, website)
 //        dump(weeklyMenu)
-        [weeklyMenu: weeklyMenu]
+        [weeklyMenu: weeklyMenu, website: website]
     }
 }

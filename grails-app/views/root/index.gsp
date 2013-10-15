@@ -53,11 +53,13 @@
 		<![endif]-->
 
     <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="static/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="static/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="static/ico/favicon.png">
+    <g:set var="websiteSlug" value="${website ? website.slug : 'troilova'}"/>
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/static/skolka/img/ico/${websiteSlug}/144x144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/static/skolka/img/ico/${websiteSlug}/114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/static/skolka/img/ico/${websiteSlug}/72x72.png">
+
+    <link rel="shortcut icon" href="/static/static/skolka/img/ico/${websiteSlug}/favicon.ico">
 </head>
 
 <body>
