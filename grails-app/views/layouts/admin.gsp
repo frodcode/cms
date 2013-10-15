@@ -7,11 +7,16 @@
     <title><g:layoutTitle default="CMS"/></title>
     <g:layoutHead />
     <r:layoutResources/>
+    <style>
+#header h1 {
+    background: url("/static/static/skolka/img/ico/${params.websiteSlug}/favicon.ico") no-repeat;
+}
+    </style>
 </head>
 
 <body ng-app="app">
 <div id="header">
-    <h1><a href="http://wbpreview.com/previews/WB0F35928/dashboard.html">Unicorn Admin</a></h1>
+    <h1><a href="http://wbpreview.com/previews/WB0F35928/dashboard.html">Školka</a></h1>
 </div>
 <div id="user-nav" class="navbar navbar-inverse">
     <ul class="nav btn-group">

@@ -43,9 +43,9 @@
                     <tr>
                         <g:each in="${weekMenu.dailyMenus}" var="dailyMenu">
                             <td>
-                                <g:link controller="MealAdmin" action="detail" params="[websiteSlug: website.slug, id: weekMenu.sinceDate.format('yyyy-MM-dd')]">
+
                                     <span class="date">${dailyMenu.date.date}</span>
-                                </g:link>
+
                                 <div class="menus">
                                 <g:each in="${dailyMenu.menus}" var="menu">
 
