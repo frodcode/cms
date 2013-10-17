@@ -62,6 +62,15 @@
                         </div>
                     </div>
                 </g:each>
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon">
+                            <i class="icon-th"></i>
+                        </span>
+                        <h5><g:link action="edit" params="[websiteSlug: website.slug, id: website.homepage.subPages.find{it.pageType.slug == 'contact'}?.id]">Kontakt (mimo adresu a email)</g:link></h5>
+                    </div>
+                </div>
+
 
 
             </div>

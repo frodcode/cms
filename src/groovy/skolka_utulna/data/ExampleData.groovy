@@ -51,9 +51,6 @@ class ExampleData {
         def utulna = loadArticlesUtulna(defaultDomain, root, pageTypes, websites, mainMenuItems.utulna)
         def troilova = loadArticlesTroilova(defaultDomain, root, pageTypes, websites, mainMenuItems.troilova)
 
-        loadKontakt(mainMenuItems.troilova, defaultDomain, pageTypes, troilova.homepage)
-        loadKontakt(mainMenuItems.utulna, defaultDomain, pageTypes, utulna.homepage)
-
         loadAktuality(defaultDomain, pageTypes, troilova.homepage, mainMenuItems.troilova)
         loadAktuality(defaultDomain, pageTypes, utulna.homepage, mainMenuItems.utulna)
 
@@ -64,27 +61,6 @@ class ExampleData {
         loadMealMenus(mealMenuTypes, mainMenuItems.troilova, defaultDomain, pageTypes, troilova.homepage, websites.troilova)
         return []
     }
-
-    public def loadKontakt(def mainMenuItems, def defaultHost, def pageTypes, def homepage)
-    {
-        Page contactPage = new Page(
-                domain: defaultHost,
-                urlPart: '/kontakt',
-                urlType: UrlTypeEnum.FROM_PARENT,
-                requestType: RequestTypeEnum.REGULAR,
-                httpMethod: HttpMethodEnum.GET,
-                pageType: pageTypes.contactPageType,
-                parent: homepage
-        )
-
-        pageService.setDefaults(contactPage)
-        routingService.regenerateUrl(contactPage)
-        contactPage.save(flush: true)
-
-        mainMenuItems.kontakt.page = contactPage
-        mainMenuItems.kontakt.save(flush: true)
-    }
-
 
     public def loadMediaTroilova(def mainMenuItems, def defaultHost, def pageTypes, def homepage) {
         Page galleryPage = new Page(
@@ -356,6 +332,20 @@ class ExampleData {
                                 pageType: pageTypes.articlePageType,
                                 parent: pages.utulnaHomepage
                         ),
+                ),
+                kontakt: new Article(
+                        headline: 'Kontakt',
+                        text: getTextFromFile('utulna/contact.html'),
+                        status: ArticleStatusEnum.PUBLISHED,
+                        page: new Page(
+                                domain: defaultDomain,
+                                urlPart: '/kontakt',
+                                urlType: UrlTypeEnum.FROM_PARENT,
+                                requestType: RequestTypeEnum.REGULAR,
+                                httpMethod: HttpMethodEnum.GET,
+                                pageType: pageTypes.contactPageType,
+                                parent: pages.utulnaHomepage
+                        ),
                 )
         ]
         mainMenuItemArticles*.value*.page*.each {
@@ -460,6 +450,20 @@ class ExampleData {
                                 requestType: RequestTypeEnum.REGULAR,
                                 httpMethod: HttpMethodEnum.GET,
                                 pageType: pageTypes.articlePageType,
+                                parent: pages.troilovaHomepage
+                        ),
+                ),
+                kontakt: new Article(
+                        headline: 'Kontakt',
+                        text: getTextFromFile('troilova/contact.html'),
+                        status: ArticleStatusEnum.PUBLISHED,
+                        page: new Page(
+                                domain: defaultDomain,
+                                urlPart: '/kontakt',
+                                urlType: UrlTypeEnum.FROM_PARENT,
+                                requestType: RequestTypeEnum.REGULAR,
+                                httpMethod: HttpMethodEnum.GET,
+                                pageType: pageTypes.contactPageType,
                                 parent: pages.troilovaHomepage
                         ),
                 )
@@ -691,6 +695,23 @@ class ExampleData {
                                 mainMenuItemId: mainMenuItems.akce.id
                         ]
                 ],
+                [
+                        'headline': 'Zájmové kroužky',
+                        text: getTextFromFile('troilova/events/zajmove_krouzky.html'),
+                        status: ArticleStatusEnum.PUBLISHED,
+                        'page': [
+                                urlPart: '/zajmove-krouzky',
+                                urlType: UrlTypeEnum.FROM_PARENT,
+                                pageTypeId: pageTypes.articlePageType.id,
+                                parentId: mainMenuItems.akce.page.id,
+                                domainId: defaultDomain.id,
+                        ],
+                        menuItem: [
+                                title: 'Zájmové kroužky',
+                                putAfterId: null, //will be calculated
+                                mainMenuItemId: mainMenuItems.akce.id
+                        ]
+                ],
         ]
     }
 
@@ -862,6 +883,23 @@ class ExampleData {
                         ],
                         menuItem: [
                                 title: 'Školka v přírodě',
+                                putAfterId: null, //will be calculated
+                                mainMenuItemId: mainMenuItems.akce.id
+                        ]
+                ],
+                [
+                        'headline': 'Zájmové kroužky',
+                        text: getTextFromFile('utulna/events/zajmove_krouzky.html'),
+                        status: ArticleStatusEnum.PUBLISHED,
+                        'page': [
+                                urlPart: '/zajmove-krouzky',
+                                urlType: UrlTypeEnum.FROM_PARENT,
+                                pageTypeId: pageTypes.articlePageType.id,
+                                parentId: mainMenuItems.akce.page.id,
+                                domainId: defaultDomain.id,
+                        ],
+                        menuItem: [
+                                title: 'Zájmové kroužky',
                                 putAfterId: null, //will be calculated
                                 mainMenuItemId: mainMenuItems.akce.id
                         ]

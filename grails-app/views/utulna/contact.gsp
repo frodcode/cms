@@ -22,9 +22,7 @@
             <h2>E-mail</h2>
             <a href="mailto:ms_troilova@volny.cz">ms_troilova@volny.cz</a>
 
-            <h2>Bankovní spojení</h2>
-            <p>Číslo účtu: 292273309/0800 (ČS, a.s.) pro platbu školného</p>
-            <p>Číslo účtu: 35-292273309/0800  (ČS, a.s.) pro platbu stravného</p>
+            ${article.text}
         </div>
         <script src="http://api4.mapy.cz/loader.js"></script>
         <div class="span6">

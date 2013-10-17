@@ -73,7 +73,7 @@
     tinymce.init({
         selector: "textarea",
         min_height: 350,
-        plugins: "table, link",
+        plugins: "table,autolink,link",
         //content_css: '/static/bundle-bundle_bootstrap_head.css',
         theme_advanced_buttons1: "styleselect,bold,italic,underline,strikethrough,|,bullist,numlist,|,undo,redo,|,link,unlink"
     });
