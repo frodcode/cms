@@ -752,7 +752,7 @@ class ExampleData {
                         ]
                 ],
                 [
-                        headline: 'Žablky',
+                        headline: 'Žabky',
                         text: getTextFromFile('utulna/our_classes/zabky.html'),
                         status: ArticleStatusEnum.PUBLISHED,
                         page: [
@@ -763,7 +763,7 @@ class ExampleData {
                                 domainId: defaultDomain.id,
                         ],
                         menuItem: [
-                                title: 'Žablky',
+                                title: 'Žabky',
                                 putAfterId: null, //will be calculated
                                 mainMenuItemId: mainMenuItems.nase_tridy.id
                         ]

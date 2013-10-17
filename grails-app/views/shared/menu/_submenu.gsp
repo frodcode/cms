@@ -3,6 +3,6 @@
 </ul>
 <ul>
     <g:each in="${menuItems}" var="item">
-        <li class="${item == activeItem ? 'active' : ''}"><frodr:link page="${item.page}">${item.title}</frodr:link></li>
+        <li class="${item.page.urlPart.replaceAll('/', '')}${item == activeItem ? ' active' : ''}"><frodr:link page="${item.page}">${item.title}</frodr:link></li>
     </g:each>
 </ul>

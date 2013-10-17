@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="skolka_utulna.Website" contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +20,7 @@
 </div>
 <div id="user-nav" class="navbar navbar-inverse">
     <ul class="nav btn-group">
+        <li class="btn btn-inverse" ><a href="${Website.findBySlug(params.websiteSlug).homepage.url}"><i class="icon icon-star"></i> <span class="text">Zobrazit stránky</span></a></li>
         <li class="btn btn-inverse" ><g:link mapping="myAccount" params="[websiteSlug: params.websiteSlug]"><i class="icon icon-user"></i> <span class="text">Nastavení účtu</span></g:link></li>
         <li class="btn btn-inverse"><g:link controller="logout" action="index"><i class="icon icon-share-alt"></i> <span class="text">Odhlásit</span></g:link></li>
     </ul>

@@ -283,6 +283,26 @@ footer {
 	line-height: 20px;
 }
 
+h1.motylci, h1.kuratka {
+   color: #edde06 !important;
+}
+
+
+h1.vcelky, h1.zirafy {
+    color: #FFC517 !important;
+}
+
+h1.zabky {
+    color: #47f50e !important;
+}
+
+h1.jezci, h1.berusky {
+    color: #f5120c !important;
+}
+
+h1.delfini {
+    color: #00bdf5 !important;
+}
 
 
 /* Large desktop */

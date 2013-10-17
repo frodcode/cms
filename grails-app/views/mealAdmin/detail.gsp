@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-  <title></title>
+  <title>Jídelníček od <g:formatDate date="${editingWeek.sinceDate}" format="dd. MM." style="LONG" /> do <g:formatDate date="${editingWeek.toDate}" format="dd. MM. yyyy" style="LONG" /></title>
 </head>
 <body>
 <frodadmin:angularTemplates dirs="/static/skolka/admin/js"/>

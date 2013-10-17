@@ -9,7 +9,7 @@
         <skolka:submenu/>
     </div>
     <div class="span9">
-        <h1>${article.headline}</h1>
+        <h1 class="${article.page.urlPart.replaceAll('/', '')}">${article.headline}</h1>
         ${article.text}
     </div>
 </div>
