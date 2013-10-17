@@ -25,28 +25,36 @@
             <div class="span12">
                 <skolka:messages/>
 
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon">
+                            <i class="icon-th"></i>
+                        </span>
+                        <h5><g:link action="edit" params="[websiteSlug: website.slug, id: website.homepage.id]">Úvod</g:link></h5>
+                    </div>
+                </div>
+
                 <g:each in="${allMainMenus}" var="mainMenu">
                     <div class="widget-box">
                         <div class="widget-title">
                             <span class="icon">
                                 <i class="icon-th"></i>
                             </span>
-                            <h5>${mainMenu.title}</h5>
+                            <h5><g:link action="edit" params="[websiteSlug: website.slug, id: mainMenu.page.id]">${mainMenu.title}</g:link></h5>
                         </div>
 
                         <div class="widget-content nopadding">
                             <table class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Název</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
+
                                 <tbody>
                                 <g:each in="${mainMenu.menuItems}" var="menuItem">
                                     <tr>
-                                        <td><g:link action="edit" params="[websiteSlug: website.slug, id: menuItem.page.id]">${menuItem.title}</g:link></td>
-                                        <td></td>
+                                        <g:if test="${menuItem.page.pageType.slug == 'news'}">
+                                            <td><g:link controller="news-admin" action="index" params="[websiteSlug: website.slug]">${menuItem.title}</g:link></td>
+                                        </g:if>
+                                        <g:else>
+                                            <td><g:link action="edit" params="[websiteSlug: website.slug, id: menuItem.page.id]">${menuItem.title}</g:link></td>
+                                        </g:else>
                                     </tr>
                                 </g:each>
                                 </tbody>

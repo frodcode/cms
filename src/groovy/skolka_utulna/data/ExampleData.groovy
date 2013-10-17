@@ -309,6 +309,12 @@ class ExampleData {
         websites.utulna.save(flush:true)
 
         def mainMenuItemArticles = [
+                uvod: new Article(
+                        headline: 'O školce',
+                        text: getTextFromFile('utulna/uvod.html'),
+                        status: ArticleStatusEnum.PUBLISHED,
+                        page: pages.utulnaHomepage,
+                ),
                 nase_tridy: new Article(
                         headline: 'Naše třídy',
                         text: getTextFromFile('utulna/our_classes.html'),
@@ -364,16 +370,6 @@ class ExampleData {
         }
         mainMenuItemArticles*.value*.save(flush:true);
 
-        def utulnaHomepageArticle = new Article(
-                headline: 'O školce',
-                text: getTextFromFile('utulna/uvod.txt'),
-                status: ArticleStatusEnum.PUBLISHED,
-                page: pages.utulnaHomepage
-        )
-        utulnaHomepageArticle.save(flush:true)
-
-
-
         def allData = getDataForUtulnaArticles(defaultDomain, pages.utulnaHomepage, pageTypes, mainMenuItems)
 
         def putAfters = [:]
@@ -419,6 +415,12 @@ class ExampleData {
         websites.troilova.save(flush:true)
 
         def mainMenuItemArticles = [
+                uvod: new Article(
+                        headline: 'O školce',
+                        text: getTextFromFile('troilova/uvod.html'),
+                        status: ArticleStatusEnum.PUBLISHED,
+                        page: pages.troilovaHomepage,
+                ),
                 nase_tridy: new Article(
                         headline: 'Naše třídy',
                         text: getTextFromFile('troilova/our_classes.html'),
@@ -473,17 +475,6 @@ class ExampleData {
             }
         }
         mainMenuItemArticles*.value*.save(flush:true);
-
-
-        def troilovaHomepageArticle = new Article(
-                headline: 'O školce',
-                text: getTextFromFile('troilova/uvod.txt'),
-                status: ArticleStatusEnum.PUBLISHED,
-                page: pages.troilovaHomepage
-        )
-        troilovaHomepageArticle.save(flush:true)
-
-
 
         def allData = getDataForTroilovaArticles(defaultDomain, pages.troilovaHomepage, pageTypes, mainMenuItems)
 

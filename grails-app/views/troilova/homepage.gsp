@@ -98,7 +98,7 @@
             <strong>Telefony:</strong><br>
 
             274 776 483 <br>
-            6602 539 344 - omluvy, paní Benešová<br>
+            602 539 344 - omluvy, paní Benešová<br>
             602 539 338 - ředitelka školy</br>
             <a href="mailto:ms_troilova@volny.cz">ms_troilova@volny.cz</a>
         </address>

@@ -16,9 +16,8 @@
 <div class="row-fluid content-block">
     <div class="span8">
         <article class="clearfix">
-            <h1>O školce</h1>
-            <p>Mateřská škola Ütulná 6/2099 je odloučeným pracovištěm mateřské školy Troilova 17/474. Je to školka čtyřtřídní, s provozem od 7:00 - 17:30. Umístěná je v klidné
-            částí Strašnic, obklopená příjemnou zahradou. V posledních letech proběhla rozsáhlími rekonstrukcemi.</p>
+            <h1>${article.headline}</h1>
+          ${article.text}
             <p class="pull-right"><frodr:link page="${oSkolcePage}" class="btn btn-success">Zobrazit více o školce &raquo;</frodr:link></p>
         </article>
 

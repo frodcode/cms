@@ -28,6 +28,7 @@ class HomepageController {
         def newsPage = websiteService.findViaMenuItemPageByWebsiteAndPageTypeSlug(website, 'news')
         def fotogaleriePage = websiteService.findViaMainMenuPageByWebsiteAndPageTypeSlug(website, 'gallery')
         def jidelnicekPage = websiteService.findViaMainMenuPageByWebsiteAndPageTypeSlug(website, 'meal')
+        Article article = Article.findByPage(page)
 
         Article homepageArticle = Article.findByPage(page)
         return new ModelAndView("/$website.slug/homepage",
@@ -38,7 +39,8 @@ class HomepageController {
                         jidelnicekPage: jidelnicekPage,
                         oSkolcePage: mainMenuItemService.findBySlugAndWebsite('o_skolce', website).page,
                         homepageNews: homepageNews,
-                        newsPage: newsPage]
+                        newsPage: newsPage,
+                        article: article]
         )
     }
 }

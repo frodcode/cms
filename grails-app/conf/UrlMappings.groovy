@@ -1,5 +1,5 @@
 class UrlMappings {
-    static excludes = ['/admin/css/*', '/admin/img/*', '/admin/js/*', '/static/*', '/css/*', '/plugins/*']
+    static excludes = ['/admin/css/*', '/admin/img/*', '/admin/js/*', '/static/*', '/css/*', '/plugins/*', '/favicon.ico', '/tinymce/*']
     static mappings = {
         name dynamicImage: "/dynamic-media/image/$id?"{
             controller = 'ImageService'

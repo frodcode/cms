@@ -5,7 +5,6 @@ modules = {
         resource url: '/static/skolka/libs/fancybox/jquery.fancybox.css?v=2.1.5'
         resource url: '/static/skolka/libs/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5'
         resource url: '/static/skolka/libs/fancybox/helpers/jquery.fancybox-thumbs.css?v=1.0.7'
-        resource url: '/static/skolka/css/bootstrap-responsive.css'
     }
 
     skolka {
@@ -58,5 +57,10 @@ modules = {
         resource url: '/static/skolka/admin/js/appConfig.js'
 
         resource url: '/static/skolka/admin/css/back.css'
+
+    }
+
+    tinymce {
+        resource url: '/tinymce/langs/cs.js', disposition: 'head'
     }
 }

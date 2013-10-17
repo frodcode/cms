@@ -9,7 +9,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-  <title></title>
+  <title>Editace článku ${article.headline}</title>
+    <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
 </head>
 <body>
 <frodadmin:angularTemplates dirs="/static/skolka/admin/js"/>
@@ -66,5 +67,17 @@
     });
     updateSlug();
 </script>
+<!--<script type="text/javascript" src="/static/static/skolka/libs/tinymce/tinymce.min.js">
+</script>-->
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea",
+        min_height: 350,
+        plugins: "table, link",
+        //content_css: '/static/bundle-bundle_bootstrap_head.css',
+        theme_advanced_buttons1: "styleselect,bold,italic,underline,strikethrough,|,bullist,numlist,|,undo,redo,|,link,unlink"
+    });
+</script>
+
 </body>
 </html>

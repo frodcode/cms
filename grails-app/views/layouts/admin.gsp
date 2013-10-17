@@ -3,7 +3,7 @@
 <html>
 <head>
 
-    <r:require modules="adminskolka"/>
+    <r:require modules="adminskolka,tinymce"/>
     <title><g:layoutTitle default="CMS"/></title>
     <g:layoutHead />
     <r:layoutResources/>
