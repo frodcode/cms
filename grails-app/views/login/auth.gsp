@@ -50,6 +50,7 @@
             <span class="pull-right"><input type="submit" class="btn btn-inverse" value="Přihlásit" /></span>
         </div>
     </form>
+    <r:layoutResources/>
 </div>
 </body>
 </html>
