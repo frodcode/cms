@@ -58,7 +58,15 @@ class SkolkaTagLib {
     }
 
     def messages = {attrs, body ->
-        out << render(template:"/shared/admin/messages", model:[flash: flash])
+        def errors = flash.errors;
+        if (attrs.errors) {
+            errors = attrs.errors;
+        }
+        def message = flash.message
+        if (attrs.message) {
+            message = attrs.message
+        }
+        out << render(template:"/shared/admin/messages", model:[errors: errors, message: message])
     }
 
 }

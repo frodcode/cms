@@ -28,6 +28,7 @@ class LoginController {
 	 * Default action; redirects to 'defaultTargetUrl' if logged in, /login/auth otherwise.
 	 */
 	def index = {
+        cache false
 		if (springSecurityService.isLoggedIn()) {
 			redirect uri: SpringSecurityUtils.securityConfig.successHandler.defaultTargetUrl
 		}
@@ -36,10 +37,16 @@ class LoginController {
 		}
 	}
 
+    def doauth = {
+        cache false
+    }
+
 	/**
 	 * Show the login page.
 	 */
 	def auth = {
+
+        cache false
 
 		def config = SpringSecurityUtils.securityConfig
 
@@ -50,6 +57,7 @@ class LoginController {
 
 		String view = 'auth'
 		String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
+
 		render view: view, model: [postUrl: postUrl,
 		                           rememberMeParameter: config.rememberMe.parameter]
 	}

@@ -36,7 +36,7 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-        "/$websiteSlug/admin/$controller/$action/$yearNumber?/$monthNumber?"{
+        name classic_admin: "/$websiteSlug/admin/$controller/$action/$yearNumber?/$monthNumber?"{
             namespace = 'admin'
             constraints {
                 // apply constraints here

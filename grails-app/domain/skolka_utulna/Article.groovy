@@ -19,8 +19,8 @@ class Article {
     static constraints = {
         published(nullable: true)
         page(nullable: false)
-        headline(maxSize: 255)
-        text(maxSize: 10000)
+        headline(maxSize: 255, nullable: false)
+        text(maxSize: 10000, nullable: false)
         status(nullable: false)
         menuItem(nullable:true)
     }

@@ -14,7 +14,7 @@ class MenuItem {
     Integer position
 
     static constraints = {
-        position(unique: ['mainMenuItem'])
+        //position(unique: ['mainMenuItem'])
         page(nullable: true)
         title(nullable: false)
         mainMenuItem(nullable:false)

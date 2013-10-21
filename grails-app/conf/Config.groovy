@@ -66,6 +66,7 @@ grails.app.context = "/"
 
 environments {
     development {
+        grails.plugins.cache.headers.enabled = false
         grails.logging.jul.usebridge = true
         grails.media.preferences.imageDir = '/home/freeman/wwwdata/test'
     }
@@ -110,3 +111,5 @@ grails.plugins.springsecurity.interceptUrlMap = [
         '/troilova/admin/**': ['ROLE_ADMIN_TROILOVA'],
         '/superadmin/**': ['ROLE_SUPERADMIN'],
 ]
+
+grails.plugins.springsecurity.apf.filterProcessesUrl = '/login/doauth'

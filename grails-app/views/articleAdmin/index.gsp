@@ -23,8 +23,18 @@
         <div class="row-fluid">
 
             <div class="span12">
+
                 <skolka:messages/>
 
+                <div class="alert alert-info">
+                    <button class="close" data-dismiss="alert">×</button>
+                    <strong>Přetažením článků můžete měnit jejich pořadí.</strong>
+                </div>
+
+                <div class="alert alert-success" id="sort-message" style="display: none">
+                    <button class="close" data-dismiss="alert">×</button>
+                    <strong>Pořadí uloženo</strong>
+                </div>
                 <div class="widget-box">
                     <div class="widget-title">
                         <span class="icon">
@@ -38,17 +48,17 @@
                     <div class="widget-box">
                         <div class="widget-title">
                             <span class="icon">
-                                <i class="icon-th"></i>
+                                <g:link mapping="classic_admin" action="newArticle" params="[websiteSlug: website.slug, id: mainMenu.page.id]"><i class="icon-plus"></i> Přidat článek</g:link>
                             </span>
-                            <h5><g:link action="edit" params="[websiteSlug: website.slug, id: mainMenu.page.id]">${mainMenu.title}</g:link></h5>
+                            <h5><g:link action="edit" params="[websiteSlug: website.slug, id: mainMenu.page.id]">${mainMenu.title}</g:link> </h5>
                         </div>
 
-                        <div class="widget-content nopadding">
+                        <div class="widget-content nopadding" parent="${mainMenu.id}">
                             <table class="table table-bordered table-striped">
 
-                                <tbody>
+                                <tbody class="sortable">
                                 <g:each in="${mainMenu.menuItems}" var="menuItem">
-                                    <tr>
+                                    <tr item-id="${menuItem.id}">
                                         <g:if test="${menuItem.page.pageType.slug == 'news'}">
                                             <td><g:link controller="news-admin" action="index" params="[websiteSlug: website.slug]">${menuItem.title}</g:link></td>
                                         </g:if>
@@ -77,5 +87,36 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function getSortedData($parentContainer) {
+        var data = []
+        $parentContainer.find("tr").each(function(index, item){
+            data.push({
+                'id': parseInt($(item).attr("item-id")),
+                'position': index + 1
+            })
+        });
+        return data
+    }
+    $(".sortable").sortable({
+        stop: function( event, ui ) {
+            var $parentContainer = $($(ui.item).parents("div[parent]")[0])
+            var data = getSortedData($parentContainer)
+            console.log(data)
+            $.ajax({
+                type: "POST",
+                url: "${createLink(action: 'saveSort', params: [websiteSlug: website.slug])}",
+                dataType: 'json',
+                data: {data: JSON.stringify(data)}
+            })
+            .success(function( msg ) {
+                 $("#sort-message").show()
+            });
+        },
+        start: function() {
+            $("#sort-message").hide()
+        }
+    });
+</script>
 </body>
 </html>

@@ -19,7 +19,7 @@
     <div class="row-fluid">
 
         <div class="span12" style="text-align: center">
-            <skolka:messages/>
+
         </div>
     </div>
 </div>
@@ -29,6 +29,7 @@
         <p>Pro pokračování se prosím přihlašte.</p>
 
         <div class="control-group">
+            <skolka:messages/>
             <div class="controls">
                 <div class="input-prepend">
                     <span class="add-on"><i class="icon-user"></i></span><input type="text" name="j_username" placeholder="Uživatelské jméno" />
