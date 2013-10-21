@@ -1,3 +1,4 @@
+if (typeof tinymce !== 'undefined') {
 tinymce.addI18n('cs',{
 "Cut": "Vyjmout",
 "Header 2": "Nadpis 2",
@@ -175,3 +176,4 @@ tinymce.addI18n('cs',{
 "Table": "Tabulka",
 "Format": "Form\u00e1t"
 });
+}

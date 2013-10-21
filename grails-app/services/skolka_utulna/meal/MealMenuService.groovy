@@ -12,7 +12,7 @@ class MealMenuService {
     def getWeekMenu(Date forDate, Website website) {
         Date newDate = new Date(forDate.getTime());
 
-        GregorianCalendar mondayCalendar = new GregorianCalendar();
+        Calendar mondayCalendar = Calendar.getInstance();
         mondayCalendar.setTime(forDate);
         mondayCalendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         mondayCalendar.set(Calendar.HOUR_OF_DAY, 1)
@@ -21,7 +21,7 @@ class MealMenuService {
         monday.setTime(mondayCalendar.getTime().getTime());
         monday = getYesterdayMidnight(monday)
 
-        GregorianCalendar fridayCalendar = new GregorianCalendar();
+        Calendar fridayCalendar = Calendar.getInstance();
         fridayCalendar.setTime(monday);
         fridayCalendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
         Date friday = new Date()
@@ -39,7 +39,7 @@ class MealMenuService {
             }
 
 
-            GregorianCalendar menuDateCalendar = new GregorianCalendar();
+            Calendar menuDateCalendar = Calendar.getInstance();
             menuDateCalendar.setTime(forDate);
             mondayCalendar.set(Calendar.DAY_OF_WEEK, day);
             Date menuDate = new Date();
