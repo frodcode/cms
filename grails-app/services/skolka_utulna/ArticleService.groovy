@@ -77,6 +77,24 @@ class ArticleService {
         return Article.findByPage(childArticle.page.parent)
     }
 
+    public def deleteByPageId(def pageId)
+    {
+        Page page = Page.get(pageId)
+        Article article = Article.findByPage(page)
+        MenuItem menuItem = MenuItem.findByPage(article.page)
+        MainMenuItem mainMenuItem = menuItem.mainMenuItem
+        article.delete(flush:true)
+        menuItem.delete(flush:true)
+        mainMenuItem.removeFromMenuItems(menuItem);
+
+        def allItems = mainMenuItem.menuItems.sort{it.position}
+        allItems.each { item ->
+            item.position = allItems.indexOf(item) + 1
+            item.save()
+        }
+        page.delete(flush:true)
+    }
+
 
 
 }

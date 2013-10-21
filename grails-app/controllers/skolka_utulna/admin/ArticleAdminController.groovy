@@ -46,6 +46,12 @@ class ArticleAdminController {
         [allMainMenus: allMainMenus, website: website]
     }
 
+    def delete() {
+        articleService.deleteByPageId(params.id)
+        flash.message = 'Článek smazán'
+        redirect(action: 'index', params: [websiteSlug: website.slug])
+    }
+
     def saveSort() {
         def data = JSON.parse(params.data)
         def items = []

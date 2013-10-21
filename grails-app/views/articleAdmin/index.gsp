@@ -61,10 +61,18 @@
                                     <tr item-id="${menuItem.id}">
                                         <g:if test="${menuItem.page.pageType.slug == 'news'}">
                                             <td><g:link controller="news-admin" action="index" params="[websiteSlug: website.slug]">${menuItem.title}</g:link></td>
+                                            <td></td>
                                         </g:if>
                                         <g:else>
                                             <td><g:link action="edit" params="[websiteSlug: website.slug, id: menuItem.page.id]">${menuItem.title}</g:link></td>
+                                            <td>
+                                                <g:form action="delete" useToken="true" params="[websiteSlug: website.slug]" onclick="return(confirm('Opravdu smazat?'))">
+                                                    <g:hiddenField name="id" value="${menuItem.page.id}"/>
+                                                    <g:submitButton name="delete" class="btn btn-danger" value="smazat"/>
+                                                </g:form>
+                                            </td>
                                         </g:else>
+
                                     </tr>
                                 </g:each>
                                 </tbody>
