@@ -49,8 +49,10 @@ class UrlMappings {
             }
         }
         "/superadmin/$controller/$action/$id?"{
+            namespace = 'superadmin'
             constraints {
-                // apply constraints here
+                controller(nullable:false, blank:false)
+                action(nullable:false, blank:false)
             }
         }
         "/**"{

@@ -40,7 +40,6 @@
                 </li>
             </g:each>
         </ul>
-    <?php } ?>
     </div>
 </div>
 </body>

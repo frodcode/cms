@@ -23,7 +23,7 @@
         <g:message code="user.password.roles" default="Roles" />
         <span class="required-indicator">*</span>
     </label>
-    <g:textField name="roles" required="" value="${skolka_utulna.acl.UserRole.findAllByUser(userInstance)*.role*.authority.join(',')}"/>
+    <g:textField name="roles" required="" value="${userInstance?.id ? skolka_utulna.acl.UserRole.findAllByUser(userInstance)*.role*.authority.join(','): ''}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: userInstance, field: 'accountExpired', 'error')} ">

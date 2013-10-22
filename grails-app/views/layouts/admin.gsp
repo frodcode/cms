@@ -13,11 +13,12 @@
 }
     </style>
 </head>
-
+<g:set var="layoutWebsite" value="${params.websiteSlug ? Website.findBySlug(params.websiteSlug) : null}"/>
 <body ng-app="app">
 <div id="header">
-    <h1><a href="http://wbpreview.com/previews/WB0F35928/dashboard.html">Školka</a></h1>
+    <h1><a href=#">Školka</a></h1>
 </div>
+<g:if test="${layoutWebsite?.id}">
 <div id="user-nav" class="navbar navbar-inverse">
     <ul class="nav btn-group">
         <li class="btn btn-inverse" ><a href="${Website.findBySlug(params.websiteSlug).homepage.url}"><i class="icon icon-star"></i> <span class="text">Zobrazit stránky</span></a></li>
@@ -29,6 +30,7 @@
     <skolka:adminMenu/>
 
 </div>
+</g:if>
 <r:layoutResources/>
 <g:layoutBody/>
 <script>

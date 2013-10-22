@@ -8,22 +8,30 @@ import skolka_utulna.data.TestData
 
 class BootStrap {
 
+    def grailsApplication
+
     def init = { servletContext ->
         def ctx = servletContext.getAttribute(ApplicationAttributes.APPLICATION_CONTEXT)
-        Domain defaultDomain
-        if (Environment.current == Environment.PRODUCTION) {
-            defaultDomain = new Domain(protocol : 'http', host: 'www.hedvabnepovleceni.cz', port: '80', domainUrlPart: '')
-        } else {
-            defaultDomain = new Domain(protocol : 'http', host: 'localhost', port: '8080', domainUrlPart: '')
-        }
-        defaultDomain.save()
 
-        def fixtures = Fixtures.load(ctx, defaultDomain)
-        if (Environment.current == Environment.TEST) {
-            TestData.load(ctx, defaultDomain, fixtures.root, fixtures.pageTypes) // todo
+        if (grailsApplication.config.dataSource.dbCreate != 'update') {
+
+            Domain defaultDomain
+            if (Environment.current == Environment.PRODUCTION) {
+                defaultDomain = new Domain(protocol: 'http', host: 'www.hedvabnepovleceni.cz', port: '80', domainUrlPart: '')
+            } else {
+                defaultDomain = new Domain(protocol: 'http', host: 'localhost', port: '8080', domainUrlPart: '')
+            }
+            defaultDomain.save()
+
+            def fixtures = Fixtures.load(ctx, defaultDomain)
+            if (Environment.current == Environment.TEST) {
+                TestData.load(ctx, defaultDomain, fixtures.root, fixtures.pageTypes) // todo
+            } else {
+                ExampleData exampleData = ctx.'skolka_utulna.data.ExampleData'
+                exampleData.load(ctx, defaultDomain, fixtures)
+            }
         } else {
-            ExampleData exampleData = ctx.'skolka_utulna.data.ExampleData'
-            exampleData.load(ctx, defaultDomain, fixtures)
+            println '---------- just updating db, no example data loaded ----'
         }
     }
     def destroy = {

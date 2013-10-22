@@ -10,6 +10,8 @@ class UserController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+    static namespace = 'superadmin'
+
     def index() {
         redirect(action: "list", params: params)
     }
@@ -26,7 +28,9 @@ class UserController {
     private def addUserRoles(User user)
     {
         if (params.roles) {
-            UserRole.removeAll(user)
+            if (user?.id) {
+                UserRole.removeAll(user)
+            }
             params.roles.toString().tokenize(',').each { roleName ->
                 def role = Role.findByAuthority(roleName.trim())
                 if (role) {
@@ -38,11 +42,11 @@ class UserController {
 
     def save() {
         def userInstance = new User(params)
-        addUserRoles(userInstance)
         if (!userInstance.save(flush: true)) {
             render(view: "create", model: [userInstance: userInstance])
             return
         }
+        addUserRoles(userInstance)
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
         redirect(action: "show", id: userInstance.id)

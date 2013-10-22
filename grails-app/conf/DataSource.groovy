@@ -26,7 +26,7 @@ environments {
     }
     production {
         dataSource {
-            dbCreate = "create-drop"
+            dbCreate = "update"
             url = "jdbc:postgresql://localhost:5432/skolka_utulna"
             pooled = true
             properties {

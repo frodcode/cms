@@ -50,7 +50,7 @@
     <g:layoutBody />
 
     <footer class="footer">
-        <p>&copy; Mateřská škola Útulná 2013</p>
+        <p>&copy; ${website?.name} <g:formatDate format="yyyy" date="${new Date()}"/></p>
     </footer>
 </div> <!-- /container -->
 <r:layoutResources/>

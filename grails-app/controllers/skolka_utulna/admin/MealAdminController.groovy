@@ -53,9 +53,8 @@ class MealAdminController {
 
     def detail() {
         Website website = Website.findBySlug(params.websiteSlug)
-        Date monday = new SimpleDateFormat("yyyy-MM-dd").parse(params.id);
-        monday.hours = 10
-        def editingWeek = mealMenuService.getWeekMenu(monday, website)
+        Date friday = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(params.id+" 12:00");
+        def editingWeek = mealMenuService.getWeekMenu(friday, website)
         [website: website, editingWeek: editingWeek, dailyMenuData: editingWeek as JSON]
     }
 

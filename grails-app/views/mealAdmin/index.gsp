@@ -60,7 +60,7 @@
                                 </div>
                             </td>
                         </g:each>
-                        <td><g:link controller="MealAdmin" action="detail" params="[websiteSlug: website.slug, id: weekMenu.sinceDate.format('yyyy-MM-dd')]">Upravit pro tento týden</g:link></td>
+                        <td><g:link controller="MealAdmin" action="detail" params="[websiteSlug: website.slug, id: weekMenu.toDate.format('yyyy-MM-dd')]">Upravit pro tento týden</g:link></td>
                     </tr>
 
                 </g:each>
