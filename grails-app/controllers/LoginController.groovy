@@ -122,6 +122,7 @@ class LoginController {
 		}
 		else {
 			flash.message = msg
+            dump(msg)
 			redirect action: 'auth', params: params
 		}
 	}

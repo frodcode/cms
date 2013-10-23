@@ -23,13 +23,14 @@
         </div>
     </div>
 </div>
-
+<div style="text-align: center">
+    <skolka:messages/>
+</div>
 <div id="loginbox">
+
     <form id="loginform" class="form-vertical" action="${postUrl}" method="POST">
         <p>Pro pokračování se prosím přihlašte.</p>
-
         <div class="control-group">
-            <skolka:messages/>
             <div class="controls">
                 <div class="input-prepend">
                     <span class="add-on"><i class="icon-user"></i></span><input type="text" name="j_username" placeholder="Uživatelské jméno" />
