@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Články</title>
+    <r:require modules="adminskolka,tinymce, jqueryui"/>
 </head>
 
 <body>

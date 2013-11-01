@@ -5,6 +5,7 @@ import skolka_utulna.data.ExampleData
 import frod.routing.domain.Page
 import grails.util.Environment
 import skolka_utulna.data.TestData
+import grails.converters.JSON;
 
 class BootStrap {
 
@@ -12,6 +13,10 @@ class BootStrap {
 
     def init = { servletContext ->
         def ctx = servletContext.getAttribute(ApplicationAttributes.APPLICATION_CONTEXT)
+
+        JSON.registerObjectMarshaller(Date) {
+            return it?.format("MM-dd-yyyy")
+        }
 
         if (grailsApplication.config.dataSource.dbCreate != 'update') {
 

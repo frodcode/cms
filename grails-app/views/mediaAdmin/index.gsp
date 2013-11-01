@@ -55,7 +55,7 @@
                                 <tbody class="sortable">
                                 <g:each in="${allGroups}" var="group">
                                     <tr>
-                                        <td><g:link action="edit"
+                                        <td><g:link action="detail"
                                                     params="[websiteSlug: website.slug, id: group.id]">${group.name}</g:link></td>
                                         <td>
                                             <g:form action="delete" useToken="true" params="[websiteSlug: website.slug]"

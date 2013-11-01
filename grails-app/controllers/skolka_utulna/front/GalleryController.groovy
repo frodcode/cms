@@ -5,26 +5,28 @@ import frod.media.domain.Media
 import skolka_utulna.Website
 import skolka_utulna.WebsiteService
 import frod.routing.domain.Page
+import org.springframework.web.servlet.ModelAndView
 
 class GalleryController {
 
     WebsiteService websiteService
 
     def index() {
+        dump('spoustim index')
         if (params.galerie) {
-            forward(action: 'groupDetail')
+            Page page = Page.get(params.pageId)
+            def group =  MediaGroup.findByName(params.galerie)
+            if (!group) {
+                response.status = 404;
+                return;
+            }
+            def website = websiteService.getWebsite(page)
+            return new ModelAndView("/gallery/groupDetail",
+                    [media: Media.findAllByMediaGroup(group), website: website, group: group]
+            )
         } else {
             forward(action: 'groups')
         }
-    }
-
-    def groupDetail() {
-        def group =  MediaGroup.findByName(params.galerie)
-        if (!group) {
-            response.status = 404;
-            return;
-        }
-        [media: Media.findAllByMediaGroup(group)]
     }
 
     def groups() {

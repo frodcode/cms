@@ -17,7 +17,7 @@ class SkolkaTagLib {
     def mainMenu = { attrs, body ->
         def page = pageScope.page
         def website = websiteService.getWebsite(page)
-        def menuItems = MainMenuItem.findAllByWebsite(website)
+        def menuItems = MainMenuItem.findAllByWebsite(website, [sort: "position", order: "asc"])
 
         def activeItem
         def homepage

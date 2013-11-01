@@ -60,7 +60,27 @@ modules = {
 
     }
 
+    imgupload {
+        resource url: '/static/skolka/common/upload/jquery.ui.widget.js'
+        resource url: '/static/skolka/common/upload/load-image.min.js'
+        resource url: '/static/skolka/common/upload/canvas-to-blob.min.js'
+        resource url: '/static/skolka/common/upload/jquery.blueimp-gallery.min.js'
+        resource url: '/static/skolka/common/upload/jquery.iframe-transport.js'
+        resource url: '/static/skolka/common/upload/jquery.fileupload.js'
+        resource url: '/static/skolka/common/upload/jquery.fileupload-process.js'
+        resource url: '/static/skolka/common/upload/jquery.fileupload-image.js'
+        resource url: '/static/skolka/common/upload/jquery.fileupload-audio.js'
+        resource url: '/static/skolka/common/upload/jquery.fileupload-video.js'
+        resource url: '/static/skolka/common/upload/jquery.fileupload-validate.js'
+        resource url: '/static/skolka/common/upload/jquery.fileupload-angular.js'
+        resource url: '/static/skolka/common/upload/app.js'
+
+    }
+
     tinymce {
         resource url: '/tinymce/langs/cs.js', disposition: 'head'
+    }
+    overrides {
+        admi
     }
 }
