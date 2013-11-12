@@ -15,7 +15,7 @@ class BootStrap {
         def ctx = servletContext.getAttribute(ApplicationAttributes.APPLICATION_CONTEXT)
 
         JSON.registerObjectMarshaller(Date) {
-            return it?.format("MM-dd-yyyy")
+            return it?.format("yyyy-MM-dd")
         }
 
         if (grailsApplication.config.dataSource.dbCreate != 'update') {

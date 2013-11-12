@@ -75,9 +75,8 @@
     tinymce.init({
         selector: "textarea",
         min_height: 350,
-        plugins: "table,autolink,link",
-        content_css: '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css',
-        theme_advanced_buttons1: "styleselect,bold,italic,underline,strikethrough,|,bullist,numlist,|,undo,redo,|,link,unlink"
+        plugins: "table,autolink,link,code",
+        content_css: '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css'
     });
 </script>
 
