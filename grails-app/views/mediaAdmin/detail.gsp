@@ -12,9 +12,32 @@
         <h1>${title}</h1>
     </div>
 
+
     <div class="container-fluid">
         <div class="span12">
             <skolka:messages/>
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon">
+                        <i class="icon-database"></i>
+                    </span>
+                    <h5>Přejmenovat</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <g:form action="rename" useToken="true" params="[websiteSlug: website.slug, id: mediaGroup.id]"  class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label">Název galerie</label>
+                            <div class="controls">
+                                <g:textField name="name" value="${mediaGroup.name}"/>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Přejmenovat galerii</button>
+                        </div>
+                    </g:form>
+                </div>
+            </div>
             <div class="widget-box">
             <div class="widget-content nopadding">
            <form id="fileupload" action="//jquery-file-upload.appspot.com/" method="POST" class="form-horizontal" enctype="multipart/form-data" data-ng-controller="DemoFileUploadController" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}">

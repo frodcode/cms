@@ -15,7 +15,7 @@ class GalleryController {
         dump('spoustim index')
         if (params.galerie) {
             Page page = Page.get(params.pageId)
-            def group =  MediaGroup.findByName(params.galerie)
+            def group =  MediaGroup.get(params.galerie)
             if (!group) {
                 response.status = 404;
                 return;

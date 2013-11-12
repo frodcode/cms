@@ -30,7 +30,7 @@
             <g:each in="${allGroups}" var="group">
                 <li>
                     <g:set var="media" value="${thumbnails.containsKey(group.id) ? thumbnails[group.id] : null}"/>
-                    <a href="?galerie=${group.name}">
+                    <a href="?galerie=${group.id}">
                         <span>${group.name}</span>
                         <g:if test="${media}">
                             <frodm:img media="${thumbnails[group.id]}"

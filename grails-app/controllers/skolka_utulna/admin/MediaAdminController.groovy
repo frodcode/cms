@@ -132,4 +132,22 @@ class MediaAdminController {
         redirect(action: 'index', params: [websiteSlug: website.slug])
     }
 
+    def rename() {
+        Website website = getWebsite()
+        MediaGroup mediaGroup = MediaGroup.get(params.id)
+        if (!mediaGroup) {
+            response.status = 404;
+            return
+        }
+        if (!params.name) {
+            flash.errors = ['Vyplňte prosím název']
+            redirect(action: 'detail', params: [websiteSlug: website.slug, id: mediaGroup.id])
+            return
+        }
+        mediaGroup.name = params.name
+        mediaGroup.save(flush:true)
+        flash.message = 'Galerie přejmenována';
+        redirect(action: 'detail', params: [websiteSlug: website.slug, id: mediaGroup.id])
+    }
+
 }

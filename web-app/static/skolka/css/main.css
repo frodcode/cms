@@ -256,6 +256,10 @@ footer {
 	background-color: #CFE9C3;
 }
 
+.photos li a img {
+    height: 149px;
+}
+
 .table .day {
 	background-color: #CFE9C3;
 	text-align: center;
