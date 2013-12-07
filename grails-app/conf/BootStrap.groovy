@@ -22,7 +22,7 @@ class BootStrap {
 
             Domain defaultDomain
             if (Environment.current == Environment.PRODUCTION) {
-                defaultDomain = new Domain(protocol: 'http', host: 'www.hedvabnepovleceni.cz', port: '80', domainUrlPart: '')
+                defaultDomain = new Domain(protocol: 'http', host: 'www.www.ms-troilova-utulna.cz', port: '80', domainUrlPart: '')
             } else {
                 defaultDomain = new Domain(protocol: 'http', host: 'localhost', port: '8080', domainUrlPart: '')
             }

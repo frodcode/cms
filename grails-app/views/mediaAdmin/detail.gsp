@@ -126,7 +126,7 @@
                     <ul class="thumbnails">
                         <g:each in="${allMedia}" var="media">
                             <li class="span2">
-                                <a href="gallery.html#" class="thumbnail">
+                                <a class="fancybox" href="${frodm.imgUri([media: media, adjustments: [new ResizeAdjustment(1000, 800, Scalr.Mode.AUTOMATIC)]])}" rel="gallery" class="gallery">
                                     <frodm:img media="${media}"
                                                adjustments="${[new ResizeAdjustment(140, 140, Scalr.Mode.AUTOMATIC)]}"/>
                                 </a>
@@ -157,6 +157,7 @@
         var uploadModule = uploadModuleFactory('${createLink(action: 'upload', params: ['websiteSlug': website.slug, id: mediaGroup.id])}', '${createLink(action: 'detail', params: ['websiteSlug': website.slug, id: mediaGroup.id])}');
         appModuleFactory.add(uploadModule);
     });
+    $(".fancybox").attr('rel', 'gallery').fancybox({type: 'image'});
 </script>
 </body>
 </html>

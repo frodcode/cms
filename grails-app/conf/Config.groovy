@@ -73,7 +73,7 @@ environments {
     production {
         grails.logging.jul.usebridge = false
         grails.media.preferences.imageDir = '/appdata/skolka'
-        grails.serverURL = "http://www.hedvabnepovleceni.cz"
+        grails.serverURL = "http://www.ms-troilova-utulna.cz"
     }
 }
 

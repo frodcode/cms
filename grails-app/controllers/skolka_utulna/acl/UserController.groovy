@@ -12,17 +12,18 @@ class UserController {
 
     static namespace = 'superadmin'
 
+
     def index() {
         redirect(action: "list", params: params)
     }
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        [userInstanceList: User.list(params), userInstanceTotal: User.count()]
+        [userInstanceList: User.list(params), userInstanceTotal: User.count(), websiteSlug: params.websiteSlug]
     }
 
     def create() {
-        [userInstance: new User(params)]
+        [userInstance: new User(params), websiteSlug: params.websiteSlug]
     }
 
     private def addUserRoles(User user)
@@ -49,18 +50,18 @@ class UserController {
         addUserRoles(userInstance)
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
-        redirect(action: "show", id: userInstance.id)
+        redirect(action: "show", id: userInstance.id, params: [websiteSlug: params.websiteSlug])
     }
 
     def show(Long id) {
         def userInstance = User.get(id)
         if (!userInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), id])
-            redirect(action: "list")
+            redirect(action: "list", params: [websiteSlug: params.websiteSlug])
             return
         }
 
-        [userInstance: userInstance]
+        [userInstance: userInstance, websiteSlug: params.websiteSlug]
     }
 
     def edit(Long id) {
@@ -68,18 +69,18 @@ class UserController {
         addUserRoles(userInstance)
         if (!userInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), id])
-            redirect(action: "list")
+            redirect(action: "list", params: [websiteSlug: params.websiteSlug])
             return
         }
 
-        [userInstance: userInstance]
+        [userInstance: userInstance, websiteSlug: params.websiteSlug]
     }
 
     def update(Long id, Long version) {
         def userInstance = User.get(id)
         if (!userInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), id])
-            redirect(action: "list")
+            redirect(action: "list", params: [websiteSlug: params.websiteSlug])
             return
         }
 
@@ -101,25 +102,25 @@ class UserController {
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
-        redirect(action: "show", id: userInstance.id)
+        redirect(action: "show", id: userInstance.id, params: [websiteSlug: params.websiteSlug])
     }
 
     def delete(Long id) {
         def userInstance = User.get(id)
         if (!userInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), id])
-            redirect(action: "list")
+            redirect(action: "list", params: [websiteSlug: params.websiteSlug])
             return
         }
 
         try {
             userInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'user.label', default: 'User'), id])
-            redirect(action: "list")
+            redirect(action: "list", params: [websiteSlug: params.websiteSlug])
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'user.label', default: 'User'), id])
-            redirect(action: "show", id: id)
+            redirect(action: "show", id: id, params: [websiteSlug: params.websiteSlug])
         }
     }
 
@@ -138,6 +139,6 @@ class UserController {
             flash.message = "Heslo změněno"
             redirect(mapping: 'myAccount', params: [websiteSlug: params.websiteSlug])
         }
-        [userInstance: userInstance]
+        [userInstance: userInstance, websiteSlug: params.websiteSlug]
     }
 }

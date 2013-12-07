@@ -57,7 +57,14 @@ modules = {
         resource url: '/static/skolka/admin/js/appConfig.js'
 
         resource url: '/static/skolka/admin/css/back.css'
+        resource url: '/static/skolka/libs/fancybox/jquery.fancybox.css?v=2.1.5'
+        resource url: '/static/skolka/libs/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5'
+        resource url: '/static/skolka/libs/fancybox/helpers/jquery.fancybox-thumbs.css?v=1.0.7'
 
+        resource url: '/static/skolka/libs/fancybox/jquery.fancybox.pack.js?v=2.1.5'
+        resource url: '/static/skolka/libs/fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5'
+        resource url: '/static/skolka/libs/fancybox/helpers/jquery.fancybox-media.js?v=1.0.6'
+        resource url: '/static/skolka/libs/fancybox/helpers/jquery.fancybox-thumbs.js?v=1.0.7'
     }
 
     imgupload {
