@@ -32,14 +32,14 @@
     <div class="span4 colored-box">
         <h3><frodr:link page="${naseTridyPage}">Naše třídy</frodr:link></h3>
         <frodr:link page="${naseTridyPage}">
-            <r:img uri="/static/skolka/img/tridy.jpg" alt="tridy"/>
+            <r:img uri="/static/skolka/img/nase-tridy-troilova.jpg" alt="tridy"/>
         </frodr:link>
     </div>
 
     <div class="span4 colored-box">
         <h3><a href="index.php?page=foto">Fotogalerie</a></h3>
         <frodr:link page="${fotogaleriePage}">
-            <r:img uri="/static/skolka/img/fotogalerie.jpg" alt="fotogalerie"/>
+            <r:img uri="/static/skolka/img/fotogalerie-troilova.jpg" alt="fotogalerie"/>
         </frodr:link>
     </div>
     <div class="span4 colored-box">
